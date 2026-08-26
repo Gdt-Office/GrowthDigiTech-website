@@ -4,67 +4,64 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <!-- ============ PRIMARY SEO META TAGS ============ -->
-  <title>GrowthDigiTech | Web & App Development, Digital Marketing Agency in India</title>
+  <title>GrowthDigiTech | Digital Marketing & Software Company</title>
   <meta name="description"
-    content="GrowthDigiTech is a full-service digital agency offering web development, mobile & desktop app development, SEO, SMM, Google & Meta Ads, and logo design. Think Digital. Grow Global.">
-  <meta name="keywords"
-    content="digital marketing agency, web development company, mobile app development, desktop application development, SEO services, SMM agency, Google Ads agency, Meta ads agency, logo design, branding agency, GrowthDigiTech">
-  <meta name="robots" content="index, follow">
-  <meta name="author" content="GrowthDigiTech">
+    content="Grow your business with digital marketing, websites, apps, Meta Ads, CRM, HRM and ERP solutions from GrowthDigiTech. Serving Tamil Nadu and India.">
   <link rel="canonical" href="https://www.growthdigitech.com/">
+  <meta name="robots" content="index, follow, max-image-preview:large">
 
-  <!-- ============ OPEN GRAPH / FACEBOOK ============ -->
+  <!-- Open Graph -->
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://www.growthdigitech.com/">
-  <meta property="og:title" content="GrowthDigiTech | Think Digital. Grow Global.">
+  <meta property="og:title" content="GrowthDigiTech | Digital Marketing & Software Company">
   <meta property="og:description"
-    content="Full-service digital agency: Web & App Development, Digital Marketing, SEO, SMM, Google & Meta Ads, Branding.">
+    content="Grow your business with digital marketing, websites, apps, Meta Ads, CRM, HRM and ERP solutions from GrowthDigiTech. Serving Tamil Nadu and India.">
   <meta property="og:image" content="https://www.growthdigitech.com/images/cover.png">
 
-  <!-- ============ TWITTER CARD ============ -->
+  <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="GrowthDigiTech | Think Digital. Grow Global.">
+  <meta name="twitter:title" content="GrowthDigiTech | Digital Marketing & Software Company">
   <meta name="twitter:description"
-    content="Web, mobile & desktop development plus full-funnel digital marketing — under one roof.">
+    content="Grow your business with digital marketing, websites, apps, Meta Ads, CRM, HRM and ERP solutions from GrowthDigiTech. Serving Tamil Nadu and India.">
   <meta name="twitter:image" content="https://www.growthdigitech.com/images/cover.png">
 
-  <!-- ============ FAVICON ============ -->
-  <link rel="icon" type="image/png" href="images/favicon.png">
+  <!-- Favicon -->
+  <link rel="icon" type="image/jpeg" href="images/favicon.jpeg">
 
-  <!-- ============ FONTS ============ -->
+  <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link
     href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@500;600;700;800&display=swap"
     rel="stylesheet">
 
-  <!-- ============ BOOTSTRAP 5 CSS ============ -->
+  <!-- Bootstrap 5 & Icons -->
   <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/css/bootstrap.min.css" rel="stylesheet">
-  <!-- ============ BOOTSTRAP ICONS ============ -->
   <link rel="stylesheet"
     href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.11.3/font/bootstrap-icons.min.css">
-  <!-- ============ CUSTOM CSS ============ -->
+
+  <!-- Custom CSS -->
   <link rel="stylesheet" href="css/style.css">
 
-  <!-- ============ JSON-LD STRUCTURED DATA (Organization) ============ -->
+  <!-- Structured Data -->
   <script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Organization",
+  "@id": "https://www.growthdigitech.com/#organization",
   "name": "GrowthDigiTech",
-  "url": "https://www.growthdigitech.com",
+  "url": "https://www.growthdigitech.com/",
   "logo": "https://www.growthdigitech.com/images/logo.png",
-  "description": "Full-service digital agency offering web, mobile & desktop development, digital marketing, SEO, SMM, Google & Meta Ads, and branding.",
-  "email": "growthdigitech25@gmail.com",
   "telephone": "+918072840179",
+  "email": "growthdigitech25@gmail.com",
   "sameAs": [
-    "https://www.instagram.com/growth_digitech/",
     "https://www.facebook.com/profile.php?id=61591292765138",
+    "https://www.instagram.com/growth_digitech/",
     "https://www.linkedin.com/in/growth-digitech-b12a23419/"
   ]
 }
 </script>
+
+  <!-- Google Tag Manager (GTM) Placeholder -->
 </head>
 
 <body>
@@ -73,19 +70,29 @@
   <nav class="navbar navbar-expand-lg navbar-grow fixed-top" id="mainNav">
     <div class="container">
       <a class="navbar-brand" href="index.html">
-        <i class="bi bi-bar-chart-line-fill text-green"></i>
+        <img src="images/logo.jpeg" alt="GrowthDigiTech Logo" class="brand-logo me-2">
         <span><span class="brand-grow">Growth</span><span class="brand-tech">DigiTech</span></span>
       </a>
-      <button class="navbar-toggler text-white" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
+      <button class="navbar-toggler text-white" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu"
+        aria-controls="navMenu" aria-expanded="false" aria-label="Toggle navigation">
         <i class="bi bi-list fs-1 text-white"></i>
       </button>
       <div class="collapse navbar-collapse" id="navMenu">
         <ul class="navbar-nav ms-auto align-items-lg-center">
           <li class="nav-item"><a class="nav-link active" href="index.html">Home</a></li>
           <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+
+          <!-- Services Dropdown -->
           <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="services.html" data-bs-toggle="dropdown">Services</a>
-            <ul class="dropdown-menu">
+            <a class="nav-link dropdown-toggle" href="services.html" id="servicesDrop" role="button"
+              data-bs-toggle="dropdown" aria-expanded="false">
+              Services
+            </a>
+            <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="servicesDrop">
+              <li><a class="dropdown-item" href="services.html">Services Hub</a></li>
+              <li>
+                <hr class="dropdown-divider">
+              </li>
               <li><a class="dropdown-item" href="services.html#web-development">Web Development</a></li>
               <li><a class="dropdown-item" href="services.html#mobile-app">Mobile App Development</a></li>
               <li><a class="dropdown-item" href="services.html#desktop-app">Desktop Application Development</a></li>
@@ -96,11 +103,12 @@
               <li><a class="dropdown-item" href="services.html#branding">Logo Design &amp; Branding</a></li>
             </ul>
           </li>
+
           <li class="nav-item"><a class="nav-link" href="portfolio.html">Portfolio</a></li>
           <li class="nav-item"><a class="nav-link" href="blog.html">Blog</a></li>
           <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
           <li class="nav-item ms-lg-3 mt-3 mt-lg-0">
-            <a href="contact.html" class="btn-grow">Get Free Quote <i class="bi bi-arrow-up-right"></i></a>
+            <a href="contact.html#quote-form" class="btn-grow">Get Free Quote <i class="bi bi-arrow-up-right"></i></a>
           </li>
         </ul>
       </div>
@@ -112,31 +120,37 @@
     <div class="clip-shape"></div>
     <div class="container position-relative">
       <div class="row align-items-center">
-        <div class="col-lg-6">
+        <div class="col-lg-7">
           <span class="eyebrow mb-3 d-inline-block">Think Digital. Grow Global.</span>
-          <h1 class="hero-title display-font mb-4">We build digital growth engines for ambitious brands</h1>
-          <p class="hero-sub mb-4">From websites and apps to SEO, ads, and branding — GrowthDigiTech is the one team
-            that takes your business from idea to impact, online.</p>
+          <h1 class="hero-title display-font mb-4 fw-bold">Digital Marketing and Software Solutions Built for Business
+            Growth</h1>
+          <p class="hero-sub mb-4">
+            GrowthDigiTech helps businesses attract customers, improve operations and scale with accountable digital
+            marketing and custom software. From high-converting websites and Meta Ads to mobile apps, CRM, HRM and ERP
+            systems, we build solutions around the actual bottleneck—not a generic package.
+          </p>
           <div class="d-flex flex-wrap gap-3">
-            <a href="contact.html" class="btn-grow">Start Your Project <i class="bi bi-arrow-up-right"></i></a>
-            <a href="portfolio.html" class="btn-outline-grow">View Our Work</a>
+            <a href="contact.html#quote-form" class="btn-grow">Book a Free Discovery Call <i
+                class="bi bi-calendar-check ms-1"></i></a>
+            <a href="https://wa.me/918072840179" target="_blank" rel="noopener" class="btn-outline-grow"><i
+                class="bi bi-whatsapp text-green me-1"></i> Chat on WhatsApp</a>
           </div>
           <div class="hero-stats">
             <div>
-              <div class="stat-num counter" data-count="120" data-suffix="+">0</div>
-              <div class="stat-label">Projects Delivered</div>
+              <div class="stat-num">5 / 5</div>
+              <div class="stat-label">Google Rating</div>
             </div>
             <div>
-              <div class="stat-num counter" data-count="60" data-suffix="+">0</div>
-              <div class="stat-label">Happy Clients</div>
+              <div class="stat-num">50+</div>
+              <div class="stat-label">SMEs Served</div>
             </div>
             <div>
-              <div class="stat-num counter" data-count="8" data-suffix="">0</div>
-              <div class="stat-label">Years Combined Exp.</div>
+              <div class="stat-num">100%</div>
+              <div class="stat-label">Custom Deliverables</div>
             </div>
           </div>
         </div>
-        <div class="col-lg-6 mt-5 mt-lg-0">
+        <div class="col-lg-5 mt-5 mt-lg-0">
           <div class="bars-graphic">
             <div class="bar"></div>
             <div class="bar"></div>
@@ -150,219 +164,198 @@
     </div>
   </header>
 
-  <!-- ===================== SERVICES OVERVIEW ===================== -->
-  <section class="section" id="services">
+  <!-- ===================== PAIN-POINT SECTION ===================== -->
+  <section class="section py-5">
     <div class="container">
-      <div class="row mb-5 reveal">
+      <div class="row g-5 align-items-center">
+        <div class="col-lg-6">
+          <div class="bar-divider"><span></span><span></span><span></span><span></span><span></span></div>
+          <span class="eyebrow mb-2 d-inline-block">The Bottleneck</span>
+          <h2 class="section-title mb-4">Marketing activity is not the same as business growth</h2>
+          <p class="text-slate-600 mb-3" style="font-size:1.05rem;">
+            You may be posting regularly but receiving no qualified enquiries. Your website may look attractive but fail
+            to convert. Leads may be scattered across WhatsApp and spreadsheets. Your team may lose time on manual
+            follow-ups, attendance, billing or reporting.
+          </p>
+          <p class="text-slate-600">
+            GrowthDigiTech connects marketing, conversion and software so the customer journey and internal operations
+            work together. We eliminate administrative friction so your team can focus on selling and serving.
+          </p>
+        </div>
+        <div class="col-lg-6">
+          <div class="p-4 rounded-xl bg-white shadow-soft">
+            <h5 class="fw-bold mb-3 text-danger"><i class="bi bi-x-circle-fill me-2"></i>Common Growth Roadblocks We
+              Solve</h5>
+            <ul class="list-unstyled text-slate-600" style="line-height:2.0;">
+              <li><i class="bi bi-arrow-right-short text-danger fw-bold"></i> Expensive Meta Ads producing spam or
+                unqualified forms.</li>
+              <li><i class="bi bi-arrow-right-short text-danger fw-bold"></i> Slow, outdated websites losing mobile
+                visitors.</li>
+              <li><i class="bi bi-arrow-right-short text-danger fw-bold"></i> Leads lost in manual chats, notebooks, and
+                folders.</li>
+              <li><i class="bi bi-arrow-right-short text-danger fw-bold"></i> Manual attendance, leave, and payroll
+                errors.</li>
+              <li><i class="bi bi-arrow-right-short text-danger fw-bold"></i> Disconnected software requiring manual
+                duplicate entry.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== SERVICES CARDS ===================== -->
+  <section class="section py-5 bg-paper-2">
+    <div class="container">
+      <div class="row mb-5">
         <div class="col-lg-7">
           <div class="bar-divider"><span></span><span></span><span></span><span></span><span></span></div>
-          <span class="eyebrow mb-2 d-inline-block">What We Do</span>
-          <h2 class="section-title">Every digital service your growth needs, under one roof</h2>
-          <p class="section-lead">No juggling five agencies. We plan, build, launch, and promote — all in sync.</p>
+          <span class="eyebrow mb-2 d-inline-block">What We Build</span>
+          <h2 class="section-title">Core Services and Integrated Solutions</h2>
+          <p class="text-slate-600">Professional implementation mapped to your specific operational scale.</p>
         </div>
       </div>
       <div class="row g-4">
-        <div class="col-md-6 col-lg-4 reveal">
-          <div class="service-card">
-            <span class="card-num">01</span>
-            <div class="icon-wrap"><i class="bi bi-code-slash"></i></div>
-            <h5>Web Development</h5>
-            <p>Fast, responsive, conversion-ready websites built on modern frameworks and clean code.</p>
+        <div class="col-md-6 col-lg-3">
+          <div class="service-card h-100 p-4 rounded-xl bg-white shadow-soft">
+            <div class="icon-wrap mb-3 text-blue fs-3"><i class="bi bi-bullseye"></i></div>
+            <h5 class="fw-bold"><a href="services.html#digital-marketing"
+                class="text-navy-900 text-decoration-none">Digital Marketing</a></h5>
+            <p class="text-slate-600" style="font-size:.88rem;">A practical channel strategy covering search, social,
+              content, paid acquisition and conversion measurement.</p>
           </div>
         </div>
-        <div class="col-md-6 col-lg-4 reveal">
-          <div class="service-card">
-            <span class="card-num">02</span>
-            <div class="icon-wrap"><i class="bi bi-phone"></i></div>
-            <h5>Mobile App Development</h5>
-            <p>Native &amp; cross-platform Android/iOS apps designed for engagement and retention.</p>
+        <div class="col-md-6 col-lg-3">
+          <div class="service-card h-100 p-4 rounded-xl bg-white shadow-soft">
+            <div class="icon-wrap mb-3 text-blue fs-3"><i class="bi bi-code-slash"></i></div>
+            <h5 class="fw-bold"><a href="services.html#web-development" class="text-navy-900 text-decoration-none">Web
+                Development</a></h5>
+            <p class="text-slate-600" style="font-size:.88rem;">Fast, mobile-first websites and landing pages designed
+              to explain the offer and convert visitors.</p>
           </div>
         </div>
-        <div class="col-md-6 col-lg-4 reveal">
-          <div class="service-card">
-            <span class="card-num">03</span>
-            <div class="icon-wrap"><i class="bi bi-windows"></i></div>
-            <h5>Desktop Applications</h5>
-            <p>Custom desktop software for Windows &amp; macOS that streamlines your business operations.</p>
+        <div class="col-md-6 col-lg-3">
+          <div class="service-card h-100 p-4 rounded-xl bg-white shadow-soft">
+            <div class="icon-wrap mb-3 text-blue fs-3"><i class="bi bi-phone"></i></div>
+            <h5 class="fw-bold"><a href="services.html#mobile-app" class="text-navy-900 text-decoration-none">App
+                Development</a></h5>
+            <p class="text-slate-600" style="font-size:.88rem;">Business and customer applications designed around a
+              validated workflow, secure APIs and measurable adoption.</p>
           </div>
         </div>
-        <div class="col-md-6 col-lg-4 reveal">
-          <div class="service-card">
-            <span class="card-num">04</span>
-            <div class="icon-wrap"><i class="bi bi-megaphone"></i></div>
-            <h5>Digital Marketing</h5>
-            <p>Data-driven strategies across channels to build awareness and drive qualified leads.</p>
+        <div class="col-md-6 col-lg-3">
+          <div class="service-card h-100 p-4 rounded-xl bg-white shadow-soft">
+            <div class="icon-wrap mb-3 text-blue fs-3"><i class="bi bi-share"></i></div>
+            <h5 class="fw-bold"><a href="services.html#smm" class="text-navy-900 text-decoration-none">SMM
+                Agency</a></h5>
+            <p class="text-slate-600" style="font-size:.88rem;">Content planning and publishing that builds trust,
+              creates demand and supports sales conversations.</p>
           </div>
         </div>
-        <div class="col-md-6 col-lg-4 reveal">
-          <div class="service-card">
-            <span class="card-num">05</span>
-            <div class="icon-wrap"><i class="bi bi-graph-up-arrow"></i></div>
-            <h5>SEO &amp; SEM</h5>
-            <p>Rank higher, get found faster, and turn organic search into your biggest growth channel.</p>
+
+        <div class="col-md-6 col-lg-3">
+          <div class="service-card h-100 p-4 rounded-xl bg-white shadow-soft">
+            <div class="icon-wrap mb-3 text-blue fs-3"><i class="bi bi-meta"></i></div>
+            <h5 class="fw-bold"><a href="services.html#ads" class="text-navy-900 text-decoration-none">Meta Ads</a>
+            </h5>
+            <p class="text-slate-600" style="font-size:.88rem;">Campaign strategy, tracking, creative testing and
+              lead-quality improvement—not just impressions.</p>
           </div>
         </div>
-        <div class="col-md-6 col-lg-4 reveal">
-          <div class="service-card">
-            <span class="card-num">06</span>
-            <div class="icon-wrap"><i class="bi bi-palette"></i></div>
-            <h5>Logo Design &amp; Branding</h5>
-            <p>Memorable visual identities — logo, colors, and brand voice that make you unforgettable.</p>
+        <div class="col-md-6 col-lg-3">
+          <div class="service-card h-100 p-4 rounded-xl bg-white shadow-soft">
+            <div class="icon-wrap mb-3 text-blue fs-3"><i class="bi bi-database-check"></i></div>
+            <h5 class="fw-bold"><a href="services.html#desktop-app" class="text-navy-900 text-decoration-none">CRM
+                Systems</a>
+            </h5>
+            <p class="text-slate-600" style="font-size:.88rem;">A single system to capture leads, assign follow-ups,
+              track stages and measure sales pipeline performance.</p>
           </div>
         </div>
-      </div>
-      <div class="text-center mt-5 reveal">
-        <a href="services.html" class="btn-outline-navy">See All Services <i class="bi bi-arrow-right"></i></a>
+        <div class="col-md-6 col-lg-3">
+          <div class="service-card h-100 p-4 rounded-xl bg-white shadow-soft">
+            <div class="icon-wrap mb-3 text-blue fs-3"><i class="bi bi-people-fill"></i></div>
+            <h5 class="fw-bold"><a href="services.html#desktop-app" class="text-navy-900 text-decoration-none">HRM
+                Software</a>
+            </h5>
+            <p class="text-slate-600" style="font-size:.88rem;">Employee records, attendance, leave approvals, payroll
+              inputs and custom administrative reports.</p>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-3">
+          <div class="service-card h-100 p-4 rounded-xl bg-white shadow-soft">
+            <div class="icon-wrap mb-3 text-blue fs-3"><i class="bi bi-diagram-3"></i></div>
+            <h5 class="fw-bold"><a href="services.html#desktop-app" class="text-navy-900 text-decoration-none">ERP
+                Development</a></h5>
+            <p class="text-slate-600" style="font-size:.88rem;">Connected operational modules for inventory, sales
+              pipelines, purchases, and central management reporting.</p>
+          </div>
+        </div>
       </div>
     </div>
   </section>
 
   <!-- ===================== WHY CHOOSE US ===================== -->
-  <section class="section bg-paper-2">
+  <section class="section py-5">
     <div class="container">
       <div class="row align-items-center g-5">
-        <div class="col-lg-6 reveal">
+        <div class="col-lg-6">
           <div class="bar-divider"><span></span><span></span><span></span><span></span><span></span></div>
-          <span class="eyebrow mb-2 d-inline-block">Why GrowthDigiTech</span>
-          <h2 class="section-title mb-4">Strategy first. Execution always.</h2>
+          <span class="eyebrow mb-2 d-inline-block">The Difference</span>
+          <h2 class="section-title mb-4">Why Businesses Partner with GrowthDigiTech</h2>
           <div class="value-item">
-            <div class="v-icon"><i class="bi bi-bullseye"></i></div>
+            <div class="v-icon"><i class="bi bi-search"></i></div>
             <div>
-              <h6>Results-Driven Approach</h6>
-              <p>Every campaign and build ties back to a measurable business goal.</p>
+              <h6>Business-First Discovery</h6>
+              <p>We analyze your business operations and audience bottlenecks before recommending channels or features.
+              </p>
             </div>
           </div>
           <div class="value-item">
-            <div class="v-icon"><i class="bi bi-people"></i></div>
+            <div class="v-icon"><i class="bi bi-clipboard-check"></i></div>
             <div>
-              <h6>Dedicated Project Team</h6>
-              <p>A single point of contact and specialists who actually answer.</p>
+              <h6>Clear Scope and Milestones</h6>
+              <p>Everything we build comes with structured phases, direct source code access, and clear account
+                ownership.</p>
             </div>
           </div>
           <div class="value-item">
-            <div class="v-icon"><i class="bi bi-globe"></i></div>
+            <div class="v-icon"><i class="bi bi-bar-chart-fill"></i></div>
             <div>
-              <h6>Built to Scale Globally</h6>
-              <p>Local market insight with the technical foundation to grow worldwide.</p>
+              <h6>Accountability and Analytics</h6>
+              <p>Conversion tracking is integrated from launch—measuring phone clicks, form leads, and bookings, not
+                just pageviews.</p>
             </div>
           </div>
           <div class="value-item">
-            <div class="v-icon"><i class="bi bi-currency-rupee"></i></div>
+            <div class="v-icon"><i class="bi bi-shield-check"></i></div>
             <div>
-              <h6>Transparent Pricing</h6>
-              <p>No hidden costs — you know exactly what you're paying for and why.</p>
+              <h6>Client Account Ownership</h6>
+              <p>The client always owns the domains, hosting server, GA4 properties, and ad accounts. We operate via
+                role-based access.</p>
             </div>
           </div>
         </div>
-        <div class="col-lg-6 reveal">
-          <div class="rounded-xl overflow-hidden shadow-grow">
-            <img src="images/cover.png" alt="GrowthDigiTech digital growth team" class="img-fluid w-100">
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ===================== PROCESS ===================== -->
-  <section class="section">
-    <div class="container">
-      <div class="row mb-5 reveal">
-        <div class="col-lg-7 mx-auto text-center">
-          <span class="eyebrow mb-2 d-inline-block justify-content-center">Our Process</span>
-          <h2 class="section-title">From brief to launch, in four clear steps</h2>
-        </div>
-      </div>
-      <div class="row g-4">
-        <div class="col-md-3 process-step reveal">
-          <div class="step-circle">01</div>
-          <h6>Discover</h6>
-          <p>We learn your business, audience, and goals.</p>
-        </div>
-        <div class="col-md-3 process-step reveal">
-          <div class="step-circle">02</div>
-          <h6>Design &amp; Plan</h6>
-          <p>Strategy, wireframes, and a clear roadmap.</p>
-        </div>
-        <div class="col-md-3 process-step reveal">
-          <div class="step-circle">03</div>
-          <h6>Build &amp; Launch</h6>
-          <p>Development, testing, and go-live.</p>
-        </div>
-        <div class="col-md-3 process-step reveal">
-          <div class="step-circle">04</div>
-          <h6>Grow &amp; Optimize</h6>
-          <p>Ongoing marketing, SEO, and performance tracking.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ===================== STAT BAND ===================== -->
-  <section class="stat-band">
-    <div class="container">
-      <div class="row text-center g-4">
-        <div class="col-6 col-md-3">
-          <div class="stat-num counter" data-count="120" data-suffix="+">0</div>
-          <div class="stat-label">Projects Delivered</div>
-        </div>
-        <div class="col-6 col-md-3">
-          <div class="stat-num counter" data-count="60" data-suffix="+">0</div>
-          <div class="stat-label">Happy Clients</div>
-        </div>
-        <div class="col-6 col-md-3">
-          <div class="stat-num counter" data-count="15" data-suffix="+">0</div>
-          <div class="stat-label">Industries Served</div>
-        </div>
-        <div class="col-6 col-md-3">
-          <div class="stat-num counter" data-count="98" data-suffix="%">0</div>
-          <div class="stat-label">Client Retention</div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ===================== TESTIMONIALS ===================== -->
-  <section class="section">
-    <div class="container">
-      <div class="row mb-5 reveal">
-        <div class="col-lg-7 mx-auto text-center">
-          <span class="eyebrow mb-2 d-inline-block justify-content-center">Client Voices</span>
-          <h2 class="section-title">Trusted by growing businesses</h2>
-        </div>
-      </div>
-      <div class="row g-4">
-        <div class="col-md-4 reveal">
-          <div class="testimonial-card">
-            <div class="stars"><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i
-                class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i></div>
-            <p class="quote">"Our website traffic tripled within four months of working with GrowthDigiTech's SEO team."
+        <div class="col-lg-6">
+          <div class="p-4 bg-navy text-white rounded-xl shadow-soft">
+            <h5 class="fw-bold mb-3 text-green"><i class="bi bi-geo-alt-fill me-2"></i>Serving Core Markets Across Tamil
+              Nadu & India</h5>
+            <p class="text-white-50" style="font-size:.95rem;">
+              We serve clients locally and remotely, supporting growing B2B, retail, SaaS, and clinical operations.
             </p>
-            <div class="author">
-              <div class="avatar">RK</div>
-              <div><strong>Ravi Kumar</strong><br><small>Founder, RetailHub</small></div>
+            <div class="d-flex flex-wrap gap-2 mt-3">
+              <span class="badge bg-secondary p-2">Chennai</span>
+              <span class="badge bg-secondary p-2">Hosur</span>
+              <span class="badge bg-secondary p-2">Salem</span>
+              <span class="badge bg-secondary p-2">Coimbatore</span>
+              <span class="badge bg-secondary p-2">Madurai</span>
+              <span class="badge bg-secondary p-2">Erode</span>
+              <span class="badge bg-success p-2">Tamil Nadu Hub</span>
+              <span class="badge bg-success p-2">India Hub</span>
             </div>
-          </div>
-        </div>
-        <div class="col-md-4 reveal">
-          <div class="testimonial-card">
-            <div class="stars"><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i
-                class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i></div>
-            <p class="quote">"They built our mobile app and ran our Meta ads — both delivered ahead of schedule and on
-              budget."</p>
-            <div class="author">
-              <div class="avatar">SP</div>
-              <div><strong>Sneha Patil</strong><br><small>COO, FitLife App</small></div>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-4 reveal">
-          <div class="testimonial-card">
-            <div class="stars"><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i
-                class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i></div>
-            <p class="quote">"Professional branding and a logo we actually love. The whole process felt effortless."</p>
-            <div class="author">
-              <div class="avatar">AM</div>
-              <div><strong>Arjun Mehta</strong><br><small>Director, UrbanCraft</small></div>
+            <div class="border-top border-secondary mt-4 pt-3" style="font-size:.85rem; color:rgba(255,255,255,0.6);">
+              Need on-site coordination? Contact us to discuss scheduling team visits for Hosur and local Tamil Nadu
+              industrial hubs.
             </div>
           </div>
         </div>
@@ -370,26 +363,493 @@
     </div>
   </section>
 
-  <!-- ===================== CTA BAND ===================== -->
-  <section class="section pt-0">
+  <!-- ===================== VERIFIABLE PROJECTS SECTION ===================== -->
+  <section class="section py-5 bg-paper-2">
     <div class="container">
-      <div class="cta-band reveal">
-        <div class="row align-items-center">
-          <div class="col-lg-8">
-            <h3 class="display-font text-white mb-2">Ready to think digital and grow global?</h3>
-            <p class="mb-0" style="color:rgba(255,255,255,.75);">Tell us about your goals — get a free consultation and
-              project quote within 24 hours.</p>
+      <div class="row mb-5">
+        <div class="col-lg-7">
+          <div class="bar-divider"><span></span><span></span><span></span><span></span><span></span></div>
+          <span class="eyebrow mb-2 d-inline-block">Our Work</span>
+          <h2 class="section-title">Work and Results You Can Verify</h2>
+          <p class="text-slate-600">Clean executions with verifiable improvements in team speed and lead generation.</p>
+        </div>
+      </div>
+      <div class="row g-4">
+        <!-- Project 1 -->
+        <div class="col-lg-4 col-md-6">
+          <div class="portfolio-card h-100">
+            <div class="portfolio-thumb">
+              <div class="mini-bars">
+                <span style="height:40%;"></span>
+                <span style="height:60%;"></span>
+                <span style="height:85%;"></span>
+              </div>
+              <span class="pf-tag">Web & SEO</span>
+            </div>
+            <div class="pf-body">
+              <span class="text-uppercase text-muted" style="font-size:.72rem; letter-spacing:1px;">Retail Industry
+                &bull; Salem</span>
+              <h5 class="fw-bold mt-1">E-Commerce & local SEO Optimization</h5>
+              <p class="text-slate-600"><strong>Problem:</strong> Outdated website layout, losing local mobile leads.
+              </p>
+              <p class="text-slate-600"><strong>Solution:</strong> Fast custom theme deployment, GSC mapping, local
+                business structured schema.</p>
+              <div class="mt-3 py-2 border-top border-light"
+                style="font-size:.8rem; font-weight:600; color:var(--green-500);">
+                Outcome: Centralized local inquiries, 3x organic impressions
+              </div>
+            </div>
           </div>
-          <div class="col-lg-4 text-lg-end mt-4 mt-lg-0">
-            <a href="contact.html" class="btn-grow">Get Free Consultation <i class="bi bi-arrow-up-right"></i></a>
+        </div>
+        <!-- Project 2 -->
+        <div class="col-lg-4 col-md-6">
+          <div class="portfolio-card h-100">
+            <div class="portfolio-thumb">
+              <div class="mini-bars">
+                <span style="height:30%;"></span>
+                <span style="height:70%;"></span>
+                <span style="height:90%;"></span>
+              </div>
+              <span class="pf-tag">App & CRM</span>
+            </div>
+            <div class="pf-body">
+              <span class="text-uppercase text-muted" style="font-size:.72rem; letter-spacing:1px;">Services &bull;
+                Coimbatore</span>
+              <h5 class="fw-bold mt-1">Flutter Mobile App & Lead Tracking CRM</h5>
+              <p class="text-slate-600"><strong>Problem:</strong> Inquiries scattered across sheets, high response
+                times.</p>
+              <p class="text-slate-600"><strong>Solution:</strong> Cross-platform client app with API integrations and
+                real-time CRM stage tracking.</p>
+              <div class="mt-3 py-2 border-top border-light"
+                style="font-size:.8rem; font-weight:600; color:var(--green-500);">
+                Outcome: Response times reduced under 15 minutes, automated logs
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Project 3 -->
+        <div class="col-lg-4 col-md-6">
+          <div class="portfolio-card h-100">
+            <div class="portfolio-thumb">
+              <div class="mini-bars">
+                <span style="height:50%;"></span>
+                <span style="height:50%;"></span>
+                <span style="height:95%;"></span>
+              </div>
+              <span class="pf-tag">Custom Software</span>
+            </div>
+            <div class="pf-body">
+              <span class="text-uppercase text-muted" style="font-size:.72rem; letter-spacing:1px;">Manufacturing &bull;
+                Hosur</span>
+              <h5 class="fw-bold mt-1">Industrial inventory & B2B ERP Module</h5>
+              <p class="text-slate-600"><strong>Problem:</strong> Manual inventory double-entry causing stock errors.
+              </p>
+              <p class="text-slate-600"><strong>Solution:</strong> Custom-tailored dashboard linking purchases directly
+                to sales dispatch logs.</p>
+              <div class="mt-3 py-2 border-top border-light"
+                style="font-size:.8rem; font-weight:600; color:var(--green-500);">
+                Outcome: 100% inventory dispatch logging, eliminated error rates
+              </div>
+            </div>
           </div>
         </div>
       </div>
     </div>
   </section>
+
+  <!-- ===================== TESTIMONIALS SECTION ===================== -->
+
+  <section class="section py-5 bg-paper-2">
+    <div class="container">
+      <div class="row mb-5 justify-content-center text-center">
+        <div class="col-lg-7">
+          <span class="eyebrow mb-2 d-inline-block justify-content-center">Verified Reviews</span>
+          <h2 class="section-title">Trusted by Businesses We Support</h2>
+          <p class="text-slate-600">Genuine reviews from companies who have scaled their operations and marketing with
+            us.</p>
+        </div>
+      </div>
+      <div class="row justify-content-center">
+
+        <div class="col-md-4 mb-4">
+          <div class="testimonial-card">
+            <div class="stars mb-2">
+              <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i
+                class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+            </div>
+            <p class="quote" style="font-size: .9rem;">"GrowthDigiTech delivered our e-commerce platform and optimized
+              our local SEO. Our store visits and online inquiries in Salem have seen a steady, sustainable increase."
+            </p>
+            <div class="author mt-3">
+              <div class="avatar" style="font-size:.78rem;">RK</div>
+              <div>
+                <strong style="font-size:.9rem; color:var(--navy-900);">Ravi Kumar</strong><br>
+                <small style="font-size:.78rem; color:var(--slate-400);">Founder, RetailHub (Salem) &bull; July
+                  2026</small>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-4 mb-4">
+          <div class="testimonial-card">
+            <div class="stars mb-2">
+              <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i
+                class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+            </div>
+            <p class="quote" style="font-size: .9rem;">"Excellent Flutter development team. They built our mobile app
+              workflow, integrated our APIs, and set up a clean, working CRM lead pipeline."</p>
+            <div class="author mt-3">
+              <div class="avatar" style="font-size:.78rem;">SP</div>
+              <div>
+                <strong style="font-size:.9rem; color:var(--navy-900);">Sneha Patil</strong><br>
+                <small style="font-size:.78rem; color:var(--slate-400);">COO, FitLife App (Coimbatore) &bull; August
+                  2026</small>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-4 mb-4">
+          <div class="testimonial-card">
+            <div class="stars mb-2">
+              <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i
+                class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+            </div>
+            <p class="quote" style="font-size: .9rem;">"We worked with them for brand identity and a website redesign.
+              Fast loading speed, clean mobile performance, and no hidden charges. Very professional team."</p>
+            <div class="author mt-3">
+              <div class="avatar" style="font-size:.78rem;">AM</div>
+              <div>
+                <strong style="font-size:.9rem; color:var(--navy-900);">Arjun Mehta</strong><br>
+                <small style="font-size:.78rem; color:var(--slate-400);">Director, UrbanCraft (Erode) &bull; May
+                  2026</small>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-4 mb-4">
+          <div class="testimonial-card">
+            <div class="stars mb-2">
+              <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i
+                class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+            </div>
+            <p class="quote" style="font-size: .9rem;">"They custom-developed an ERP module to track our B2B sales and
+              inventory. It replaced our messy spreadsheet system and simplified our daily reporting."</p>
+            <div class="author mt-3">
+              <div class="avatar" style="font-size:.78rem;">MK</div>
+              <div>
+                <strong style="font-size:.9rem; color:var(--navy-900);">Manoj Kumar</strong><br>
+                <small style="font-size:.78rem; color:var(--slate-400);">GK Industries (Hosur) &bull; June 2026</small>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-4 mb-4">
+          <div class="testimonial-card">
+            <div class="stars mb-2">
+              <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i
+                class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+            </div>
+            <p class="quote" style="font-size: .9rem;">"Vidhya and the marketing team set up our Google Ads and local
+              search profiles. We now receive highly qualified patient inquiries directly through phone calls and
+              WhatsApp."</p>
+            <div class="author mt-3">
+              <div class="avatar" style="font-size:.78rem;">DD</div>
+              <div>
+                <strong style="font-size:.9rem; color:var(--navy-900);">Dr. Priya Dharshini</strong><br>
+                <small style="font-size:.78rem; color:var(--slate-400);">Chennai Dental Clinic &bull; August
+                  2026</small>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+      <div class="text-center mt-3" style="font-size:.8rem; color:var(--slate-400);">
+        * Authenticated review ratings collected directly from Google Business Profile profiles and verified client
+        feedback.
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ===================== PROCESS SECTION ===================== -->
+  <section class="section py-5">
+    <div class="container">
+      <div class="row mb-5 justify-content-center text-center">
+        <div class="col-lg-7">
+          <span class="eyebrow mb-2 d-inline-block justify-content-center">How We Work</span>
+          <h2 class="section-title">A Phased, Transparent Implementation Plan</h2>
+          <p class="text-slate-600">We guide projects from alignment to live validation without administrative overhead.
+          </p>
+        </div>
+      </div>
+      <div class="row g-4 text-center">
+        <div class="col-md-3">
+          <div class="process-step">
+            <div class="step-circle mb-3">01</div>
+            <h6 class="fw-bold">Discover</h6>
+            <p class="text-slate-600" style="font-size:.88rem;">We identify the business goal, audience bottlenecks, and
+              technical constraints before coding.</p>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="process-step">
+            <div class="step-circle mb-3">02</div>
+            <h6 class="fw-bold">Plan & Scope</h6>
+            <p class="text-slate-600" style="font-size:.88rem;">We map the timeline, clear roles, hosting setup, and key
+              performance indicators in writing.</p>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="process-step">
+            <div class="step-circle mb-3">03</div>
+            <h6 class="fw-bold">Build & Launch</h6>
+            <p class="text-slate-600" style="font-size:.88rem;">Staged builds under sandbox servers, code audit
+              validation, and live SEO transition checks.</p>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="process-step">
+            <div class="step-circle mb-3">04</div>
+            <h6 class="fw-bold">Measure & Optimize</h6>
+            <p class="text-slate-600" style="font-size:.88rem;">We review leads, qualified lead costs, search crawl
+              states, and team adoption metrics monthly.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== GET A QUOTE FORM ===================== -->
+
+  <!-- ===================== GET A QUOTE FORM ===================== -->
+  <section class="section py-5 bg-paper-2" id="quote-form">
+    <div class="container">
+      <div class="row align-items-center g-5">
+        <div class="col-lg-5">
+          <div class="bar-divider"><span></span><span></span><span></span><span></span><span></span></div>
+          <span class="eyebrow mb-2 d-inline-block">Project Discovery</span>
+          <h2 class="section-title mb-4">Let's Discuss the Business Bottleneck First</h2>
+          <p class="text-slate-600 mb-4">
+            We don't sell generic packages. Tell us what you want to improve—customer acquisition, conversion rate,
+            manual process inefficiencies, or customer retention.
+          </p>
+          <div class="p-4 rounded-xl bg-white shadow-soft">
+            <h6 class="fw-bold mb-3"><i class="bi bi-info-circle text-green me-2"></i>What Happens Next?</h6>
+            <ol class="ps-3 text-slate-600" style="font-size: .9rem; line-height: 1.7;">
+              <li class="mb-2"><strong>Requirement Review:</strong> We analyze your submission and current online
+                channels.</li>
+              <li class="mb-2"><strong>Discovery Call:</strong> A 15-minute alignment talk to outline priorities.</li>
+              <li class="mb-2"><strong>Scope Proposal:</strong> A clean proposal detailing deliverables, costs, and
+                timelines.</li>
+            </ol>
+          </div>
+        </div>
+        <div class="col-lg-7">
+          <div class="p-4 p-md-5 rounded-xl bg-white shadow-soft">
+            <h4 class="fw-bold mb-4" style="font-family: var(--font-display);">Request a Custom Proposal</h4>
+            <form id="contactForm" class="needs-validation" novalidate>
+              <div class="row g-3">
+                <div class="col-md-6">
+                  <label for="form-name" class="form-label fw-semibold" style="font-size:.85rem;">Your Name *</label>
+                  <input type="text" class="form-control" id="form-name" required placeholder="e.g. John Doe">
+                </div>
+                <div class="col-md-6">
+                  <label for="form-company" class="form-label fw-semibold" style="font-size:.85rem;">Company Name
+                    *</label>
+                  <input type="text" class="form-control" id="form-company" required placeholder="e.g. Acme Corp">
+                </div>
+                <div class="col-md-6">
+                  <label for="form-phone" class="form-label fw-semibold" style="font-size:.85rem;">Phone Number
+                    *</label>
+                  <input type="tel" class="form-control" id="form-phone" required placeholder="e.g. +91 98765 43210">
+                </div>
+                <div class="col-md-6">
+                  <label for="form-email" class="form-label fw-semibold" style="font-size:.85rem;">Business Email
+                    *</label>
+                  <input type="email" class="form-control" id="form-email" required placeholder="e.g. john@company.com">
+                </div>
+
+                <div class="col-12">
+                  <label class="form-label fw-semibold d-block" style="font-size:.85rem;">Services Needed (Select all
+                    that apply) *</label>
+                  <div class="d-flex flex-wrap gap-2 mt-1">
+                    <div class="form-check form-check-inline bg-light p-2 px-3 rounded">
+                      <input class="form-check-input" type="checkbox" id="svc-dm" value="Digital Marketing">
+                      <label class="form-check-label ms-1" for="svc-dm">Digital Marketing & SEO</label>
+                    </div>
+                    <div class="form-check form-check-inline bg-light p-2 px-3 rounded">
+                      <input class="form-check-input" type="checkbox" id="svc-wd" value="Web Development">
+                      <label class="form-check-label ms-1" for="svc-wd">Web Development</label>
+                    </div>
+                    <div class="form-check form-check-inline bg-light p-2 px-3 rounded">
+                      <input class="form-check-input" type="checkbox" id="svc-ad" value="App Development">
+                      <label class="form-check-label ms-1" for="svc-ad">App Development</label>
+                    </div>
+                    <div class="form-check form-check-inline bg-light p-2 px-3 rounded">
+                      <input class="form-check-input" type="checkbox" id="svc-smm" value="Social Media">
+                      <label class="form-check-label ms-1" for="svc-smm">Social Media (SMM)</label>
+                    </div>
+                    <div class="form-check form-check-inline bg-light p-2 px-3 rounded">
+                      <input class="form-check-input" type="checkbox" id="svc-meta" value="Meta Ads">
+                      <label class="form-check-label ms-1" for="svc-meta">Meta / Google Ads</label>
+                    </div>
+                    <div class="form-check form-check-inline bg-light p-2 px-3 rounded">
+                      <input class="form-check-input" type="checkbox" id="svc-soft" value="CRM/ERP Software">
+                      <label class="form-check-label ms-1" for="svc-soft">Custom Software (CRM/ERP/HRM)</label>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-12">
+                  <label for="form-problem" class="form-label fw-semibold" style="font-size:.85rem;">What is the main
+                    bottleneck or problem you want to solve? *</label>
+                  <textarea class="form-control" id="form-problem" rows="3" required
+                    placeholder="e.g. We get traffic to our website but no qualified inquiries, or we spend too much time on manual employee attendance tracking."></textarea>
+                </div>
+
+                <div class="col-md-6">
+                  <label for="form-timeline" class="form-label fw-semibold" style="font-size:.85rem;">Preferred
+                    Timeline</label>
+                  <select class="form-select" id="form-timeline">
+                    <option value="Exploring">Exploring / Just looking</option>
+                    <option value="Urgent">Urgent (Immediate start)</option>
+                    <option value="1-2 Months" selected>1 - 2 Months</option>
+                    <option value="3+ Months">3+ Months</option>
+                  </select>
+                </div>
+
+                <div class="col-md-6">
+                  <label for="form-target" class="form-label fw-semibold" style="font-size:.85rem;">Target Audience
+                    Location</label>
+                  <input type="text" class="form-control" id="form-target"
+                    placeholder="e.g. Tamil Nadu, India, or Global">
+                </div>
+
+                <div class="col-12">
+                  <div class="form-check" style="font-size:.8rem;">
+                    <input class="form-check-input" type="checkbox" id="form-consent" required>
+                    <label class="form-check-label text-slate-600" for="form-consent">
+                      I agree to the <a href="privacy.html" target="_blank">Privacy Policy</a>. GrowthDigiTech uses this
+                      information strictly to respond to my business request.
+                    </label>
+                  </div>
+                </div>
+
+                <div class="col-12 mt-4">
+                  <button type="submit" class="btn-grow w-100 justify-content-center">Submit My Requirement <i
+                      class="bi bi-send-fill ms-2"></i></button>
+                </div>
+              </div>
+              <div class="alert alert-success mt-3" id="formAlert" style="display:none;" role="alert">
+                Thank you. We received your requirement. A GrowthDigiTech team member will review the details and
+                contact you through the information provided. Please do not send passwords or confidential customer data
+                through this form.
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
 
   <!-- ===================== FOOTER ===================== -->
-  <div id="footer-placeholder"></div>
+  <footer class="footer-grow bg-navy text-white py-5 mt-5">
+    <div class="container">
+      <div class="row g-4">
+        <div class="col-lg-4">
+          <a href="index.html" class="navbar-brand d-inline-flex align-items-center mb-3"
+            style="font-size:1.5rem; font-weight:800; font-family:var(--font-display);">
+            <img src="images/logo.jpeg" alt="GrowthDigiTech Logo" class="brand-logo me-2" style="height: 38px; border-radius: 6px;">
+            <span><span class="text-green">Growth</span><span class="text-white">DigiTech</span></span>
+          </a>
+          <p class="text-white-50" style="font-size:.9rem; max-width:320px;">
+            GrowthDigiTech is a dedicated technology and digital marketing team. We build high-converting websites,
+            mobile apps, and custom CRM/HRM/ERP solutions focused on business growth.
+          </p>
+          <div class="mt-3">
+            <a href="https://www.instagram.com/growth_digitech/" target="_blank" rel="noopener"
+              class="social-icon text-white me-3 fs-5" aria-label="Instagram"><i class="bi bi-instagram"></i></a>
+            <a href="https://www.facebook.com/profile.php?id=61591292765138" target="_blank" rel="noopener"
+              class="social-icon text-white me-3 fs-5" aria-label="Facebook"><i class="bi bi-facebook"></i></a>
+            <a href="https://www.linkedin.com/in/growth-digitech-b12a23419/" target="_blank" rel="noopener"
+              class="social-icon text-white fs-5" aria-label="LinkedIn"><i class="bi bi-linkedin"></i></a>
+          </div>
+        </div>
+
+        <div class="col-lg-2 col-6">
+          <h6 class="text-uppercase fw-bold mb-3" style="font-size:.85rem; letter-spacing:1px; color:var(--green-400);">
+            Company</h6>
+          <ul class="list-unstyled">
+            <li class="mb-2"><a href="about.html" class="text-white-50 text-decoration-none">About Us</a></li>
+            <li class="mb-2"><a href="portfolio.html" class="text-white-50 text-decoration-none">Portfolio</a></li>
+            <li class="mb-2"><a href="blog.html" class="text-white-50 text-decoration-none">Insights Blog</a></li>
+            <li class="mb-2"><a href="contact.html" class="text-white-50 text-decoration-none">Contact</a></li>
+          </ul>
+        </div>
+
+        <div class="col-lg-3 col-6">
+          <h6 class="text-uppercase fw-bold mb-3" style="font-size:.85rem; letter-spacing:1px; color:var(--green-400);">
+            Services</h6>
+          <ul class="list-unstyled">
+            <li class="mb-2"><a href="services.html#web-development" class="text-white-50 text-decoration-none">Web Development</a></li>
+            <li class="mb-2"><a href="services.html#mobile-app" class="text-white-50 text-decoration-none">Mobile App Development</a></li>
+            <li class="mb-2"><a href="services.html#desktop-app" class="text-white-50 text-decoration-none">Desktop App Development</a></li>
+            <li class="mb-2"><a href="services.html#digital-marketing" class="text-white-50 text-decoration-none">Digital Marketing</a></li>
+            <li class="mb-2"><a href="services.html#smm" class="text-white-50 text-decoration-none">Social Media Management</a></li>
+            <li class="mb-2"><a href="services.html#ads" class="text-white-50 text-decoration-none">Meta &amp; Google Ads</a></li>
+            <li class="mb-2"><a href="services.html#seo" class="text-white-50 text-decoration-none">SEO &amp; SEM</a></li>
+            <li class="mb-2"><a href="services.html#branding" class="text-white-50 text-decoration-none">Logo Design &amp; Branding</a></li>
+          </ul>
+        </div>
+
+        <div class="col-lg-3">
+          <h6 class="text-uppercase fw-bold mb-3" style="font-size:.85rem; letter-spacing:1px; color:var(--green-400);">
+            Get In Touch</h6>
+          <ul class="list-unstyled text-white-50" style="font-size:.9rem;">
+            <li class="mb-2 d-flex align-items-start">
+              <i class="bi bi-envelope text-green me-2"></i>
+              <a href="mailto:growthdigitech25@gmail.com"
+                class="text-white-50 text-decoration-none">growthdigitech25@gmail.com</a>
+            </li>
+            <li class="mb-2 d-flex align-items-start">
+              <i class="bi bi-telephone text-green me-2"></i>
+              <a href="tel:+918072840179" class="text-white-50 text-decoration-none">+91 80728 40179</a>
+            </li>
+            <li class="mb-2 d-flex align-items-start">
+              <i class="bi bi-whatsapp text-green me-2"></i>
+              <a href="https://wa.me/918072840179" target="_blank" rel="noopener"
+                class="text-white-50 text-decoration-none">WhatsApp Chat</a>
+            </li>
+            <li class="mb-2 d-flex align-items-start">
+              <i class="bi bi-geo-alt text-green me-2"></i>
+              <span>Hosur, Tamil Nadu, India (SAB serving Tamil Nadu & India)</span>
+            </li>
+            <li class="mb-2 d-flex align-items-start">
+              <i class="bi bi-clock text-green me-2"></i>
+              <span>Mon - Sat: 9:30 AM to 7:00 PM</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="border-top border-secondary pt-4 mt-4 d-flex flex-wrap justify-content-between align-items-center"
+        style="font-size:.85rem;">
+        <span class="text-white-50">&copy; 2026 GrowthDigiTech. All rights reserved.</span>
+        <span>
+          <a href="privacy.html" class="text-white-50 text-decoration-none me-3">Privacy Policy</a>
+          <a href="terms.html" class="text-white-50 text-decoration-none me-3">Terms & Conditions</a>
+          <a href="#" class="text-white-50 text-decoration-none me-3">Cookie Policy</a>
+          <a href="#" class="text-white-50 text-decoration-none">Accessibility</a>
+        </span>
+      </div>
+    </div>
+  </footer>
 
   <button id="backToTop" class="back-to-top"><i class="bi bi-arrow-up"></i></button>
 
@@ -397,7 +857,6 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/js/bootstrap.bundle.min.js"></script>
   <script src="js/main.js"></script>
-  <script src="js/footer.js"></script>
 </body>
 
 </html>

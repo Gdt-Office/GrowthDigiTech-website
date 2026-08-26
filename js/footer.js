@@ -8,8 +8,8 @@
     <div class="container">
       <div class="row g-4">
         <div class="col-lg-4">
-          <a href="index.html" class="navbar-brand d-inline-flex mb-3" style="font-size:1.5rem;">
-            <i class="bi bi-bar-chart-line-fill text-green me-2"></i>
+          <a href="index.html" class="navbar-brand d-inline-flex align-items-center mb-3" style="font-size:1.5rem;">
+            <img src="images/logo.jpeg" alt="GrowthDigiTech Logo" class="brand-logo me-2" style="height: 38px; border-radius: 6px;">
             <span><span class="text-green">Growth</span><span class="text-blue">DigiTech</span></span>
           </a>
           <p style="font-size:.9rem; color:rgba(255,255,255,.6); max-width:300px;">

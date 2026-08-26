@@ -191,6 +191,13 @@ a {
   gap: .5rem;
 }
 
+.navbar-grow .brand-logo {
+  height: 38px;
+  width: auto;
+  border-radius: 6px;
+  object-fit: contain;
+}
+
 .navbar-grow .navbar-brand .brand-grow {
   color: var(--green-400);
 }
@@ -234,6 +241,13 @@ a {
   border-radius: var(--radius-md);
   padding: .6rem;
   margin-top: .6rem;
+}
+
+@media (min-width: 992px) {
+  .navbar-grow .nav-item.dropdown:hover .dropdown-menu {
+    display: block;
+    margin-top: 0;
+  }
 }
 
 .navbar-grow .dropdown-item {
