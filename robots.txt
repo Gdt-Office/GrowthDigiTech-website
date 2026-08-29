@@ -1,8 +1,9 @@
 User-agent: *
 Allow: /
-
-Disallow: /api/
 Disallow: /admin/
-Disallow: /private/
+Disallow: /api/
+Disallow: /search/
+Disallow: /thank-you/
+Disallow: /*?s=
 
 Sitemap: https://www.growthdigitech.com/sitemap.xml

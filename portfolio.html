@@ -1,205 +1,839 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Client Case Studies & Verified Software Projects | GrowthDigiTech</title>
+  <meta name="description"
+    content="Explore verified B2B case studies, custom ERP databases, SEO campaigns, and web app projects developed by GrowthDigiTech for clients in Tamil Nadu and India.">
+  <link rel="canonical" href="https://www.growthdigitech.com/portfolio.html">
+  <meta name="robots" content="index, follow, max-image-preview:large">
 
-<title>Portfolio | Our Web, App & Marketing Projects - GrowthDigiTech</title>
-<meta name="description" content="Browse GrowthDigiTech's portfolio of websites, mobile apps, branding, and digital marketing campaigns delivered for clients across industries.">
-<meta name="keywords" content="GrowthDigiTech portfolio, web development projects, app development case studies, digital marketing case studies, branding portfolio">
-<meta name="robots" content="index, follow">
-<link rel="canonical" href="https://www.growthdigitech.com/portfolio.html">
+  <!-- Open Graph Metadata -->
+  <meta property="og:locale" content="en_IN">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Client Case Studies & Verified Software Projects | GrowthDigiTech">
+  <meta property="og:description"
+    content="Explore verified B2B case studies, custom ERP databases, SEO campaigns, and web app projects developed by GrowthDigiTech for clients in Tamil Nadu and India.">
+  <meta property="og:url" content="https://www.growthdigitech.com/portfolio.html">
+  <meta property="og:site_name" content="GrowthDigiTech">
+  <meta property="og:image" content="https://www.growthdigitech.com/assets/logo/logo.png">
 
-<meta property="og:type" content="website">
-<meta property="og:url" content="https://www.growthdigitech.com/portfolio.html">
-<meta property="og:title" content="Portfolio | GrowthDigiTech">
-<meta property="og:description" content="Websites, apps, and marketing campaigns delivered for real businesses.">
-<meta property="og:image" content="https://www.growthdigitech.com/images/cover.png">
-<meta name="twitter:card" content="summary_large_image">
+  <!-- Twitter Card Metadata -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Client Case Studies & Verified Software Projects | GrowthDigiTech">
+  <meta name="twitter:description"
+    content="Explore verified B2B case studies, custom ERP databases, SEO campaigns, and web app projects developed by GrowthDigiTech for clients in Tamil Nadu and India.">
+  <meta name="twitter:image" content="https://www.growthdigitech.com/assets/logo/logo.png">
 
-<link rel="icon" type="image/jpeg" href="images/favicon.jpeg">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@500;600;700;800&display=swap" rel="stylesheet">
-<link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/css/bootstrap.min.css" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.11.3/font/bootstrap-icons.min.css">
-<link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="assets/css/styles.css">
+  <link rel="icon" type="image/x-icon" href="assets/logo/favicon.ico">
+  <link rel="icon" type="image/png" sizes="16x16" href="assets/logo/favicon-16x16.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/logo/favicon-32x32.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="assets/logo/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="assets/logo/android-chrome-192x192.png">
+  <link rel="icon" type="image/png" sizes="512x512" href="assets/logo/android-chrome-512x512.png">
+
+  <!-- Structured Data JSON-LD -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebPage",
+        "@id": "https://www.growthdigitech.com/portfolio.html#webpage",
+        "url": "https://www.growthdigitech.com/portfolio.html",
+        "name": "Client Case Studies & Verified Software Projects | GrowthDigiTech",
+        "description": "Explore verified B2B case studies, custom ERP databases, SEO campaigns, and web app projects developed by GrowthDigiTech for clients in Tamil Nadu and India.",
+        "isPartOf": {
+          "@id": "https://www.growthdigitech.com/#website"
+        },
+        "inLanguage": "en-IN"
+      },
+      {
+        "@type": "BreadcrumbList",
+        "@id": "https://www.growthdigitech.com/portfolio.html#breadcrumb",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://www.growthdigitech.com/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Portfolio",
+            "item": "https://www.growthdigitech.com/portfolio.html"
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+  <style>
+    /* Portfolio specific styling */
+    .filter-rail {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      margin-bottom: 48px;
+      flex-wrap: wrap;
+    }
+
+    .filter-btn {
+      padding: 10px 24px;
+      border-radius: 30px;
+      font-weight: 600;
+      font-size: 0.9rem;
+      border: 1px solid var(--border-light);
+      background: white;
+      transition: var(--t-fast);
+      cursor: pointer;
+    }
+
+    .filter-btn:hover {
+      background: var(--bg-ice);
+      border-color: var(--cyan);
+    }
+
+    .filter-btn.active {
+      background: var(--bg-navy);
+      color: white;
+      border-color: var(--bg-navy);
+    }
+
+    .portfolio-masonry {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: 32px;
+    }
+
+    .col-7 {
+      grid-column: span 7;
+    }
+
+    .col-5 {
+      grid-column: span 5;
+    }
+
+    .col-12 {
+      grid-column: span 12;
+    }
+
+    @media (max-width: 768px) {
+
+      .col-7,
+      .col-5,
+      .col-12 {
+        grid-column: span 12;
+      }
+    }
+
+    .project-card {
+      background: var(--bg-white);
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius-card);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: var(--t-std);
+      padding: 32px;
+      min-height: 400px;
+    }
+
+    .project-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 20px 40px rgba(10, 17, 40, 0.03);
+      border-color: var(--blue-light);
+    }
+
+    .project-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 24px;
+    }
+
+    .project-tag {
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--cyan);
+    }
+
+    .project-title {
+      font-size: 1.6rem;
+      font-weight: 800;
+      color: var(--text-navy);
+      line-height: 1.25;
+      margin-bottom: 12px;
+    }
+
+    .project-desc {
+      font-size: 0.95rem;
+      color: var(--text-muted);
+      margin-bottom: 24px;
+    }
+
+    .project-bottom {
+      border-top: 1px solid var(--border-light);
+      padding-top: 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .project-outcome-box {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .project-outcome-val {
+      font-size: 1.4rem;
+      font-weight: 800;
+      color: var(--blue-primary);
+    }
+
+    .project-outcome-lbl {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      text-transform: uppercase;
+    }
+
+    .method-line {
+      position: relative;
+      padding-left: 32px;
+      border-left: 2px dashed var(--border-light);
+      margin-bottom: 32px;
+    }
+
+    .method-line::before {
+      content: '';
+      position: absolute;
+      left: -6px;
+      top: 0;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: var(--cyan);
+    }
+  </style>
 </head>
+
 <body>
 
-<nav class="navbar navbar-expand-lg navbar-grow fixed-top" id="mainNav">
-  <div class="container">
-    <a class="navbar-brand" href="index.html">
-      <img src="images/logo.jpeg" alt="GrowthDigiTech Logo" class="brand-logo me-2">
-      <span><span class="brand-grow">Growth</span><span class="brand-tech">DigiTech</span></span>
-    </a>
-    <button class="navbar-toggler text-white" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
-      <i class="bi bi-list fs-1 text-white"></i>
-    </button>
-    <div class="collapse navbar-collapse" id="navMenu">
-      <ul class="navbar-nav ms-auto align-items-lg-center">
-        <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
-        <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="services.html" data-bs-toggle="dropdown">Services</a>
-          <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="services.html#web-development">Web Development</a></li>
-            <li><a class="dropdown-item" href="services.html#mobile-app">Mobile App Development</a></li>
-            <li><a class="dropdown-item" href="services.html#desktop-app">Desktop Application Development</a></li>
-            <li><a class="dropdown-item" href="services.html#digital-marketing">Digital Marketing</a></li>
-            <li><a class="dropdown-item" href="services.html#smm">Social Media Management</a></li>
-            <li><a class="dropdown-item" href="services.html#ads">Meta &amp; Google Ads</a></li>
-            <li><a class="dropdown-item" href="services.html#seo">SEO &amp; SEM</a></li>
-            <li><a class="dropdown-item" href="services.html#branding">Logo Design &amp; Branding</a></li>
+  <!-- Shared Header -->
+  <header class="header-wrapper">
+    <div class="container header-container">
+      <a href="index.html" class="logo-link">
+        <img src="assets/logo/logo.png" alt="GrowthDigiTech – Digital Growth and Technology Solutions"
+          class="header-logo-img">
+      </a>
+
+      <nav class="nav-desktop">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="about.html" class="nav-link">About</a>
+        <a href="services.html" class="nav-link nav-link-dropdown" id="services-trigger" aria-expanded="false"
+          aria-haspopup="true">
+          Services
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"
+            stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="6 9 12 15 18 9" />
+          </svg>
+        </a>
+        <a href="portfolio.html" class="nav-link">Portfolio</a>
+        <a href="blog.html" class="nav-link">Blog</a>
+        <a href="contact.html" class="nav-link">Contact</a>
+      </nav>
+
+      <div class="header-right">
+        <a href="https://wa.me/918072840179" class="contact-micro" aria-label="Chat on WhatsApp" target="_blank"
+          rel="noopener">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round">
+            <path
+              d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z" />
+          </svg>
+        </a>
+        <a href="free-quote.html" class="btn btn-primary">
+          Free Quote
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+            stroke-linecap="round" stroke-linejoin="round">
+            <path d="M5 12h14M12 5l7 7-7 7" />
+          </svg>
+        </a>
+        <button class="menu-btn" id="menu-btn" aria-label="Toggle menu" aria-controls="mobile-drawer">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Services Mega Dropdown -->
+    <div class="mega-dropdown" id="mega-dropdown" role="region" aria-label="Services dropdown">
+      <div class="container mega-grid">
+        <div>
+          <div class="mega-col-title">Grow Demand</div>
+          <div class="mega-list">
+            <a href="services.html#growth" class="mega-item">
+              <span class="mega-item-title">Digital Marketing <svg width="10" height="10" viewBox="0 0 24 24"
+                  fill="none" stroke="currentColor" stroke-width="3">
+                  <polyline points="9 18 15 12 9 6" />
+                </svg></span>
+              <span class="mega-item-desc">Coordinate channels to create demand.</span>
+            </a>
+            <a href="services.html#growth" class="mega-item">
+              <span class="mega-item-title">SEO & Local SEO <svg width="10" height="10" viewBox="0 0 24 24" fill="none"
+                  stroke="currentColor" stroke-width="3">
+                  <polyline points="9 18 15 12 9 6" />
+                </svg></span>
+              <span class="mega-item-desc">Turn searches into local Hosur enquiries.</span>
+            </a>
+            <a href="services.html#growth" class="mega-item">
+              <span class="mega-item-title">Google Ads <svg width="10" height="10" viewBox="0 0 24 24" fill="none"
+                  stroke="currentColor" stroke-width="3">
+                  <polyline points="9 18 15 12 9 6" />
+                </svg></span>
+              <span class="mega-item-desc">Capture active commercial intent.</span>
+            </a>
+          </div>
+        </div>
+        <div>
+          <div class="mega-col-title">Build Experiences</div>
+          <div class="mega-list">
+            <a href="services.html#experience" class="mega-item">
+              <span class="mega-item-title">Web Development <svg width="10" height="10" viewBox="0 0 24 24" fill="none"
+                  stroke="currentColor" stroke-width="3">
+                  <polyline points="9 18 15 12 9 6" />
+                </svg></span>
+              <span class="mega-item-desc">Create fast sites that explain and convert.</span>
+            </a>
+            <a href="services.html#experience" class="mega-item">
+              <span class="mega-item-title">E-commerce <svg width="10" height="10" viewBox="0 0 24 24" fill="none"
+                  stroke="currentColor" stroke-width="3">
+                  <polyline points="9 18 15 12 9 6" />
+                </svg></span>
+              <span class="mega-item-desc">Build shopping and ordering systems.</span>
+            </a>
+            <a href="services.html#experience" class="mega-item">
+              <span class="mega-item-title">Mobile Apps <svg width="10" height="10" viewBox="0 0 24 24" fill="none"
+                  stroke="currentColor" stroke-width="3">
+                  <polyline points="9 18 15 12 9 6" />
+                </svg></span>
+              <span class="mega-item-desc">Design usable customer applications.</span>
+            </a>
+          </div>
+        </div>
+        <div>
+          <div class="mega-col-title">Run Operations</div>
+          <div class="mega-list">
+            <a href="services.html#operations" class="mega-item">
+              <span class="mega-item-title">CRM Systems <svg width="10" height="10" viewBox="0 0 24 24" fill="none"
+                  stroke="currentColor" stroke-width="3">
+                  <polyline points="9 18 15 12 9 6" />
+                </svg></span>
+              <span class="mega-item-desc">Centralize sales pipelines & enquiries.</span>
+            </a>
+            <a href="services.html#operations" class="mega-item">
+              <span class="mega-item-title">ERP & HRM <svg width="10" height="10" viewBox="0 0 24 24" fill="none"
+                  stroke="currentColor" stroke-width="3">
+                  <polyline points="9 18 15 12 9 6" />
+                </svg></span>
+              <span class="mega-item-desc">Connect inventory, records, approvals.</span>
+            </a>
+            <a href="services.html#operations" class="mega-item">
+              <span class="mega-item-title">Custom Software <svg width="10" height="10" viewBox="0 0 24 24" fill="none"
+                  stroke="currentColor" stroke-width="3">
+                  <polyline points="9 18 15 12 9 6" />
+                </svg></span>
+              <span class="mega-item-desc">Build around a validated business flow.</span>
+            </a>
+          </div>
+        </div>
+        <div class="mega-featured">
+          <div>
+            <div class="mega-feat-img">
+              <span class="mega-feat-tag">Featured Case</span>
+              <svg width="100%" height="100%" viewBox="0 0 100 50" style="background:#0a1128;">
+                <rect x="10" y="10" width="80" height="30" rx="3" fill="#1e293b" />
+                <line x1="15" y1="20" x2="85" y2="20" stroke="#00f0ff" stroke-width="2" />
+                <circle cx="50" cy="35" r="4" fill="#00f0ff" />
+              </svg>
+            </div>
+            <div class="mega-feat-title">Hosur Logistics Portal</div>
+            <div class="mega-feat-desc">Connected dispatch tracking with billing software, reducing invoicing delays by
+              42%.</div>
+          </div>
+          <a href="portfolio.html" class="btn-text">
+            View case study
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+              <polyline points="9 18 15 12 9 6" />
+            </svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Drawer Backdrop Overlay -->
+  <div class="drawer-backdrop" id="drawer-backdrop"></div>
+
+  <!-- Mobile Drawer -->
+  <div class="mobile-drawer" id="mobile-drawer">
+    <div class="mobile-drawer-head">
+      <a href="index.html" class="logo-link">
+        <img src="assets/logo/logo.png" alt="GrowthDigiTech – Digital Growth and Technology Solutions"
+          class="header-logo-img">
+      </a>
+      <button class="mobile-drawer-close" id="mobile-drawer-close" aria-label="Close menu">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+          stroke-linecap="round" stroke-linejoin="round">
+          <line x1="18" y1="6" x2="6" y2="18"></line>
+          <line x1="6" y1="6" x2="18" y2="18"></line>
+        </svg>
+      </button>
+    </div>
+    <nav class="mobile-nav-list">
+      <a href="index.html" class="mobile-nav-link">Home</a>
+      <a href="about.html" class="mobile-nav-link">About</a>
+      <div>
+        <div class="mobile-nav-link mobile-accordion-title" id="mobile-services-accordion">
+          Services
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <polyline points="6 9 12 15 18 9" />
+          </svg>
+        </div>
+        <div class="mobile-accordion-content" id="mobile-services-content">
+          <a href="services.html#growth" class="mobile-sub-link">Grow Demand</a>
+          <a href="services.html#experience" class="mobile-sub-link">Build Experiences</a>
+          <a href="services.html#operations" class="mobile-sub-link">Run Operations</a>
+        </div>
+      </div>
+      <a href="portfolio.html" class="mobile-nav-link">Portfolio</a>
+      <a href="blog.html" class="mobile-nav-link">Blog</a>
+      <a href="contact.html" class="mobile-nav-link">Contact</a>
+    </nav>
+    <a href="free-quote.html" class="btn btn-primary" style="margin-top: 16px;">Free Quote</a>
+  </div>
+
+  <main>
+
+    <!-- 1. Portfolio Hero -->
+    <section class="section-padding hero-section"
+      style="background: var(--bg-ice); border-bottom: 1px solid var(--border-light);">
+      <div class="container grid-2" style="align-items: center;">
+        <div class="hero-copy">
+          <nav class="breadcrumb-nav" aria-label="Breadcrumb" style="margin-bottom: 12px; font-size: 0.85rem; color: var(--text-muted);">
+            <a href="index.html" style="color: var(--blue-primary); text-decoration: none;">Home</a> &gt; <span style="color: var(--text-navy); font-weight: 600;">Portfolio</span>
+          </nav>
+          <span class="eyebrow">VERIFIED PROJECT ARCHIVE</span>
+          <h1 style="font-size: clamp(1.85rem, 5vw, 2.8rem); line-height: 1.15; margin-bottom: 16px;">Client Case Studies & Software Work Across Tamil Nadu & India</h1>
+          <p style="color:var(--text-muted);">Explore our portfolio of custom ERP software, lead generation funnels, website redesigns, and B2B digital marketing campaigns built for clients in Hosur, Tamil Nadu, and across India.</p>
+        </div>
+
+        <div class="hero-visual">
+          <div class="hero-motion-card">
+            <div
+              style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px; padding-bottom: 12px; border-bottom: 1px solid var(--border-light);">
+              <span
+                style="font-weight: 800; font-size: 0.85rem; color: var(--text-navy); text-transform: uppercase; letter-spacing: 0.05em;">Flagship
+                Outcomes</span>
+              <span class="hero-motion-badge"><span class="hero-cyan-dot"></span> Verified Case</span>
+            </div>
+
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 16px;">
+              <div
+                style="background: var(--bg-ice); padding: 16px; border-radius: 12px; border: 1px solid var(--border-light); position: relative; overflow: hidden;">
+                <div
+                  style="font-size: 1.6rem; font-weight: 800; color: var(--blue-primary); font-family: var(--font-heading);">
+                  +42%</div>
+                <div style="font-size: 0.78rem; color: var(--text-muted); font-weight: 600; margin-top: 2px;">Invoicing
+                  Speed</div>
+                <!-- Animated Progress Bar -->
+                <div
+                  style="width: 100%; height: 4px; background: #cbd5e1; border-radius: 2px; margin-top: 10px; overflow: hidden;">
+                  <div style="width: 84%; height: 100%; background: var(--blue-primary); border-radius: 2px;"></div>
+                </div>
+              </div>
+
+              <div
+                style="background: var(--bg-ice); padding: 16px; border-radius: 12px; border: 1px solid var(--border-light); position: relative; overflow: hidden;">
+                <div style="font-size: 1.6rem; font-weight: 800; color: var(--cyan); font-family: var(--font-heading);">
+                  99.4%</div>
+                <div style="font-size: 0.78rem; color: var(--text-muted); font-weight: 600; margin-top: 2px;">System
+                  Uptime</div>
+                <!-- Animated Progress Bar -->
+                <div
+                  style="width: 100%; height: 4px; background: #cbd5e1; border-radius: 2px; margin-top: 10px; overflow: hidden;">
+                  <div style="width: 99.4%; height: 100%; background: var(--cyan); border-radius: 2px;"></div>
+                </div>
+              </div>
+            </div>
+
+            <div
+              style="font-size: 0.82rem; font-weight: 600; color: var(--text-charcoal); background: var(--bg-ice); padding: 12px 14px; border-radius: 10px; border-left: 4px solid var(--cyan); display: flex; align-items: center; justify-content: space-between;">
+              <span>🚀 Hosur Industrial Dispatch Management</span>
+              <span style="font-size: 0.72rem; color: var(--blue-primary); font-weight: 800;">Enterprise ERP</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 2. Case Study Index (Filters) -->
+    <section class="section-padding">
+      <div class="container">
+
+        <div class="filter-rail">
+          <button class="filter-btn active" data-filter="all">All Case Studies</button>
+          <button class="filter-btn" data-filter="marketing">Marketing & SEO</button>
+          <button class="filter-btn" data-filter="web">Websites</button>
+          <button class="filter-btn" data-filter="apps">Mobile Apps</button>
+          <button class="filter-btn" data-filter="software">CRM / ERP Software</button>
+        </div>
+
+        <div class="portfolio-masonry">
+
+          <!-- Flagship Case Study (Full Width) -->
+          <div class="project-card col-12" data-category="apps software">
+            <div style="display:grid; grid-template-columns:1.2fr 0.8fr; gap:40px;">
+              <div>
+                <div class="project-head">
+                  <span class="project-tag">CUSTOM SOFTWARE INTEGRATION (2026)</span>
+                </div>
+                <h3 class="project-title">Hosur Logistics Dispatch & CRM Portal</h3>
+                <p class="project-desc">Our client was using manual paper ledger logs to assign logistics driver routes.
+                  This resulted in delayed dispatch invoicing and customer communication drops. We engineered a unified
+                  driver mobile application and connected it to their office CRM database and billing system.</p>
+
+                <div style="margin-top: 24px;">
+                  <strong style="color:var(--text-navy); font-size:0.9rem;">Technology Utilized:</strong>
+                  <p style="font-size:0.85rem; color:var(--text-muted); margin-top:4px;">NodeJS API, SQLite Database
+                    nodes, PWA driver application, Zoho billing hooks.</p>
+                </div>
+              </div>
+
+              <div
+                style="display:flex; flex-direction:column; justify-content:space-between; background:var(--bg-ice); border:1px solid var(--border-light); padding:32px; border-radius:var(--radius-inner);">
+                <div>
+                  <h4 style="font-size:0.85rem; text-transform:uppercase; color:var(--text-muted); margin-bottom:12px;">
+                    Verified Results</h4>
+                  <div style="display:flex; flex-direction:column; gap:16px;">
+                    <div>
+                      <span style="font-size:1.8rem; font-weight:800; color:var(--blue-primary);">42% Fast</span>
+                      <span style="display:block; font-size:0.75rem; color:var(--text-muted);">Invoicing dispatch to
+                        client ledger</span>
+                    </div>
+                    <div>
+                      <span style="font-size:1.8rem; font-weight:800; color:var(--blue-primary);">2.8 hrs</span>
+                      <span style="display:block; font-size:0.75rem; color:var(--text-muted);">Saved per driver in paper
+                        workflows daily</span>
+                    </div>
+                  </div>
+                </div>
+
+                <div
+                  style="margin-top:20px; font-size:0.8rem; border-top:1px solid var(--border-light); padding-top:16px;">
+                  <span style="display:block; font-style:italic;">"The invoicing delays were holding back our cash flow.
+                    We now run dispatch automated."</span>
+                  <strong style="display:block; margin-top:4px; color:var(--text-navy);">— Magesh R., Operations
+                    Manager</strong>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Project 2 (7 Cols) -->
+          <div class="project-card col-7" data-category="marketing web">
+            <div>
+              <div class="project-head">
+                <span class="project-tag">SEO & CONVERSION REDESIGN</span>
+              </div>
+              <h3 class="project-title">Precision Manufacturer Lead Funnel</h3>
+              <p class="project-desc">Apex Industries required Page 1 Google visibility for specific parts production.
+                We designed a clean technical layout with structural schema, raising search exposure.</p>
+            </div>
+            <div class="project-bottom">
+              <div class="project-outcome-box">
+                <span class="project-outcome-val">+140%</span>
+                <span class="project-outcome-lbl">Monthly RFQs</span>
+              </div>
+              <span class="project-tag">Google Verified</span>
+            </div>
+          </div>
+
+          <!-- Project 3 (5 Cols) -->
+          <div class="project-card col-5" data-category="software web">
+            <div>
+              <div class="project-head">
+                <span class="project-tag">CUSTOM ERP DEVELOPMENTS</span>
+              </div>
+              <h3 class="project-title">Warehouse Inventory Sync</h3>
+              <p class="project-desc">Linked local shop stock levels with custom accounting software, replacing manual
+                ledger logs.</p>
+            </div>
+            <div class="project-bottom">
+              <div class="project-outcome-box">
+                <span class="project-outcome-val">-60%</span>
+                <span class="project-outcome-lbl">Ledger Errors</span>
+              </div>
+              <span class="project-tag">Staff Synced</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. Method Connection Section -->
+    <section class="section-padding" style="background:var(--bg-navy); color:white;">
+      <div class="container">
+        <span class="eyebrow" style="color:var(--cyan-bright);">HOW WE SECURE PROJECT QUALITY</span>
+        <h2 class="section-title" style="color:white;">How our projects pass from discovery to scale.</h2>
+        <p class="section-desc" style="color:var(--text-white-muted);">Every project in this archive undergoes a
+          rigorous, systematic method connection.</p>
+
+        <div class="grid-3" style="margin-top:48px;">
+          <div class="method-line">
+            <h3 style="color:white; font-size:1.2rem; margin-bottom:12px;">Stage 1: Validated Diagnosis</h3>
+            <p style="color:var(--text-white-muted); font-size:0.9rem;">We document where inventory tracking fails or
+              ads leak. No guesswork.</p>
+          </div>
+
+          <div class="method-line">
+            <h3 style="color:white; font-size:1.2rem; margin-bottom:12px;">Stage 2: Strict Scope Delivery</h3>
+            <p style="color:var(--text-white-muted); font-size:0.9rem;">Code is built in incremental blocks, shown to
+              you via staging links every Friday.</p>
+          </div>
+
+          <div class="method-line">
+            <h3 style="color:white; font-size:1.2rem; margin-bottom:12px;">Stage 3: Verified Performance</h3>
+            <p style="color:var(--text-white-muted); font-size:0.9rem;">We run Core Web Vitals checks. We check contrast
+              ratios and security keys.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4. Client Words -->
+    <section class="section-padding">
+      <div class="container text-center" style="max-width:800px; margin:0 auto; text-align:center;">
+        <span class="eyebrow">VERIFIED REVIEWS</span>
+        <div
+          style="font-size: 1.5rem; font-weight:700; color:var(--text-navy); font-style:italic; line-height:1.4; margin-bottom:24px;">
+          "We had two agencies fail to build this billing connection because they were using standard design templates.
+          GrowthDigiTech coded the database schema from scratch, and it's worked perfectly from day one."</div>
+        <strong style="color:var(--text-navy);">— Karthik S., SIPCOT Industrial Supply</strong>
+        <p style="font-size:0.8rem; color:var(--text-muted); margin-top:4px;">Attributed to Google Business Profile
+          Review</p>
+      </div>
+    </section>
+
+    <!-- 5. CTA -->
+    <section class="section-padding"
+      style="background:var(--bg-ice); border-top:1px solid var(--border-light); text-align:center;">
+      <div class="container" style="max-width:720px; margin:0 auto;">
+        <h2>Ready to build your bespoke system?</h2>
+        <p style="color:var(--text-muted); margin: 12px 0 32px;">Configure your project timeline and needs inside our
+          guided quote experience.</p>
+        <a href="free-quote.html" class="btn btn-primary">Start Guided Estimate</a>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Shared Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <h4>GROWTH<span>DIGITECH</span></h4>
+          <p>Bespoke software systems, digital marketing and high-performance website design from Hosur, Tamil Nadu.
+            Serving businesses across India.</p>
+          <div class="footer-socials">
+            <a href="https://www.facebook.com/profile.php?id=61591292765138" class="footer-social-icon"
+              aria-label="Facebook" target="_blank" rel="noopener">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" />
+              </svg>
+            </a>
+            <a href="https://www.instagram.com/growth_digitech/" class="footer-social-icon" aria-label="Instagram"
+              target="_blank" rel="noopener">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
+                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
+                <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" />
+              </svg>
+            </a>
+            <a href="https://wa.me/918072840179" class="footer-social-icon" aria-label="WhatsApp" target="_blank"
+              rel="noopener">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path
+                  d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z" />
+              </svg>
+            </a>
+          </div>
+        </div>
+        <div>
+          <div class="footer-title">Capabilities</div>
+          <ul class="footer-links">
+            <li><a href="services.html#growth" class="footer-link">Digital Marketing & SEO</a></li>
+            <li><a href="services.html#experience" class="footer-link">Website Development</a></li>
+            <li><a href="services.html#experience" class="footer-link">Mobile App Development</a></li>
+            <li><a href="services.html#operations" class="footer-link">CRM & Custom ERP</a></li>
           </ul>
-        </li>
-        <li class="nav-item"><a class="nav-link active" href="portfolio.html">Portfolio</a></li>
-        <li class="nav-item"><a class="nav-link" href="blog.html">Blog</a></li>
-        <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
-        <li class="nav-item ms-lg-3 mt-3 mt-lg-0">
-          <a href="contact.html" class="btn-grow">Get Free Quote <i class="bi bi-arrow-up-right"></i></a>
-        </li>
-      </ul>
-    </div>
-  </div>
-</nav>
-
-<header class="page-header">
-  <div class="clip-shape"></div>
-  <div class="container position-relative">
-    <div class="breadcrumb-grow mb-2"><a href="index.html">Home</a> / <span class="current">Portfolio</span></div>
-    <h1 class="display-font text-white">Our Work</h1>
-    <p class="mt-2" style="color:rgba(255,255,255,.7); max-width:600px;">A sample of the websites, apps, and campaigns we've built for clients across industries.</p>
-  </div>
-</header>
-
-<section class="section">
-  <div class="container">
-    <div class="text-center mb-5 portfolio-filter reveal">
-      <button class="btn active" data-filter="all">All Projects</button>
-      <button class="btn" data-filter="web">Web Development</button>
-      <button class="btn" data-filter="app">Mobile Apps</button>
-      <button class="btn" data-filter="marketing">Digital Marketing</button>
-      <button class="btn" data-filter="branding">Branding</button>
-    </div>
-
-    <div class="row g-4" id="portfolioGrid">
-
-      <div class="col-md-6 col-lg-4 portfolio-item reveal" data-category="web">
-        <div class="portfolio-card">
-          <div class="portfolio-thumb"><span class="pf-tag">Web Development</span><div class="mini-bars"><span style="height:45%"></span><span style="height:70%"></span><span style="height:55%"></span><span style="height:85%"></span></div></div>
-          <div class="pf-body">
-            <h5>RetailHub E-Commerce Platform</h5>
-            <p>Custom WooCommerce store with a 40% checkout conversion improvement.</p>
+        </div>
+        <div>
+          <div class="footer-title">Company</div>
+          <ul class="footer-links">
+            <li><a href="about.html" class="footer-link">About Us</a></li>
+            <li><a href="portfolio.html" class="footer-link">Portfolio / Work</a></li>
+            <li><a href="blog.html" class="footer-link">Insights & Blog</a></li>
+            <li><a href="contact.html" class="footer-link">Contact</a></li>
+          </ul>
+        </div>
+        <div>
+          <div class="footer-title">Contact Us</div>
+          <div class="footer-contact-list">
+            <div class="footer-contact-item">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
+                <polyline points="22,6 12,13 2,6" />
+              </svg>
+              <span>contact@growthdigitech.com</span>
+            </div>
+            <div class="footer-contact-item">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path
+                  d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
+              </svg>
+              <span>+91 80728 40179</span>
+            </div>
+            <div class="footer-contact-item">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M12 2a10 10 0 0 0-7.36 16.76L3 21l4.24-1.64A10 10 0 1 0 12 2z" />
+              </svg>
+              <span>WhatsApp: +91 80728 40179</span>
+            </div>
+            <div class="footer-contact-item">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="12" r="10" />
+                <polyline points="12 6 12 12 16 14" />
+              </svg>
+              <span>09:00 AM - 06:00 PM (Mon-Sat)</span>
+            </div>
           </div>
         </div>
       </div>
-
-      <div class="col-md-6 col-lg-4 portfolio-item reveal" data-category="app">
-        <div class="portfolio-card">
-          <div class="portfolio-thumb"><span class="pf-tag">Mobile App</span><div class="mini-bars"><span style="height:60%"></span><span style="height:35%"></span><span style="height:80%"></span><span style="height:50%"></span></div></div>
-          <div class="pf-body">
-            <h5>FitLife Fitness Tracker App</h5>
-            <p>Cross-platform fitness app with 25K+ downloads in its first quarter.</p>
-          </div>
-        </div>
-      </div>
-
-      <div class="col-md-6 col-lg-4 portfolio-item reveal" data-category="branding">
-        <div class="portfolio-card">
-          <div class="portfolio-thumb"><span class="pf-tag">Branding</span><div class="mini-bars"><span style="height:50%"></span><span style="height:75%"></span><span style="height:40%"></span><span style="height:65%"></span></div></div>
-          <div class="pf-body">
-            <h5>UrbanCraft Brand Identity</h5>
-            <p>Complete logo, brand guideline, and packaging design refresh.</p>
-          </div>
-        </div>
-      </div>
-
-      <div class="col-md-6 col-lg-4 portfolio-item reveal" data-category="marketing">
-        <div class="portfolio-card">
-          <div class="portfolio-thumb"><span class="pf-tag">Digital Marketing</span><div class="mini-bars"><span style="height:30%"></span><span style="height:55%"></span><span style="height:75%"></span><span style="height:95%"></span></div></div>
-          <div class="pf-body">
-            <h5>GreenLeaf Organics SEO Campaign</h5>
-            <p>Organic traffic grew 3.2x in 5 months through technical & local SEO.</p>
-          </div>
-        </div>
-      </div>
-
-      <div class="col-md-6 col-lg-4 portfolio-item reveal" data-category="web">
-        <div class="portfolio-card">
-          <div class="portfolio-thumb"><span class="pf-tag">Web Development</span><div class="mini-bars"><span style="height:65%"></span><span style="height:40%"></span><span style="height:90%"></span><span style="height:55%"></span></div></div>
-          <div class="pf-body">
-            <h5>MedCare Clinic Booking Portal</h5>
-            <p>Appointment booking website with automated reminders for patients.</p>
-          </div>
-        </div>
-      </div>
-
-      <div class="col-md-6 col-lg-4 portfolio-item reveal" data-category="marketing">
-        <div class="portfolio-card">
-          <div class="portfolio-thumb"><span class="pf-tag">Meta &amp; Google Ads</span><div class="mini-bars"><span style="height:40%"></span><span style="height:60%"></span><span style="height:85%"></span><span style="height:70%"></span></div></div>
-          <div class="pf-body">
-            <h5>StyleBox Fashion Ad Campaign</h5>
-            <p>Meta Ads campaign delivering 4.5x ROAS across a 3-month festive push.</p>
-          </div>
-        </div>
-      </div>
-
-      <div class="col-md-6 col-lg-4 portfolio-item reveal" data-category="app">
-        <div class="portfolio-card">
-          <div class="portfolio-thumb"><span class="pf-tag">Mobile App</span><div class="mini-bars"><span style="height:55%"></span><span style="height:80%"></span><span style="height:45%"></span><span style="height:65%"></span></div></div>
-          <div class="pf-body">
-            <h5>QuickServe Food Delivery App</h5>
-            <p>Real-time order tracking app built for a regional food delivery brand.</p>
-          </div>
-        </div>
-      </div>
-
-      <div class="col-md-6 col-lg-4 portfolio-item reveal" data-category="branding">
-        <div class="portfolio-card">
-          <div class="portfolio-thumb"><span class="pf-tag">Branding</span><div class="mini-bars"><span style="height:70%"></span><span style="height:45%"></span><span style="height:60%"></span><span style="height:85%"></span></div></div>
-          <div class="pf-body">
-            <h5>Skyline Realty Logo & Identity</h5>
-            <p>Modern real estate branding with a bold, trustworthy visual system.</p>
-          </div>
-        </div>
-      </div>
-
-      <div class="col-md-6 col-lg-4 portfolio-item reveal" data-category="web">
-        <div class="portfolio-card">
-          <div class="portfolio-thumb"><span class="pf-tag">Web Development</span><div class="mini-bars"><span style="height:50%"></span><span style="height:85%"></span><span style="height:35%"></span><span style="height:70%"></span></div></div>
-          <div class="pf-body">
-            <h5>EduSmart Learning Platform</h5>
-            <p>Custom LMS web app supporting 5,000+ active student accounts.</p>
-          </div>
-        </div>
-      </div>
-
-    </div>
-  </div>
-</section>
-
-<section class="section pt-0">
-  <div class="container">
-    <div class="cta-band reveal">
-      <div class="row align-items-center">
-        <div class="col-lg-8">
-          <h3 class="display-font text-white mb-2">Want results like these for your business?</h3>
-          <p class="mb-0" style="color:rgba(255,255,255,.75);">Let's talk about your project and what success should look like.</p>
-        </div>
-        <div class="col-lg-4 text-lg-end mt-4 mt-lg-0">
-          <a href="contact.html" class="btn-grow">Start a Project <i class="bi bi-arrow-up-right"></i></a>
+      <div class="footer-bottom">
+        <div>&copy; 2026 GrowthDigiTech. All rights reserved.</div>
+        <div class="footer-legal-links">
+          <a href="#" class="footer-link">Privacy Policy</a>
+          <a href="#" class="footer-link">Terms of Service</a>
+          <a href="#" class="footer-link">Accessibility Statement</a>
         </div>
       </div>
     </div>
+  </footer>
+
+  <!-- Mobile Sticky Actions -->
+  <div class="mobile-sticky-bar">
+    <a href="tel:+918072840179" class="mobile-sticky-action mobile-sticky-call">Call Us</a>
+    <a href="https://wa.me/918072840179" class="mobile-sticky-action mobile-sticky-whatsapp" target="_blank"
+      rel="noopener">WhatsApp</a>
+    <a href="free-quote.html" class="mobile-sticky-action mobile-sticky-quote">Free Quote</a>
   </div>
-</section>
 
-<div id="footer-placeholder"></div>
-<button id="backToTop" class="back-to-top"><i class="bi bi-arrow-up"></i></button>
+  <!-- Floating Action Buttons Stack -->
+  <div class="floating-actions-stack">
+    <button type="button" class="float-btn float-btn-top" id="back-to-top-btn" aria-label="Back to Top">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+        stroke-linecap="round" stroke-linejoin="round">
+        <line x1="12" y1="19" x2="12" y2="5" />
+        <polyline points="5 12 12 5 19 12" />
+      </svg>
+    </button>
+    <button type="button" class="float-btn float-btn-wa" id="whatsapp-toggle-btn" aria-label="WhatsApp Support">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round">
+        <path
+          d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z" />
+      </svg>
+    </button>
+    <a href="tel:+918072840179" class="float-btn float-btn-call" aria-label="Call +91 80728 40179">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+        stroke-linecap="round" stroke-linejoin="round">
+        <path
+          d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
+      </svg>
+    </a>
+  </div>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/js/bootstrap.bundle.min.js"></script>
-<script src="js/main.js"></script>
-<script src="js/footer.js"></script>
+  <!-- WhatsApp Chat Box Widget -->
+  <div class="whatsapp-chat-box" id="whatsapp-chat-widget" role="dialog" aria-label="WhatsApp Live Chat">
+    <div class="wa-chat-header">
+      <div class="wa-chat-brand">
+        <img src="assets/logo/logo.png" alt="GrowthDigiTech Logo" class="wa-chat-logo">
+        <div>
+          <div class="wa-chat-title">GrowthDigiTech</div>
+          <div class="wa-chat-status">
+            <span class="wa-online-dot"></span> Online | Typically replies in minutes
+          </div>
+        </div>
+      </div>
+      <button type="button" class="wa-chat-close" id="wa-chat-close" aria-label="Close Chat">&times;</button>
+    </div>
+    <div class="wa-chat-body">
+      <div class="wa-msg-bubble">
+        Hi there! 👋 Welcome to GrowthDigiTech. How can we help your business grow today?
+        <span class="wa-msg-time">Just now</span>
+      </div>
+    </div>
+    <div class="wa-chat-footer">
+      <input type="text" class="wa-chat-input" id="wa-chat-input" placeholder="Type your message here..."
+        aria-label="Type WhatsApp Message">
+      <button type="button" class="wa-chat-send" id="wa-chat-send" aria-label="Send WhatsApp Message">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+          stroke-linecap="round" stroke-linejoin="round">
+          <line x1="22" y1="2" x2="11" y2="13" />
+          <polygon points="22 2 15 22 11 13 2 9 22 2" />
+        </svg>
+      </button>
+    </div>
+  </div>
+
+  <script src="assets/js/main.js"></script>
+  <script>
+    // Portfolio local category filtering script
+    const filterButtons = document.querySelectorAll('.filter-btn');
+    const projects = document.querySelectorAll('.project-card');
+
+    filterButtons.forEach(button => {
+      button.addEventListener('click', () => {
+        // Toggle active button class
+        filterButtons.forEach(btn => btn.classList.remove('active'));
+        button.classList.add('active');
+
+        const filterValue = button.dataset.filter;
+
+        projects.forEach(project => {
+          const categories = project.dataset.category.split(' ');
+
+          if (filterValue === 'all' || categories.includes(filterValue)) {
+            project.style.display = 'flex';
+            project.style.opacity = '0';
+            setTimeout(() => { project.style.opacity = '1'; }, 50);
+          } else {
+            project.style.display = 'none';
+          }
+        });
+      });
+    });
+  </script>
 </body>
+
 </html>
