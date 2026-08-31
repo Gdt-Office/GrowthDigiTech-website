@@ -12,6 +12,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initHeroAnimations();
   initScrollAnimations();
   initReviewsSlider();
+  initInteractiveServicesSection();
 });
 
 /**
@@ -688,4 +689,313 @@ function initReviewsSlider() {
   window.addEventListener('resize', () => {
     renderDots();
   });
+}
+
+/**
+ * Interactive Circular Wheel Services Section Handler
+ */
+function initInteractiveServicesSection() {
+  const section = document.getElementById('interactive-services');
+  if (!section) return;
+
+  const nodesContainer = document.getElementById('wheel-nodes-container');
+  const nodeItems = section.querySelectorAll('.wheel-node-item');
+  const card = document.getElementById('wheel-content-card');
+  const badge = document.getElementById('wheel-badge');
+  const illustration = document.getElementById('wheel-illustration');
+  const mainIcon = document.getElementById('wheel-main-icon');
+  const title = document.getElementById('wheel-title');
+  const desc = document.getElementById('wheel-desc');
+  const benefits = document.getElementById('wheel-benefits');
+  const progressBar = document.getElementById('wheel-auto-bar');
+
+  if (!nodesContainer || !nodeItems.length || !card) return;
+
+  const servicesData = [
+    {
+      badge: "SERVICE 01 / 07",
+      title: "Website Development",
+      desc: "Build a fast, professional and mobile-friendly website that creates trust and converts visitors into customers.",
+      icon: `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>`,
+      benefits: [
+        "Responsive website",
+        "SEO-friendly structure",
+        "Fast page loading",
+        "Lead-generation features"
+      ],
+      illustration: `
+        <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:8px;">
+          <span style="font-size:0.75rem; color:var(--cyan); font-weight:700;">LIVE BROWSER MOCKUP</span>
+          <span style="font-size:0.7rem; color:rgba(255,255,255,0.6);">Core Web Vitals 99%</span>
+        </div>
+        <div style="background:#0f172a; border-radius:8px; padding:10px; border:1px solid rgba(255,255,255,0.1);">
+          <div style="display:flex; gap:4px; margin-bottom:8px;">
+            <span style="width:8px; height:8px; border-radius:50%; background:#ef4444;"></span>
+            <span style="width:8px; height:8px; border-radius:50%; background:#f59e0b;"></span>
+            <span style="width:8px; height:8px; border-radius:50%; background:#22c55e;"></span>
+          </div>
+          <div style="font-size:0.72rem; font-family:monospace; color:#38bdf8;">
+            &lt;div class="growth-system"&gt;High Conversion UX&lt;/div&gt;
+          </div>
+        </div>
+      `
+    },
+    {
+      badge: "SERVICE 02 / 07",
+      title: "Digital Marketing",
+      desc: "Build your online presence and attract potential customers through an integrated digital marketing strategy.",
+      icon: `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>`,
+      benefits: [
+        "SEO and website optimization",
+        "Content marketing",
+        "Social media marketing",
+        "Paid advertising campaigns"
+      ],
+      illustration: `
+        <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:8px;">
+          <span style="font-size:0.75rem; color:var(--cyan); font-weight:700;">MULTI-CHANNEL ENGINE</span>
+          <span style="font-size:0.7rem; color:#22c55e; font-weight:700;">+340% Reach</span>
+        </div>
+        <div style="display:grid; grid-template-columns:repeat(4, 1fr); gap:6px; text-align:center;">
+          <div style="background:rgba(255,255,255,0.06); padding:6px; border-radius:6px; font-size:0.68rem; color:#fff;">SEO</div>
+          <div style="background:rgba(255,255,255,0.06); padding:6px; border-radius:6px; font-size:0.68rem; color:#fff;">Content</div>
+          <div style="background:rgba(255,255,255,0.06); padding:6px; border-radius:6px; font-size:0.68rem; color:#fff;">Social</div>
+          <div style="background:rgba(255,255,255,0.06); padding:6px; border-radius:6px; font-size:0.68rem; color:#fff;">Ads</div>
+        </div>
+      `
+    },
+    {
+      badge: "SERVICE 03 / 07",
+      title: "Meta Ads",
+      desc: "Reach targeted audiences through Facebook and Instagram and generate valuable enquiries.",
+      icon: `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>`,
+      benefits: [
+        "Audience targeting",
+        "Lead-generation campaigns",
+        "Retargeting",
+        "Campaign optimization"
+      ],
+      illustration: `
+        <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:8px;">
+          <span style="font-size:0.75rem; color:var(--cyan); font-weight:700;">FB & IG ADS MANAGER</span>
+          <span style="font-size:0.7rem; color:#3b82f6; font-weight:700;">Verified Meta Partner</span>
+        </div>
+        <div style="background:rgba(37,99,235,0.15); border:1px solid rgba(59,130,246,0.3); padding:8px 12px; border-radius:6px; font-size:0.75rem; color:#fff; display:flex; justify-content:space-between;">
+          <span>Targeted Lead Campaign</span>
+          <span style="color:#22c55e;">Active</span>
+        </div>
+      `
+    },
+    {
+      badge: "SERVICE 04 / 07",
+      title: "Google Ads",
+      desc: "Connect with customers who are actively searching for your services and generate high-intent leads.",
+      icon: `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>`,
+      benefits: [
+        "Search advertising",
+        "Keyword targeting",
+        "Conversion tracking",
+        "Campaign optimization"
+      ],
+      illustration: `
+        <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:8px;">
+          <span style="font-size:0.75rem; color:var(--cyan); font-weight:700;">GOOGLE SEARCH SPONSORED</span>
+          <span style="font-size:0.7rem; color:#f59e0b; font-weight:700;">High Intent</span>
+        </div>
+        <div style="background:rgba(245,158,11,0.1); border:1px solid rgba(245,158,11,0.3); padding:8px 12px; border-radius:6px; font-size:0.75rem; color:#fff;">
+          🔍 Top Search Rank #1 • Direct Call Extension
+        </div>
+      `
+    },
+    {
+      badge: "SERVICE 05 / 07",
+      title: "CRM Software",
+      desc: "Manage leads, customer information, follow-ups and sales activities from one organized platform.",
+      icon: `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>`,
+      benefits: [
+        "Lead management",
+        "Follow-up reminders",
+        "Sales pipeline",
+        "Customer reports"
+      ],
+      illustration: `
+        <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:8px;">
+          <span style="font-size:0.75rem; color:var(--cyan); font-weight:700;">SALES PIPELINE CRM</span>
+          <span style="font-size:0.7rem; color:#22c55e; font-weight:700;">100% Organised</span>
+        </div>
+        <div style="display:flex; gap:6px;">
+          <div style="flex:1; background:rgba(255,255,255,0.06); padding:6px; border-radius:6px; font-size:0.68rem; color:#fff;">New (12)</div>
+          <div style="flex:1; background:rgba(255,255,255,0.06); padding:6px; border-radius:6px; font-size:0.68rem; color:#fff;">Proposal (5)</div>
+          <div style="flex:1; background:rgba(34,197,94,0.2); padding:6px; border-radius:6px; font-size:0.68rem; color:#22c55e; font-weight:700;">Won (8)</div>
+        </div>
+      `
+    },
+    {
+      badge: "SERVICE 06 / 07",
+      title: "HRM Software",
+      desc: "Simplify attendance, leave, payroll and everyday employee management.",
+      icon: `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><polyline points="16 11 18 13 22 9"/></svg>`,
+      benefits: [
+        "Attendance management",
+        "Leave management",
+        "Payroll processing",
+        "Employee records"
+      ],
+      illustration: `
+        <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:8px;">
+          <span style="font-size:0.75rem; color:var(--cyan); font-weight:700;">HR & PAYROLL DASHBOARD</span>
+          <span style="font-size:0.7rem; color:#38bdf8; font-weight:700;">Biometric Clock-In</span>
+        </div>
+        <div style="background:rgba(255,255,255,0.06); padding:8px 12px; border-radius:6px; font-size:0.75rem; color:#fff; display:flex; justify-content:space-between;">
+          <span>Monthly Payroll Run</span>
+          <span style="color:#22c55e; font-weight:700;">Automated ✓</span>
+        </div>
+      `
+    },
+    {
+      badge: "SERVICE 07 / 07",
+      title: "ERP Software",
+      desc: "Connect your business departments and manage important operations through one centralized system.",
+      icon: `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/></svg>`,
+      benefits: [
+        "Inventory management",
+        "Sales and purchasing",
+        "Finance management",
+        "Centralized reporting"
+      ],
+      illustration: `
+        <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:8px;">
+          <span style="font-size:0.75rem; color:var(--cyan); font-weight:700;">ENTERPRISE ERP COCKPIT</span>
+          <span style="font-size:0.7rem; color:#a855f7; font-weight:700;">Unified Ops</span>
+        </div>
+        <div style="background:rgba(168,85,247,0.15); border:1px solid rgba(168,85,247,0.3); padding:8px 12px; border-radius:6px; font-size:0.75rem; color:#fff;">
+          📦 Stock & Invoicing Synchronized
+        </div>
+      `
+    }
+  ];
+
+  const total = servicesData.length;
+  let currentIndex = 0;
+  let progressVal = 0;
+  let progressInterval = null;
+  let isPaused = false;
+  let pauseTimeout = null;
+
+  // Position 7 nodes radially around the circular perimeter
+  function positionNodesRadial() {
+    const isMobile = window.innerWidth < 480;
+    const radius = isMobile ? 130 : 175;
+
+    nodeItems.forEach((node, i) => {
+      const angleDeg = (i * (360 / total)) - 90; // Start at top
+      const angleRad = (angleDeg * Math.PI) / 180;
+      const x = Math.round(radius * Math.cos(angleRad));
+      const y = Math.round(radius * Math.sin(angleRad));
+
+      node.style.transform = `translate(${x}px, ${y}px)`;
+    });
+  }
+
+  function rotateWheelTo(index) {
+    const rotDeg = -(index * (360 / total));
+    nodesContainer.style.transform = `rotate(${rotDeg}deg)`;
+
+    nodeItems.forEach((node, i) => {
+      const inner = node.querySelector('.wheel-node-inner');
+      if (inner) {
+        inner.style.transform = `rotate(${-rotDeg}deg)`;
+      }
+
+      if (i === index) {
+        node.classList.add('active');
+      } else {
+        node.classList.remove('active');
+      }
+    });
+
+    // Render Right Content Panel
+    renderContentCard(index);
+  }
+
+  function renderContentCard(index) {
+    const data = servicesData[index];
+    if (!data) return;
+
+    card.classList.add('switching');
+
+    setTimeout(() => {
+      badge.textContent = data.badge;
+      if (illustration) illustration.innerHTML = data.illustration;
+      mainIcon.innerHTML = data.icon;
+      title.textContent = data.title;
+      desc.textContent = data.desc;
+
+      benefits.innerHTML = data.benefits.map(b => `
+        <div class="wheel-benefit-item">
+          <span class="wheel-benefit-check">✓</span>
+          <span>${b}</span>
+        </div>
+      `).join('');
+
+      card.classList.remove('switching');
+    }, 200);
+  }
+
+  function startProgress() {
+    progressVal = 0;
+    if (progressBar) progressBar.style.width = '0%';
+
+    if (progressInterval) clearInterval(progressInterval);
+    progressInterval = setInterval(() => {
+      if (isPaused) return;
+      progressVal += 2;
+      if (progressBar) progressBar.style.width = `${Math.min(progressVal, 100)}%`;
+
+      if (progressVal >= 100) {
+        progressVal = 0;
+        currentIndex = (currentIndex + 1) % total;
+        rotateWheelTo(currentIndex);
+      }
+    }, 90);
+  }
+
+  function selectService(index, isManual = false) {
+    currentIndex = index;
+    rotateWheelTo(currentIndex);
+
+    if (isManual) {
+      isPaused = true;
+      if (progressBar) progressBar.style.width = '100%';
+
+      if (pauseTimeout) clearTimeout(pauseTimeout);
+      pauseTimeout = setTimeout(() => {
+        isPaused = false;
+        startProgress();
+      }, 9000);
+    }
+  }
+
+  // Node Click Handlers
+  nodeItems.forEach((node, i) => {
+    node.addEventListener('click', () => {
+      selectService(i, true);
+    });
+  });
+
+  // Init Radial positions & stage rotation
+  positionNodesRadial();
+  rotateWheelTo(0);
+
+  window.addEventListener('resize', positionNodesRadial);
+
+  // Check Reduced Motion
+  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (!prefersReducedMotion) {
+    startProgress();
+    section.addEventListener('mouseenter', () => { isPaused = true; });
+    section.addEventListener('mouseleave', () => { if (!pauseTimeout) isPaused = false; });
+  } else {
+    if (progressBar) progressBar.style.display = 'none';
+  }
 }

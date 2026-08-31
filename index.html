@@ -428,6 +428,156 @@
       </div>
     </div>
 
+    <!-- 2.5. Interactive Circular Service Wheel Section -->
+    <section class="section-padding interactive-services-section" id="interactive-services">
+      <div class="container">
+        <div style="text-align: center; max-width: 720px; margin: 0 auto 44px;">
+          <span class="eyebrow">INTEGRATED CAPABILITIES</span>
+          <h2 class="section-title" style="margin-bottom: 12px;">Everything Your Business Needs to Grow</h2>
+          <p class="section-desc">Explore our digital marketing, website and business software solutions.</p>
+        </div>
+
+        <div class="wheel-section-grid">
+          <!-- Left Side: Circular Service Wheel Carousel -->
+          <div class="wheel-stage-wrapper">
+            <div class="wheel-stage" id="wheel-stage">
+              <!-- Outer Orbit Dashed Ring -->
+              <div class="wheel-orbit-ring"></div>
+
+              <!-- Center Motion Illustration Person at Computer Station -->
+              <div class="wheel-center-person">
+                <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <!-- Workstation Monitor -->
+                  <rect x="20" y="20" width="60" height="42" rx="6" fill="#1e293b" stroke="#06b6d4" stroke-width="2"/>
+                  <path d="M42 62L36 78H64L58 62" stroke="#06b6d4" stroke-width="2" stroke-linecap="round"/>
+                  <rect x="25" y="25" width="50" height="32" rx="3" fill="#0f172a"/>
+                  <!-- Monitor Screen Code Lines Animation -->
+                  <line x1="30" y1="31" x2="55" y2="31" stroke="#06b6d4" stroke-width="2" stroke-linecap="round"/>
+                  <line x1="30" y1="37" x2="68" y2="37" stroke="#3b82f6" stroke-width="2" stroke-linecap="round"/>
+                  <line x1="30" y1="43" x2="48" y2="43" stroke="#22c55e" stroke-width="2" stroke-linecap="round"/>
+                  <line x1="30" y1="49" x2="62" y2="49" stroke="#f59e0b" stroke-width="2" stroke-linecap="round"/>
+                  <!-- Specialist Person Avatar Front View -->
+                  <circle cx="50" cy="70" r="10" fill="#38bdf8"/>
+                  <path d="M32 94C32 82 40 76 50 76C60 76 68 82 68 94" fill="#0284c7"/>
+                  <!-- Headphones -->
+                  <path d="M38 70C38 63 43 58 50 58C57 58 62 63 62 70" stroke="#06b6d4" stroke-width="2.5" stroke-linecap="round"/>
+                  <rect x="36" y="67" width="4" height="7" rx="2" fill="#06b6d4"/>
+                  <rect x="60" y="67" width="4" height="7" rx="2" fill="#06b6d4"/>
+                </svg>
+                <div class="wheel-center-label">ENGINEER STUDIO</div>
+              </div>
+
+              <!-- Rotating Nodes Container (7 Services Array) -->
+              <div class="wheel-nodes-container" id="wheel-nodes-container">
+                <!-- 7 Service Nodes rendered by JS & CSS -->
+                <button type="button" class="wheel-node-item active" data-index="0" id="wheel-node-0">
+                  <div class="wheel-node-inner">
+                    <div class="wheel-node-icon">
+                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+                    </div>
+                    <span class="wheel-node-label">Website Dev</span>
+                  </div>
+                </button>
+
+                <button type="button" class="wheel-node-item" data-index="1" id="wheel-node-1">
+                  <div class="wheel-node-inner">
+                    <div class="wheel-node-icon">
+                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+                    </div>
+                    <span class="wheel-node-label">Digital Mktg</span>
+                  </div>
+                </button>
+
+                <button type="button" class="wheel-node-item" data-index="2" id="wheel-node-2">
+                  <div class="wheel-node-inner">
+                    <div class="wheel-node-icon">
+                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
+                    </div>
+                    <span class="wheel-node-label">Meta Ads</span>
+                  </div>
+                </button>
+
+                <button type="button" class="wheel-node-item" data-index="3" id="wheel-node-3">
+                  <div class="wheel-node-inner">
+                    <div class="wheel-node-icon">
+                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+                    </div>
+                    <span class="wheel-node-label">Google Ads</span>
+                  </div>
+                </button>
+
+                <button type="button" class="wheel-node-item" data-index="4" id="wheel-node-4">
+                  <div class="wheel-node-inner">
+                    <div class="wheel-node-icon">
+                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                    </div>
+                    <span class="wheel-node-label">CRM Software</span>
+                  </div>
+                </button>
+
+                <button type="button" class="wheel-node-item" data-index="5" id="wheel-node-5">
+                  <div class="wheel-node-inner">
+                    <div class="wheel-node-icon">
+                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><polyline points="16 11 18 13 22 9"/></svg>
+                    </div>
+                    <span class="wheel-node-label">HRM Software</span>
+                  </div>
+                </button>
+
+                <button type="button" class="wheel-node-item" data-index="6" id="wheel-node-6">
+                  <div class="wheel-node-inner">
+                    <div class="wheel-node-icon">
+                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/></svg>
+                    </div>
+                    <span class="wheel-node-label">ERP Systems</span>
+                  </div>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right Side: Active Service Details Panel & Vector Illustration Mockup -->
+          <div class="wheel-content-card" id="wheel-content-card">
+            <div>
+              <div class="service-badge-tag" id="wheel-badge">SERVICE 01 / 07</div>
+
+              <div class="wheel-service-illustration" id="wheel-illustration">
+                <!-- Motion Vector Illustration Graphic rendered by JS -->
+              </div>
+
+              <div class="service-card-title-row">
+                <div class="service-card-main-icon" id="wheel-main-icon">
+                  <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+                </div>
+                <h3 class="service-card-title" id="wheel-title">Website Development</h3>
+              </div>
+
+              <p class="service-card-desc" id="wheel-desc">
+                Build a fast, professional and mobile-friendly website that creates trust and converts visitors into customers.
+              </p>
+
+              <div class="wheel-benefit-list" id="wheel-benefits">
+                <div class="wheel-benefit-item"><span class="wheel-benefit-check">✓</span> <span>Responsive website</span></div>
+                <div class="wheel-benefit-item"><span class="wheel-benefit-check">✓</span> <span>SEO-friendly structure</span></div>
+                <div class="wheel-benefit-item"><span class="wheel-benefit-check">✓</span> <span>Fast page loading</span></div>
+                <div class="wheel-benefit-item"><span class="wheel-benefit-check">✓</span> <span>Lead-generation features</span></div>
+              </div>
+            </div>
+
+            <div>
+              <div class="service-card-actions">
+                <a href="free-quote.html" class="btn btn-primary">Get a Free Consultation</a>
+                <a href="services.html" class="btn btn-secondary">Learn More →</a>
+              </div>
+              <div class="service-auto-progress">
+                <div class="service-auto-bar" id="wheel-auto-bar"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <!-- 3. Business Bottleneck Diagnostic -->
     <section class="section-padding diagnostic-section">
       <div class="container">
@@ -1182,37 +1332,230 @@
             </div>
 
             <div class="cta-form">
-              <form id="home-cta-form" action="#" method="POST"
-                onsubmit="event.preventDefault(); alert('Lead registered. Our team will contact you in under 4 operating hours.');">
-                <div class="form-group">
-                  <label class="form-label" for="home-name">Contact Name</label>
-                  <input type="text" id="home-name" class="form-input" placeholder="e.g. Suresh Kumar" required>
+              <div class="modern-quote-card" style="background: #ffffff; border: 1px solid var(--border-light); box-shadow: 0 20px 60px rgba(10, 17, 40, 0.08); padding: clamp(24px, 4vw, 36px); border-radius: 20px; overflow: visible; position: relative;">
+                <form id="home-cta-form" action="#" method="POST">
+                  <!-- Hidden Security Honeypot Field -->
+                  <input type="text" name="website_hp" style="display:none !important;" tabindex="-1" autocomplete="off">
+                  <!-- Row 1: Full Name & Email -->
+                  <div class="modern-form-row">
+                    <div class="modern-input-group">
+                      <label class="modern-input-label" for="home-name" style="color:var(--text-navy);">Full Name *</label>
+                      <div class="modern-input-wrapper">
+                        <span class="modern-input-icon" style="color:var(--blue-primary);">
+                          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+                            <circle cx="12" cy="7" r="4" />
+                          </svg>
+                        </span>
+                        <input type="text" id="home-name" name="name" class="modern-input" style="background:#ffffff; color:var(--text-navy); border-color:var(--border-light);" placeholder="e.g. Suresh Kumar" required>
+                      </div>
+                    </div>
+
+                    <div class="modern-input-group">
+                      <label class="modern-input-label" for="home-email" style="color:var(--text-navy);">Official Email *</label>
+                      <div class="modern-input-wrapper">
+                        <span class="modern-input-icon" style="color:var(--blue-primary);">
+                          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
+                            <polyline points="22,6 12,13 2,6" />
+                          </svg>
+                        </span>
+                        <input type="email" id="home-email" name="email" class="modern-input" style="background:#ffffff; color:var(--text-navy); border-color:var(--border-light);" placeholder="suresh@yourcompany.com" required>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Row 2: Phone & Location -->
+                  <div class="modern-form-row">
+                    <div class="modern-input-group">
+                      <label class="modern-input-label" for="home-phone" style="color:var(--text-navy);">Phone / WhatsApp *</label>
+                      <div class="modern-input-wrapper">
+                        <span class="modern-input-icon" style="color:var(--blue-primary);">
+                          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
+                          </svg>
+                        </span>
+                        <input type="tel" id="home-phone" name="phone" class="modern-input" style="background:#ffffff; color:var(--text-navy); border-color:var(--border-light);" placeholder="e.g. +91 98765 43210" required>
+                      </div>
+                    </div>
+
+                    <div class="modern-input-group">
+                      <label class="modern-input-label" for="home-location" style="color:var(--text-navy);">Operating Location *</label>
+                      <div class="modern-input-wrapper">
+                        <span class="modern-input-icon" style="color:var(--blue-primary);">
+                          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
+                            <circle cx="12" cy="10" r="3" />
+                          </svg>
+                        </span>
+                        <input type="text" id="home-location" name="location" class="modern-input" style="background:#ffffff; color:var(--text-navy); border-color:var(--border-light);" placeholder="e.g. Hosur / Tamil Nadu / India" required>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Multi-Select Services Component (All 6 Core Services) -->
+                  <div class="modern-input-group">
+                    <label class="modern-input-label" style="color:var(--text-navy);">Type of Service Expecting * <span style="font-size:0.75rem; text-transform:none; font-weight:normal; color:var(--text-muted);">(Select one or multiple)</span></label>
+                    <input type="hidden" id="home-service" name="service" required>
+
+                    <div class="service-multiselect-grid">
+                      <div class="service-pill-opt" data-value="Website Development" style="background:#ffffff; border-color:var(--border-light); color:var(--text-navy);">
+                        <span class="service-pill-checkbox">
+                          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5"><polyline points="20 6 9 17 4 12" /></svg>
+                        </span>
+                        <span class="service-pill-text">💻 Website Development</span>
+                      </div>
+
+                      <div class="service-pill-opt" data-value="Digital Marketing & SEO" style="background:#ffffff; border-color:var(--border-light); color:var(--text-navy);">
+                        <span class="service-pill-checkbox">
+                          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5"><polyline points="20 6 9 17 4 12" /></svg>
+                        </span>
+                        <span class="service-pill-text">🚀 Digital Marketing & SEO</span>
+                      </div>
+
+                      <div class="service-pill-opt" data-value="Meta Ads & Google Ads" style="background:#ffffff; border-color:var(--border-light); color:var(--text-navy);">
+                        <span class="service-pill-checkbox">
+                          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5"><polyline points="20 6 9 17 4 12" /></svg>
+                        </span>
+                        <span class="service-pill-text">🎯 Meta & Google Ads</span>
+                      </div>
+
+                      <div class="service-pill-opt" data-value="Mobile App Development" style="background:#ffffff; border-color:var(--border-light); color:var(--text-navy);">
+                        <span class="service-pill-checkbox">
+                          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5"><polyline points="20 6 9 17 4 12" /></svg>
+                        </span>
+                        <span class="service-pill-text">📱 Mobile App Development</span>
+                      </div>
+
+                      <div class="service-pill-opt" data-value="CRM & HRM Software" style="background:#ffffff; border-color:var(--border-light); color:var(--text-navy);">
+                        <span class="service-pill-checkbox">
+                          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5"><polyline points="20 6 9 17 4 12" /></svg>
+                        </span>
+                        <span class="service-pill-text">⚡ CRM & HRM Software</span>
+                      </div>
+
+                      <div class="service-pill-opt" data-value="ERP Software" style="background:#ffffff; border-color:var(--border-light); color:var(--text-navy);">
+                        <span class="service-pill-checkbox">
+                          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5"><polyline points="20 6 9 17 4 12" /></svg>
+                        </span>
+                        <span class="service-pill-text">🏢 ERP Software</span>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Estimated Budget Ready to Provide -->
+                  <div class="modern-input-group">
+                    <label class="modern-input-label" for="home-budget" style="color:var(--text-navy);">Estimated Budget Ready to Provide *</label>
+                    <div class="modern-input-wrapper">
+                      <span class="modern-input-icon" style="color:var(--blue-primary);">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                          <rect x="2" y="5" width="20" height="14" rx="2" />
+                          <line x1="2" y1="10" x2="22" y2="10" />
+                        </svg>
+                      </span>
+                      <input type="text" id="home-budget" name="budget" class="modern-input" style="background:#ffffff; color:var(--text-navy); border-color:var(--border-light);" placeholder="e.g. ₹35,000 - ₹85,000" required>
+                    </div>
+                  </div>
+
+                  <!-- Next Row: Estimated Timeframe / Days -->
+                  <div class="modern-input-group">
+                    <label class="modern-input-label" style="color:var(--text-navy);">Estimated Timeframe / Days *</label>
+                    <div class="custom-dropdown-container">
+                      <input type="hidden" name="estimated_days" required>
+                      <button type="button" class="custom-dropdown-trigger" style="background:#ffffff; color:var(--text-navy); border-color:var(--border-light);" aria-haspopup="listbox" aria-expanded="false">
+                        <span class="custom-dropdown-selected">Select expected timeframe / days...</span>
+                        <svg class="custom-dropdown-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                          <polyline points="6 9 12 15 18 9" />
+                        </svg>
+                      </button>
+                      <div class="custom-dropdown-menu" role="listbox">
+                        <div class="custom-dropdown-item" data-value="1 - 3 Days (Express SLA)">
+                          <span class="custom-dropdown-item-icon">⚡</span>
+                          <div class="custom-dropdown-item-text">
+                            <strong>1 - 3 Days</strong>
+                            <span>Express SLA — Fast Track Scoping</span>
+                          </div>
+                          <span class="custom-dropdown-item-check">✓</span>
+                        </div>
+                        <div class="custom-dropdown-item" data-value="4 - 7 Days (Fast Track)">
+                          <span class="custom-dropdown-item-icon">🚀</span>
+                          <div class="custom-dropdown-item-text">
+                            <strong>4 - 7 Days</strong>
+                            <span>Fast Track — Standard Web & Ad Launch</span>
+                          </div>
+                          <span class="custom-dropdown-item-check">✓</span>
+                        </div>
+                        <div class="custom-dropdown-item" data-value="8 - 15 Days (Standard Execution)">
+                          <span class="custom-dropdown-item-icon">⏱️</span>
+                          <div class="custom-dropdown-item-text">
+                            <strong>8 - 15 Days</strong>
+                            <span>Standard Execution — Full System Build</span>
+                          </div>
+                          <span class="custom-dropdown-item-check">✓</span>
+                        </div>
+                        <div class="custom-dropdown-item" data-value="15 - 30 Days (Standard Sprint)">
+                          <span class="custom-dropdown-item-icon">📅</span>
+                          <div class="custom-dropdown-item-text">
+                            <strong>15 - 30 Days</strong>
+                            <span>Standard Sprint — Custom Features</span>
+                          </div>
+                          <span class="custom-dropdown-item-check">✓</span>
+                        </div>
+                        <div class="custom-dropdown-item" data-value="30 - 60 Days (Enterprise Phase)">
+                          <span class="custom-dropdown-item-icon">🗓️</span>
+                          <div class="custom-dropdown-item-text">
+                            <strong>30 - 60 Days</strong>
+                            <span>Enterprise Phase — Architecture</span>
+                          </div>
+                          <span class="custom-dropdown-item-check">✓</span>
+                        </div>
+                        <div class="custom-dropdown-item" data-value="60+ Days (Full System Build)">
+                          <span class="custom-dropdown-item-icon">🏢</span>
+                          <div class="custom-dropdown-item-text">
+                            <strong>60+ Days</strong>
+                            <span>Full System Build — End-to-End</span>
+                          </div>
+                          <span class="custom-dropdown-item-check">✓</span>
+                        </div>
+                        <div class="custom-dropdown-item" data-value="Custom / Discuss with Lead Architect">
+                          <span class="custom-dropdown-item-icon">💬</span>
+                          <div class="custom-dropdown-item-text">
+                            <strong>Custom / Discuss</strong>
+                            <span>Consult Engineering Team</span>
+                          </div>
+                          <span class="custom-dropdown-item-check">✓</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Comments / Project Notes -->
+                  <div class="modern-input-group">
+                    <label class="modern-input-label" for="home-comments" style="color:var(--text-navy);">Project Scope Notes</label>
+                    <div class="modern-input-wrapper">
+                      <span class="modern-input-icon" style="align-self: flex-start; margin-top: 14px; color:var(--blue-primary);">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                          <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
+                        </svg>
+                      </span>
+                      <textarea id="home-comments" name="comments" class="modern-textarea" style="background:#ffffff; color:var(--text-navy); border-color:var(--border-light);" rows="2" placeholder="Briefly describe your goals..."></textarea>
+                    </div>
+                  </div>
+
+                  <button type="submit" class="btn btn-primary" style="width:100%; min-height:52px; margin-top:12px; font-size:1.05rem;">Request Engineering Pathway &rarr;</button>
+                  <div class="form-promise" style="margin-top:12px; font-size:0.8rem; color:var(--text-muted); text-align:center;">We respond to all verified business inquiries in under 4 operating hours.</div>
+                </form>
+
+                <!-- Success Confirmation Panel -->
+                <div class="quote-success-panel" id="home-quote-success" style="display:none; text-align:center; padding:20px 8px;">
+                  <div class="quote-success-icon" style="margin: 0 auto 16px;">
+                    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12" /></svg>
+                  </div>
+                  <h3 style="color:var(--text-navy); font-size:1.4rem; margin-bottom:8px;">Growth Request Registered!</h3>
+                  <p style="color:var(--text-muted); font-size:0.95rem; margin-bottom:16px;">Thank you. Our engineering team in Hosur is reviewing your parameters and will get in touch within 4 operating hours.</p>
+                  <div class="quote-ref" style="background:rgba(6,182,212,0.15); border:1px solid var(--cyan); color:var(--blue-primary); font-weight:800; padding:10px 16px; border-radius:8px; display:inline-block; font-size:0.9rem;">Reference Code: GDT-2026-CONFIRMED</div>
                 </div>
-                <div class="form-group">
-                  <label class="form-label" for="home-business">Business Name</label>
-                  <input type="text" id="home-business" class="form-input" placeholder="e.g. Sipcot Industrial Supply"
-                    required>
-                </div>
-                <div class="form-group">
-                  <label class="form-label" for="home-email">Official Email</label>
-                  <input type="email" id="home-email" class="form-input" placeholder="suresh@yourcompany.com" required>
-                </div>
-                <div class="form-group">
-                  <label class="form-label" for="home-service">Required Service</label>
-                  <select id="home-service" class="form-input"
-                    style="background:#1e293b; color:white; border-color:var(--border-navy);" required>
-                    <option value="" disabled selected>Select capability...</option>
-                    <option value="marketing">Digital Marketing / SEO</option>
-                    <option value="website">High-Performance Website</option>
-                    <option value="app">Mobile App Development</option>
-                    <option value="software">CRM & Custom ERP</option>
-                  </select>
-                </div>
-                <button type="submit" class="btn btn-primary" style="width:100%; margin-top:16px;">Request
-                  Callback</button>
-                <div class="form-promise">We respond to all verified business inquiries in under 4 operating hours.
-                </div>
-              </form>
+              </div>
             </div>
           </div>
         </div>
@@ -1227,7 +1570,7 @@
       <div class="footer-top">
         <div class="footer-brand">
           <a href="index.html" class="footer-logo-link" aria-label="GrowthDigiTech Home">
-            <img src="assets/logo/logo.png" alt="GrowthDigiTech – Digital Growth & Technology Solutions" class="footer-logo-img" width="180" height="40" loading="lazy">
+            <img src="assets/logo/logo.png" alt="GrowthDigiTech – Digital Marketing & Software Solutions" class="footer-logo-img" width="280" height="70" loading="lazy">
           </a>
           <p>GrowthDigiTech is a digital marketing and software solutions company based in Hosur, Tamil Nadu, serving businesses across Tamil Nadu and India.</p>
           <div class="footer-socials">
@@ -1384,6 +1727,8 @@
 
   <script src="assets/js/main.js"></script>
   <script src="assets/js/animations.js"></script>
+  <script src="assets/js/modal.js"></script>
+  <script src="assets/js/quote.js"></script>
 </body>
 
 </html>

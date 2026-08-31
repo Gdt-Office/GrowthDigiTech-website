@@ -484,8 +484,10 @@
         <div class="modern-quote-card">
           <h2 style="font-size:1.6rem; color:var(--text-navy); margin-bottom:24px;">Submit a structured enquiry</h2>
 
-          <form id="contact-enquiry-form" action="#" method="POST"
+          <form id="contact-form" action="#" method="POST"
             onsubmit="event.preventDefault(); document.getElementById('contact-success-msg').style.display='block';">
+            <!-- Hidden Security Honeypot Field -->
+            <input type="text" name="website_hp" style="display:none !important;" tabindex="-1" autocomplete="off">
 
             <!-- Row 1: Contact Name & Business Name -->
             <div class="modern-form-row">
@@ -713,8 +715,8 @@
       <div class="footer-top">
         <div class="footer-brand">
           <a href="index.html" class="footer-logo-link" aria-label="GrowthDigiTech Home">
-            <img src="assets/logo/logo.png" alt="GrowthDigiTech – Digital Growth & Technology Solutions"
-              class="footer-logo-img" width="180" height="40" loading="lazy">
+            <img src="assets/logo/logo.png" alt="GrowthDigiTech – Digital Marketing & Software Solutions"
+              class="footer-logo-img" width="280" height="70" loading="lazy">
           </a>
           <p>GrowthDigiTech is a digital marketing and software solutions company based in Hosur, Tamil Nadu, serving
             businesses across Tamil Nadu and India.</p>
@@ -871,6 +873,8 @@
   </div>
 
   <script src="assets/js/main.js"></script>
+  <script src="assets/js/modal.js"></script>
+  <script src="assets/js/contact.js"></script>
   <script>
     // FAQ accordion toggle script
     document.querySelectorAll('.faq-trigger').forEach(trigger => {

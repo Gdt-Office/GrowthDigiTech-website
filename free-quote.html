@@ -284,6 +284,8 @@
             <div class="modern-quote-card">
 
               <form id="free-quote-form" action="#" method="POST">
+              <!-- Hidden Security Honeypot Field -->
+              <input type="text" name="website_hp" style="display:none !important;" tabindex="-1" autocomplete="off">
 
                 <!-- Row 1: Full Name & Email -->
                 <div class="modern-form-row">
@@ -359,14 +361,14 @@
                   <input type="hidden" id="service" name="service" required>
 
                   <div class="service-multiselect-grid">
-                    <div class="service-pill-opt" data-value="Meta & Google Ads">
+                    <div class="service-pill-opt" data-value="Website Development">
                       <span class="service-pill-checkbox">
                         <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor"
                           stroke-width="3.5">
                           <polyline points="20 6 9 17 4 12" />
                         </svg>
                       </span>
-                      <span class="service-pill-text">🎯 Meta & Google Ads</span>
+                      <span class="service-pill-text">💻 Website Development</span>
                     </div>
 
                     <div class="service-pill-opt" data-value="Digital Marketing & SEO">
@@ -376,17 +378,17 @@
                           <polyline points="20 6 9 17 4 12" />
                         </svg>
                       </span>
-                      <span class="service-pill-text">🚀 Technical SEO & Growth</span>
+                      <span class="service-pill-text">🚀 Digital Marketing & SEO</span>
                     </div>
 
-                    <div class="service-pill-opt" data-value="Corporate Website Development">
+                    <div class="service-pill-opt" data-value="Meta Ads & Google Ads">
                       <span class="service-pill-checkbox">
                         <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor"
                           stroke-width="3.5">
                           <polyline points="20 6 9 17 4 12" />
                         </svg>
                       </span>
-                      <span class="service-pill-text">💻 Corporate Website Development</span>
+                      <span class="service-pill-text">🎯 Meta & Google Ads</span>
                     </div>
 
                     <div class="service-pill-opt" data-value="Mobile App Development">
@@ -399,29 +401,29 @@
                       <span class="service-pill-text">📱 Mobile App Development</span>
                     </div>
 
-                    <div class="service-pill-opt" data-value="Custom ERP / CRM Software">
+                    <div class="service-pill-opt" data-value="CRM & HRM Software">
                       <span class="service-pill-checkbox">
                         <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor"
                           stroke-width="3.5">
                           <polyline points="20 6 9 17 4 12" />
                         </svg>
                       </span>
-                      <span class="service-pill-text">⚡ Custom ERP / CRM Software</span>
+                      <span class="service-pill-text">⚡ CRM & HRM Software</span>
                     </div>
 
-                    <div class="service-pill-opt" data-value="Billing & Invoice Software">
+                    <div class="service-pill-opt" data-value="ERP Software">
                       <span class="service-pill-checkbox">
                         <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor"
                           stroke-width="3.5">
                           <polyline points="20 6 9 17 4 12" />
                         </svg>
                       </span>
-                      <span class="service-pill-text">🧾 Billing & Invoice Software</span>
+                      <span class="service-pill-text">🏢 ERP Software</span>
                     </div>
                   </div>
                 </div>
 
-                <!-- Estimated Budget (Text Input with Modern Placeholder) -->
+                <!-- Estimated Budget Ready to Provide -->
                 <div class="modern-input-group">
                   <label class="modern-input-label" for="budget">Estimated Budget Ready to Provide *</label>
                   <div class="modern-input-wrapper">
@@ -433,9 +435,81 @@
                       </svg>
                     </span>
                     <input type="text" id="budget" name="budget" class="modern-input"
-                      placeholder="e.g. ₹35,000 - ₹85,000 or Enter your budget target" required>
+                      placeholder="e.g. ₹35,000 - ₹85,000 or Target budget" required>
                   </div>
                 </div>
+
+                <!-- Next Row: Estimated Timeframe / Days -->
+                <div class="modern-input-group">
+                  <label class="modern-input-label">Estimated Timeframe / Days *</label>
+                  <div class="custom-dropdown-container">
+                      <input type="hidden" name="estimated_days" required>
+                      <button type="button" class="custom-dropdown-trigger" aria-haspopup="listbox" aria-expanded="false">
+                        <span class="custom-dropdown-selected">Select expected timeframe / days...</span>
+                        <svg class="custom-dropdown-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                          <polyline points="6 9 12 15 18 9" />
+                        </svg>
+                      </button>
+                      <div class="custom-dropdown-menu" role="listbox">
+                        <div class="custom-dropdown-item" data-value="1 - 3 Days (Express SLA)">
+                          <span class="custom-dropdown-item-icon">⚡</span>
+                          <div class="custom-dropdown-item-text">
+                            <strong>1 - 3 Days</strong>
+                            <span>Express SLA — Fast Track Scoping</span>
+                          </div>
+                          <span class="custom-dropdown-item-check">✓</span>
+                        </div>
+                        <div class="custom-dropdown-item" data-value="4 - 7 Days (Fast Track)">
+                          <span class="custom-dropdown-item-icon">🚀</span>
+                          <div class="custom-dropdown-item-text">
+                            <strong>4 - 7 Days</strong>
+                            <span>Fast Track — Standard Web & Ad Launch</span>
+                          </div>
+                          <span class="custom-dropdown-item-check">✓</span>
+                        </div>
+                        <div class="custom-dropdown-item" data-value="8 - 15 Days (Standard Execution)">
+                          <span class="custom-dropdown-item-icon">⏱️</span>
+                          <div class="custom-dropdown-item-text">
+                            <strong>8 - 15 Days</strong>
+                            <span>Standard Execution — Full System Build</span>
+                          </div>
+                          <span class="custom-dropdown-item-check">✓</span>
+                        </div>
+                        <div class="custom-dropdown-item" data-value="15 - 30 Days (Standard Sprint)">
+                          <span class="custom-dropdown-item-icon">📅</span>
+                          <div class="custom-dropdown-item-text">
+                            <strong>15 - 30 Days</strong>
+                            <span>Standard Sprint — Custom Features</span>
+                          </div>
+                          <span class="custom-dropdown-item-check">✓</span>
+                        </div>
+                        <div class="custom-dropdown-item" data-value="30 - 60 Days (Enterprise Phase)">
+                          <span class="custom-dropdown-item-icon">🗓️</span>
+                          <div class="custom-dropdown-item-text">
+                            <strong>30 - 60 Days</strong>
+                            <span>Enterprise Phase — Architecture</span>
+                          </div>
+                          <span class="custom-dropdown-item-check">✓</span>
+                        </div>
+                        <div class="custom-dropdown-item" data-value="60+ Days (Full System Build)">
+                          <span class="custom-dropdown-item-icon">🏢</span>
+                          <div class="custom-dropdown-item-text">
+                            <strong>60+ Days</strong>
+                            <span>Full System Build — End-to-End</span>
+                          </div>
+                          <span class="custom-dropdown-item-check">✓</span>
+                        </div>
+                        <div class="custom-dropdown-item" data-value="Custom / Discuss with Lead Architect">
+                          <span class="custom-dropdown-item-icon">💬</span>
+                          <div class="custom-dropdown-item-text">
+                            <strong>Custom / Discuss</strong>
+                            <span>Consult Engineering Team</span>
+                          </div>
+                          <span class="custom-dropdown-item-check">✓</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
 
                 <!-- Comments / Details Textarea -->
                 <div class="modern-input-group">
@@ -574,7 +648,7 @@
       <div class="footer-top">
         <div class="footer-brand">
           <a href="index.html" class="footer-logo-link" aria-label="GrowthDigiTech Home">
-            <img src="assets/logo/logo.png" alt="GrowthDigiTech – Digital Growth & Technology Solutions" class="footer-logo-img" width="180" height="40" loading="lazy">
+            <img src="assets/logo/logo.png" alt="GrowthDigiTech – Digital Marketing & Software Solutions" class="footer-logo-img" width="280" height="70" loading="lazy">
           </a>
           <p>GrowthDigiTech is a digital marketing and software solutions company based in Hosur, Tamil Nadu, serving businesses across Tamil Nadu and India.</p>
           <div class="footer-socials">
@@ -723,6 +797,7 @@
   </div>
 
   <script src="assets/js/main.js"></script>
+  <script src="assets/js/modal.js"></script>
   <script src="assets/js/quote.js"></script>
 </body>
 
