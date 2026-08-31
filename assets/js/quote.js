@@ -83,7 +83,7 @@ function initMultiSelectQuoteForm(form, successPanelId) {
     };
 
     try {
-      const response = await fetch('api/send-quote.php', {
+      const response = await fetch('/api/enquiry', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

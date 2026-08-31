@@ -44,7 +44,7 @@ function initContactForm(form) {
     };
 
     try {
-      const response = await fetch('api/send-contact.php', {
+      const response = await fetch('/api/enquiry', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

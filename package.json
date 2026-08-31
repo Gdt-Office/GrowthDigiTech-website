@@ -1,0 +1,19 @@
+{
+  "name": "growthdigitech-website",
+  "version": "1.0.0",
+  "description": "GrowthDigiTech Official Website hosted on Vercel with Node.js Nodemailer API",
+  "main": "api/enquiry.js",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start"
+  },
+  "dependencies": {
+    "nodemailer": "^6.9.10"
+  },
+  "devDependencies": {
+    "@types/node": "^20.11.0",
+    "@types/nodemailer": "^6.4.14",
+    "typescript": "^5.3.3"
+  }
+}
