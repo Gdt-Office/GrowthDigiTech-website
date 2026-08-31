@@ -297,7 +297,7 @@ function initFloatingActions() {
       const msg = waChatInput ? waChatInput.value.trim() : '';
       const defaultText = "Hi GrowthDigiTech! I would like to inquire about your digital growth and software services.";
       const text = msg ? encodeURIComponent(msg) : encodeURIComponent(defaultText);
-      const phone = "918072840179";
+      const phone = "918072841079";
 
       const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) || window.innerWidth < 768;
 
@@ -343,6 +343,41 @@ function initFloatingActions() {
       }
     });
   }
+
+  // 3. Global WhatsApp Direct Web Link Interceptor (Direct to WhatsApp Web on Desktop)
+  document.addEventListener('click', (e) => {
+    const waAnchor = e.target.closest('a[href*="wa.me"], a[href*="whatsapp.com"]');
+    if (!waAnchor) return;
+
+    const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) || window.innerWidth < 768;
+
+    if (!isMobile) {
+      e.preventDefault();
+      const rawHref = waAnchor.getAttribute('href') || '';
+      let phone = "918072841079";
+      let text = "";
+
+      try {
+        if (rawHref.includes('phone=')) {
+          const matchPhone = rawHref.match(/phone=([0-9]+)/);
+          if (matchPhone) phone = matchPhone[1];
+        } else {
+          const matchDigits = rawHref.match(/wa\.me\/([0-9]+)/);
+          if (matchDigits) phone = matchDigits[1];
+        }
+        if (rawHref.includes('text=')) {
+          const matchText = rawHref.match(/text=([^&]+)/);
+          if (matchText) text = matchText[1];
+        }
+      } catch (err) {}
+
+      const defaultText = "Hi GrowthDigiTech! I would like to inquire about your digital growth and software services.";
+      const encodedText = text || encodeURIComponent(defaultText);
+      const webUrl = `https://web.whatsapp.com/send?phone=${phone}&text=${encodedText}`;
+
+      window.open(webUrl, '_blank', 'noopener,noreferrer');
+    }
+  });
 }
 
 /**

@@ -1956,6 +1956,20 @@ textarea:focus-visible {
   margin-bottom: 60px;
 }
 
+.footer-logo-link {
+  display: inline-block;
+  margin-bottom: 16px;
+  text-decoration: none;
+}
+
+.footer-logo-img {
+  width: clamp(140px, 35vw, 190px);
+  max-width: 100%;
+  height: auto;
+  object-fit: contain;
+  display: block;
+}
+
 .footer-brand h4 {
   font-size: 1.35rem;
   font-weight: 800;
