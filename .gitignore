@@ -1,9 +1,0 @@
-.env
-.env.local
-.env.*.local
-node_modules/
-*.log
-scratch/
-.DS_Store
-.next/
-out/

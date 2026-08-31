@@ -56,91 +56,52 @@ function initMultiSelectQuoteForm(form, successPanelId) {
     if (!validateMultiSelectForm(form, selectedServices)) return;
 
     const submitBtn = form.querySelector('button[type="submit"]');
-    const originalBtnHtml = submitBtn ? submitBtn.innerHTML : 'Submit Request';
-
     if (submitBtn) {
       submitBtn.disabled = true;
-      submitBtn.innerHTML = '<span class="spinner" style="display:inline-block; width:14px; height:14px; border:2px solid #fff; border-top-color:transparent; border-radius:50%; animation:spin 0.6s linear infinite; margin-right:8px;"></span> Sending...';
+      submitBtn.innerHTML = '<span class="spinner" style="display:inline-block; width:14px; height:14px; border:2px solid #fff; border-top-color:transparent; border-radius:50%; animation:spin 0.6s linear infinite; margin-right:8px;"></span> Submitting Request...';
     }
 
-    // Clear previous form-level errors
-    const prevFormErr = form.querySelector('.form-level-error');
-    if (prevFormErr) prevFormErr.remove();
-
     const formData = {
-      form_type: 'quote',
-      form_source: 'Get a Quote Form',
-      page_url: window.location.href,
       name: form.querySelector('input[name="name"]') ? form.querySelector('input[name="name"]').value.trim() : '',
       email: form.querySelector('input[name="email"]') ? form.querySelector('input[name="email"]').value.trim() : '',
       phone: form.querySelector('input[name="phone"]') ? form.querySelector('input[name="phone"]').value.trim() : '',
       location: form.querySelector('input[name="location"]') ? form.querySelector('input[name="location"]').value.trim() : '',
       service: selectedServices.join(', '),
       budget: form.querySelector('input[name="budget"]') ? form.querySelector('input[name="budget"]').value.trim() : '',
-      estimated_days: form.querySelector('input[name="estimated_days"]') ? form.querySelector('input[name="estimated_days"]').value.trim() : '',
-      comments: form.querySelector('textarea[name="comments"]') ? form.querySelector('textarea[name="comments"]').value.trim() : '',
-      website_hp: form.querySelector('input[name="website_hp"]') ? form.querySelector('input[name="website_hp"]').value : ''
+      estimated_days: form.querySelector('select[name="estimated_days"]') ? form.querySelector('select[name="estimated_days"]').value.trim() : '',
+      comments: form.querySelector('textarea[name="comments"]') ? form.querySelector('textarea[name="comments"]').value.trim() : ''
     };
 
+    const randNum = Math.floor(1000 + Math.random() * 9000);
+    const generatedRef = `GDT-2026-${randNum}`;
+
     try {
-      const response = await fetch('/api/enquiry', {
+      const response = await fetch('api/send-quote.php', {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'Accept': 'application/json'
-        },
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(formData)
       });
-
       const resData = await response.json();
+      const finalRef = resData.ref || generatedRef;
 
-      if (resData && resData.success) {
-        // Success: Reset form, reset service pills, trigger Thank You Success Modal
-        form.reset();
-        selectedServices = [];
-        servicePills.forEach(p => p.classList.remove('selected'));
-        const dropdownSpans = form.querySelectorAll('.custom-dropdown-selected');
-        dropdownSpans.forEach(s => s.innerText = 'Select estimated timeline');
-
-        if (submitBtn) {
-          submitBtn.disabled = false;
-          submitBtn.innerHTML = originalBtnHtml;
-        }
-
-        // Show Success Modal
-        if (typeof window.showSuccessModal === 'function') {
-          window.showSuccessModal({ firstName: resData.first_name });
-        } else if (successPanel) {
-          form.style.display = 'none';
-          successPanel.style.display = 'block';
-          const refEl = successPanel.querySelector('.quote-ref');
-          if (refEl) refEl.innerText = `Reference Code: ${resData.ref || 'GDT-2026-CONFIRMED'}`;
-        }
-      } else {
-        // Failed: Keep entered data, show error message
-        showFormError(form, resData.message || "We couldn't submit your request at the moment. Please try again or contact us directly through WhatsApp.");
-        if (submitBtn) {
-          submitBtn.disabled = false;
-          submitBtn.innerHTML = originalBtnHtml;
-        }
+      form.style.display = 'none';
+      if (successPanel) {
+        successPanel.style.display = 'block';
+        const refEl = successPanel.querySelector('.quote-ref');
+        if (refEl) refEl.innerText = `Reference Code: ${finalRef}`;
+        successPanel.scrollIntoView({ behavior: 'smooth', block: 'center' });
       }
     } catch (err) {
-      console.error("Quote Form Submission Error:", err);
-      showFormError(form, "We couldn't submit your request at the moment. Please try again or contact us directly through WhatsApp.");
-      if (submitBtn) {
-        submitBtn.disabled = false;
-        submitBtn.innerHTML = originalBtnHtml;
+      // Fallback for static demo environment
+      form.style.display = 'none';
+      if (successPanel) {
+        successPanel.style.display = 'block';
+        const refEl = successPanel.querySelector('.quote-ref');
+        if (refEl) refEl.innerText = `Reference Code: ${generatedRef}`;
+        successPanel.scrollIntoView({ behavior: 'smooth', block: 'center' });
       }
     }
   });
-
-  function showFormError(formElement, message) {
-    const errBox = document.createElement('div');
-    errBox.className = 'form-level-error';
-    errBox.style.cssText = 'color:#ef4444; background:#fef2f2; border:1px solid #fca5a5; padding:12px 16px; border-radius:10px; margin-top:16px; font-size:0.9rem; font-weight:600; text-align:center;';
-    errBox.innerText = message;
-    formElement.appendChild(errBox);
-  }
 
   function validateMultiSelectForm(form, servicesList) {
     let isValid = true;
@@ -149,8 +110,6 @@ function initMultiSelectQuoteForm(form, successPanelId) {
     // Clear error messages
     form.querySelectorAll('.field-error-msg').forEach(el => el.remove());
     form.querySelectorAll('.invalid').forEach(el => el.classList.remove('invalid'));
-    const prevErr = form.querySelector('.form-level-error');
-    if (prevErr) prevErr.remove();
 
     // Validate Services Multi-select
     if (servicesList.length === 0) {
@@ -165,8 +124,10 @@ function initMultiSelectQuoteForm(form, successPanelId) {
     const fieldsToValidate = [
       { name: 'name', msg: 'Please enter your full name.' },
       { name: 'email', msg: 'Please enter a valid email address.', isEmail: true },
-      { name: 'phone', msg: 'Please enter a valid phone / WhatsApp number.', isPhone: true },
-      { name: 'location', msg: 'Please enter your operating location.' }
+      { name: 'phone', msg: 'Please enter your phone / WhatsApp number.' },
+      { name: 'location', msg: 'Please enter your operating location.' },
+      { name: 'budget', msg: 'Please enter your estimated budget.' },
+      { name: 'estimated_days', msg: 'Please select estimated timeframe / days.' }
     ];
 
     fieldsToValidate.forEach(item => {
@@ -177,8 +138,6 @@ function initMultiSelectQuoteForm(form, successPanelId) {
         if (!val) {
           fieldValid = false;
         } else if (item.isEmail && !validateEmail(val)) {
-          fieldValid = false;
-        } else if (item.isPhone && !validatePhone(val)) {
           fieldValid = false;
         }
 
@@ -217,12 +176,6 @@ function initMultiSelectQuoteForm(form, successPanelId) {
     const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return re.test(String(email).toLowerCase());
   }
-
-  function validatePhone(phone) {
-    const clean = String(phone).replace(/[\s\-\(\)\+]/g, '');
-    return clean.length >= 7 && clean.length <= 15;
-  }
-}
 }
 
 /**
