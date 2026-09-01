@@ -43,16 +43,8 @@ module.exports = async function handler(req, res) {
       });
     }
 
-    // 2. Validate Form Type
+    // 2. Extract & Sanitize Input Fields
     const formType = sanitizeInput(body.form_type);
-    if (!formType || (formType !== 'contact' && formType !== 'quote')) {
-      return res.status(400).json({
-        success: false,
-        error: 'Invalid enquiry submission form type.'
-      });
-    }
-
-    // 3. Extract & Sanitize Common Input Fields
     const fullName = sanitizeInput(body.full_name || body.name);
     const email = sanitizeInput(body.email);
     const rawPhone = sanitizeInput(body.phone);
@@ -61,11 +53,10 @@ module.exports = async function handler(req, res) {
     const service = sanitizeInput(body.service);
     const budget = sanitizeInput(body.budget);
     const timeline = sanitizeInput(body.timeline || body.estimated_days);
-    const subject = sanitizeInput(body.subject);
     const message = sanitizeInput(body.message || body.comments);
     const pageUrl = sanitizeInput(body.page_url);
 
-    // 4. Validate Common Required Fields (Full Name, Email, Phone)
+    // 3. Common Server-Side Validations
     if (!fullName) {
       return res.status(400).json({ success: false, error: 'Full name is required.' });
     }
@@ -94,54 +85,45 @@ module.exports = async function handler(req, res) {
       return res.status(400).json({ success: false, error: 'Phone number exceeds 30 characters limit.' });
     }
 
-    // 5. Initialize Supabase Client via Environment Variables
-    const supabaseUrl = process.env.SUPABASE_URL || process.env.NEXT_PUBLIC_SUPABASE_URL;
-    const supabaseSecretKey = process.env.SUPABASE_SECRET_KEY || process.env.SUPABASE_SERVICE_ROLE_KEY || process.env.SUPABASE_ANON_KEY || process.env.SUPABASE_KEY || process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
+    // 4. Initialize Supabase Client via Strict Environment Variables
+    const supabaseUrl = process.env.SUPABASE_URL;
+    const supabaseSecretKey = process.env.SUPABASE_SECRET_KEY;
 
     if (!supabaseUrl || !supabaseSecretKey) {
-      console.error('[Enquiry API Error]: Supabase environment variables missing (SUPABASE_URL / SUPABASE_SECRET_KEY).');
+      console.error('[Enquiry API Error]: SUPABASE_URL or SUPABASE_SECRET_KEY environment variable is not configured.');
       return res.status(500).json({
         success: false,
-        error: 'We could not save your enquiry. Database connection environment variables missing.'
+        error: 'We could not save your enquiry. Please try again.'
       });
     }
 
     const supabase = createClient(supabaseUrl, supabaseSecretKey);
 
-    // 6. Branch Logic & Table Selection Based on Form Type
+    // 5. Secure Table Selection & Payload Construction
+    let tableName;
+    let payload;
+
     if (formType === 'contact') {
-      // Contact Form Specific Validations
+      tableName = 'contact_enquiries';
+
       if (!message) {
         return res.status(400).json({ success: false, error: 'Please describe your project requirements.' });
       }
 
-      const contactPayload = {
+      payload = {
         full_name: fullName,
+        company_name: companyName || null,
         email: email,
         phone: cleanedPhone,
-        company_name: companyName || null,
         location: location || null,
-        subject: subject || null,
-        message: message,
-        preferred_contact: 'whatsapp',
+        message: message || null,
         page_url: pageUrl || null,
-        status: 'new',
-        notification_sent: false
+        status: 'new'
       };
 
-      const { error } = await supabase
-        .from('contact_enquiries')
-        .insert([contactPayload]);
-
-      if (error) {
-        console.error('[Contact API Error]: Supabase insert to contact_enquiries failed:', error.message || error);
-        return res.status(500).json({
-          success: false,
-          error: 'We could not save your enquiry. Please try again.'
-        });
-      }
     } else if (formType === 'quote') {
-      // Quote Form Specific Validations
+      tableName = 'quote_enquiries';
+
       if (!service) {
         return res.status(400).json({ success: false, error: 'Please select at least one expected service.' });
       }
@@ -152,37 +134,52 @@ module.exports = async function handler(req, res) {
         return res.status(400).json({ success: false, error: 'Please select estimated timeframe / days.' });
       }
 
-      const quotePayload = {
+      payload = {
         full_name: fullName,
+        company_name: companyName || null,
         email: email,
         phone: cleanedPhone,
         location: location || null,
-        service: service,
-        budget: budget,
-        timeline: timeline,
+        service: service || null,
+        budget: budget || null,
+        timeline: timeline || null,
         message: message || null,
-        preferred_contact: 'whatsapp',
         page_url: pageUrl || null,
-        status: 'new',
-        notification_sent: false
+        status: 'new'
       };
 
-      const { error } = await supabase
-        .from('quote_enquiries')
-        .insert([quotePayload]);
+    } else {
+      return res.status(400).json({
+        success: false,
+        error: 'Invalid form type.'
+      });
+    }
 
-      if (error) {
-        console.error('[Quote API Error]: Supabase insert to quote_enquiries failed:', error.message || error);
-        return res.status(500).json({
-          success: false,
-          error: 'We could not save your enquiry. Please try again.'
-        });
-      }
+    // 6. Execute Supabase Insert
+    const { data, error } = await supabase
+      .from(tableName)
+      .insert([payload])
+      .select('id')
+      .single();
+
+    if (error) {
+      console.error('Supabase insert failed:', {
+        table: tableName,
+        code: error.code,
+        message: error.message,
+        details: error.details
+      });
+
+      return res.status(500).json({
+        success: false,
+        error: 'We could not save your enquiry. Please try again.'
+      });
     }
 
     // 7. Confirmed Success Response
-    return res.status(200).json({
+    return res.status(201).json({
       success: true,
+      enquiryId: data.id,
       message: 'Your enquiry was submitted successfully.'
     });
 
