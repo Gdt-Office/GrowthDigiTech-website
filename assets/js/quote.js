@@ -87,11 +87,28 @@ function initMultiSelectQuoteForm(form, successPanelId, formType = 'quote') {
     const generatedRef = `GDT-2026-${randNum}`;
 
     try {
-      const response = await fetch('/api/enquiry', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(formData)
-      });
+      let response;
+      try {
+        response = await fetch('/api/enquiry', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(formData)
+        });
+      } catch (err1) {
+        response = await fetch('/api/enquiry.js', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(formData)
+        });
+      }
+
+      if (!response.ok && (response.status === 404 || response.status === 405)) {
+        response = await fetch('/api/enquiry.js', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(formData)
+        });
+      }
 
       const resData = await response.json();
 
@@ -262,11 +279,28 @@ function initContactEnquiryForm(form, successPanelId) {
     };
 
     try {
-      const response = await fetch('/api/enquiry', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(formData)
-      });
+      let response;
+      try {
+        response = await fetch('/api/enquiry', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(formData)
+        });
+      } catch (err1) {
+        response = await fetch('/api/enquiry.js', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(formData)
+        });
+      }
+
+      if (!response.ok && (response.status === 404 || response.status === 405)) {
+        response = await fetch('/api/enquiry.js', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(formData)
+        });
+      }
 
       const resData = await response.json();
 

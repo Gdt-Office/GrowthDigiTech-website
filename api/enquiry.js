@@ -10,11 +10,12 @@ module.exports = async function handler(req, res) {
     'X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version'
   );
 
-  if (req.method === 'OPTIONS') {
+  const method = (req.method || '').toUpperCase();
+  if (method === 'OPTIONS') {
     return res.status(200).end();
   }
 
-  if (req.method !== 'POST') {
+  if (method !== 'POST') {
     return res.status(405).json({
       success: false,
       error: 'Method Not Allowed. Only POST requests are accepted.'
