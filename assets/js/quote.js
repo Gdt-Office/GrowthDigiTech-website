@@ -1,23 +1,23 @@
-/**
- * GrowthDigiTech Quote Form Engine
- * Handles direct quote requests with multi-select services, estimated timeframe collection, validation, and submission.
- */
-
 document.addEventListener('DOMContentLoaded', () => {
   initCustomDropdowns();
 
   const quoteForm = document.getElementById('free-quote-form');
   if (quoteForm) {
-    initMultiSelectQuoteForm(quoteForm, 'quote-success');
+    initMultiSelectQuoteForm(quoteForm, 'quote-success', 'quote');
   }
 
   const homeForm = document.getElementById('home-cta-form');
   if (homeForm) {
-    initMultiSelectQuoteForm(homeForm, 'home-quote-success');
+    initMultiSelectQuoteForm(homeForm, 'home-quote-success', 'quote');
+  }
+
+  const contactForm = document.getElementById('contact-enquiry-form');
+  if (contactForm) {
+    initContactEnquiryForm(contactForm, 'contact-success-msg');
   }
 });
 
-function initMultiSelectQuoteForm(form, successPanelId) {
+function initMultiSelectQuoteForm(form, successPanelId, formType = 'quote') {
   const successPanel = document.getElementById(successPanelId);
 
   // Handle Multi-Select Service Pills
@@ -53,53 +53,81 @@ function initMultiSelectQuoteForm(form, successPanelId) {
   form.addEventListener('submit', async (e) => {
     e.preventDefault();
 
+    // Clear previous error banners
+    form.querySelectorAll('.form-error-banner').forEach(el => el.remove());
+
     if (!validateMultiSelectForm(form, selectedServices)) return;
 
     const submitBtn = form.querySelector('button[type="submit"]');
+    const originalBtnText = submitBtn ? submitBtn.innerHTML : 'Submit';
+
     if (submitBtn) {
       submitBtn.disabled = true;
       submitBtn.innerHTML = '<span class="spinner" style="display:inline-block; width:14px; height:14px; border:2px solid #fff; border-top-color:transparent; border-radius:50%; animation:spin 0.6s linear infinite; margin-right:8px;"></span> Submitting Request...';
     }
 
+    const honeypot = form.querySelector('input[name="b_address"]') ? form.querySelector('input[name="b_address"]').value : '';
+    const timelineInput = form.querySelector('input[name="estimated_days"]') || form.querySelector('select[name="estimated_days"]');
+
     const formData = {
-      name: form.querySelector('input[name="name"]') ? form.querySelector('input[name="name"]').value.trim() : '',
+      form_type: formType,
+      full_name: form.querySelector('input[name="name"]') ? form.querySelector('input[name="name"]').value.trim() : '',
       email: form.querySelector('input[name="email"]') ? form.querySelector('input[name="email"]').value.trim() : '',
       phone: form.querySelector('input[name="phone"]') ? form.querySelector('input[name="phone"]').value.trim() : '',
       location: form.querySelector('input[name="location"]') ? form.querySelector('input[name="location"]').value.trim() : '',
       service: selectedServices.join(', '),
       budget: form.querySelector('input[name="budget"]') ? form.querySelector('input[name="budget"]').value.trim() : '',
-      estimated_days: form.querySelector('select[name="estimated_days"]') ? form.querySelector('select[name="estimated_days"]').value.trim() : '',
-      comments: form.querySelector('textarea[name="comments"]') ? form.querySelector('textarea[name="comments"]').value.trim() : ''
+      estimated_days: timelineInput ? timelineInput.value.trim() : '',
+      comments: form.querySelector('textarea[name="comments"]') ? form.querySelector('textarea[name="comments"]').value.trim() : '',
+      page_url: window.location.href,
+      b_address: honeypot
     };
 
     const randNum = Math.floor(1000 + Math.random() * 9000);
     const generatedRef = `GDT-2026-${randNum}`;
 
     try {
-      const response = await fetch('api/send-quote.php', {
+      const response = await fetch('/api/enquiry', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(formData)
       });
-      const resData = await response.json();
-      const finalRef = resData.ref || generatedRef;
 
-      form.style.display = 'none';
-      if (successPanel) {
-        successPanel.style.display = 'block';
-        const refEl = successPanel.querySelector('.quote-ref');
-        if (refEl) refEl.innerText = `Reference Code: ${finalRef}`;
-        successPanel.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      const resData = await response.json();
+
+      if (response.ok && resData.success) {
+        // Reset form & selections
+        form.reset();
+        selectedServices = [];
+        servicePills.forEach(p => p.classList.remove('selected'));
+        if (hiddenServiceInput) hiddenServiceInput.value = '';
+        const selectedSpan = form.querySelector('.custom-dropdown-selected');
+        if (selectedSpan) selectedSpan.innerHTML = 'Select expected timeframe / days...';
+
+        form.style.display = 'none';
+        if (successPanel) {
+          successPanel.style.display = 'block';
+          const refEl = successPanel.querySelector('.quote-ref');
+          if (refEl) refEl.innerText = `Reference Code: ${generatedRef}`;
+          successPanel.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+      } else {
+        throw new Error(resData.error || 'Failed to register enquiry.');
       }
     } catch (err) {
-      // Fallback for static demo environment
-      form.style.display = 'none';
-      if (successPanel) {
-        successPanel.style.display = 'block';
-        const refEl = successPanel.querySelector('.quote-ref');
-        if (refEl) refEl.innerText = `Reference Code: ${generatedRef}`;
-        successPanel.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      if (submitBtn) {
+        submitBtn.disabled = false;
+        submitBtn.innerHTML = originalBtnText;
       }
+
+      // Display safe error banner with WhatsApp fallback option
+      const errBanner = document.createElement('div');
+      errBanner.className = 'form-error-banner';
+      errBanner.style.cssText = 'margin-top:16px; padding:14px 16px; background:#fef2f2; border:1px solid #fca5a5; border-radius:10px; color:#991b1b; font-size:0.9rem; text-align:left; line-height:1.5;';
+      errBanner.innerHTML = `⚠️ <strong>Submission Error:</strong> ${err.message || 'Unable to submit enquiry.'}<br><span style="font-size:0.85rem; color:#7f1d1d;">Your details have been preserved. You can try again or connect directly: <a href="https://web.whatsapp.com/send?phone=918072841079" target="_blank" rel="noopener" style="color:#0284c7; font-weight:700; text-decoration:underline;">Chat on WhatsApp →</a></span>`;
+      
+      form.appendChild(errBanner);
+      errBanner.scrollIntoView({ behavior: 'smooth', block: 'center' });
     }
   });
 
@@ -124,7 +152,7 @@ function initMultiSelectQuoteForm(form, successPanelId) {
     const fieldsToValidate = [
       { name: 'name', msg: 'Please enter your full name.' },
       { name: 'email', msg: 'Please enter a valid email address.', isEmail: true },
-      { name: 'phone', msg: 'Please enter your phone / WhatsApp number.' },
+      { name: 'phone', msg: 'Please enter your phone / WhatsApp number.', isPhone: true },
       { name: 'location', msg: 'Please enter your operating location.' },
       { name: 'budget', msg: 'Please enter your estimated budget.' },
       { name: 'estimated_days', msg: 'Please select estimated timeframe / days.' }
@@ -138,6 +166,8 @@ function initMultiSelectQuoteForm(form, successPanelId) {
         if (!val) {
           fieldValid = false;
         } else if (item.isEmail && !validateEmail(val)) {
+          fieldValid = false;
+        } else if (item.isPhone && !validateIndianPhone(val)) {
           fieldValid = false;
         }
 
@@ -175,6 +205,122 @@ function initMultiSelectQuoteForm(form, successPanelId) {
   function validateEmail(email) {
     const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return re.test(String(email).toLowerCase());
+  }
+
+  function validateIndianPhone(phone) {
+    const cleaned = String(phone).replace(/[^\d+]/g, '');
+    const re = /^(?:\+91|91)?[6-9]\d{9}$/;
+    return re.test(cleaned);
+  }
+}
+
+function initContactEnquiryForm(form, successPanelId) {
+  const successPanel = document.getElementById(successPanelId);
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+
+    // Clear previous error banners
+    form.querySelectorAll('.form-error-banner').forEach(el => el.remove());
+    form.querySelectorAll('.field-error-msg').forEach(el => el.remove());
+    form.querySelectorAll('.invalid').forEach(el => el.classList.remove('invalid'));
+
+    const nameEl = form.querySelector('input[name="name"]');
+    const businessEl = form.querySelector('input[name="business"]');
+    const emailEl = form.querySelector('input[name="email"]');
+    const phoneEl = form.querySelector('input[name="phone"]');
+    const locationEl = form.querySelector('input[name="location"]');
+    const messageEl = form.querySelector('textarea[name="message"]');
+    const honeypot = form.querySelector('input[name="b_address"]') ? form.querySelector('input[name="b_address"]').value : '';
+
+    let isValid = true;
+    if (!nameEl || !nameEl.value.trim()) { showError(nameEl, 'Please enter contact name.'); isValid = false; }
+    if (!emailEl || !emailEl.value.trim() || !validateEmail(emailEl.value.trim())) { showError(emailEl, 'Please enter a valid email address.'); isValid = false; }
+    if (!phoneEl || !phoneEl.value.trim() || !validateIndianPhone(phoneEl.value.trim())) { showError(phoneEl, 'Please enter a valid Indian phone/WhatsApp number.'); isValid = false; }
+    if (!messageEl || !messageEl.value.trim()) { showError(messageEl, 'Please describe your project requirements.'); isValid = false; }
+
+    if (!isValid) return;
+
+    const submitBtn = form.querySelector('button[type="submit"]');
+    const originalBtnText = submitBtn ? submitBtn.innerHTML : 'Submit Enquiry';
+
+    if (submitBtn) {
+      submitBtn.disabled = true;
+      submitBtn.innerHTML = '<span class="spinner" style="display:inline-block; width:14px; height:14px; border:2px solid #fff; border-top-color:transparent; border-radius:50%; animation:spin 0.6s linear infinite; margin-right:8px;"></span> Submitting...';
+    }
+
+    const formData = {
+      form_type: 'contact',
+      full_name: nameEl.value.trim(),
+      company_name: businessEl ? businessEl.value.trim() : '',
+      email: emailEl.value.trim(),
+      phone: phoneEl.value.trim(),
+      location: locationEl ? locationEl.value.trim() : '',
+      message: messageEl.value.trim(),
+      page_url: window.location.href,
+      b_address: honeypot
+    };
+
+    try {
+      const response = await fetch('/api/enquiry', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData)
+      });
+
+      const resData = await response.json();
+
+      if (response.ok && resData.success) {
+        form.reset();
+        form.style.display = 'none';
+        if (successPanel) {
+          successPanel.style.display = 'block';
+          successPanel.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+      } else {
+        throw new Error(resData.error || 'Failed to submit contact enquiry.');
+      }
+    } catch (err) {
+      if (submitBtn) {
+        submitBtn.disabled = false;
+        submitBtn.innerHTML = originalBtnText;
+      }
+
+      const errBanner = document.createElement('div');
+      errBanner.className = 'form-error-banner';
+      errBanner.style.cssText = 'margin-top:16px; padding:14px 16px; background:#fef2f2; border:1px solid #fca5a5; border-radius:10px; color:#991b1b; font-size:0.9rem; text-align:left; line-height:1.5;';
+      errBanner.innerHTML = `⚠️ <strong>Submission Error:</strong> ${err.message || 'Unable to submit enquiry.'}<br><span style="font-size:0.85rem; color:#7f1d1d;">Your details have been preserved. You can try again or connect directly: <a href="https://web.whatsapp.com/send?phone=918072841079" target="_blank" rel="noopener" style="color:#0284c7; font-weight:700; text-decoration:underline;">Chat on WhatsApp →</a></span>`;
+
+      form.appendChild(errBanner);
+      errBanner.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+  });
+
+  function showError(element, message) {
+    if (!element) return;
+    element.classList.add('invalid');
+    const msg = document.createElement('span');
+    msg.className = 'field-error-msg';
+    msg.style.color = '#ef4444';
+    msg.style.fontSize = '0.8rem';
+    msg.style.marginTop = '4px';
+    msg.style.display = 'block';
+    msg.innerText = message;
+
+    if (element.parentNode) {
+      element.parentNode.appendChild(msg);
+    }
+  }
+
+  function validateEmail(email) {
+    const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return re.test(String(email).toLowerCase());
+  }
+
+  function validateIndianPhone(phone) {
+    const cleaned = String(phone).replace(/[^\d+]/g, '');
+    const re = /^(?:\+91|91)?[6-9]\d{9}$/;
+    return re.test(cleaned);
   }
 }
 

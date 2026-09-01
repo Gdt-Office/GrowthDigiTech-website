@@ -1,0 +1,15 @@
+{
+  "name": "growthdigitech-website",
+  "version": "2.0.0",
+  "description": "GrowthDigiTech Official Website with Vercel Serverless Supabase Integration",
+  "main": "api/enquiry.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "@supabase/supabase-js": "^2.48.1"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}
