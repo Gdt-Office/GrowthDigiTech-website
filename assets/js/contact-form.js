@@ -67,6 +67,14 @@ function initContactEnquiryForm(form, successPanelId) {
       const resData = await response.json();
 
       if (response.ok && resData.success === true) {
+        // Track GTM Conversion Event
+        window.dataLayer = window.dataLayer || [];
+        window.dataLayer.push({
+          event: "contact_form_success",
+          form_name: "contact_form",
+          form_location: window.location.pathname
+        });
+
         form.reset();
         form.style.display = 'none';
         if (successPanel) {
