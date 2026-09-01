@@ -95,7 +95,7 @@ function initMultiSelectQuoteForm(form, successPanelId, formType = 'quote') {
 
       const resData = await response.json();
 
-      if (response.ok && resData.success) {
+      if (response.ok && resData.success === true) {
         // Reset form & selections
         form.reset();
         selectedServices = [];
@@ -112,7 +112,7 @@ function initMultiSelectQuoteForm(form, successPanelId, formType = 'quote') {
           successPanel.scrollIntoView({ behavior: 'smooth', block: 'center' });
         }
       } else {
-        throw new Error(resData.error || 'Failed to register enquiry.');
+        throw new Error(resData.error || 'We could not save your enquiry. Please try again.');
       }
     } catch (err) {
       if (submitBtn) {
@@ -124,7 +124,7 @@ function initMultiSelectQuoteForm(form, successPanelId, formType = 'quote') {
       const errBanner = document.createElement('div');
       errBanner.className = 'form-error-banner';
       errBanner.style.cssText = 'margin-top:16px; padding:14px 16px; background:#fef2f2; border:1px solid #fca5a5; border-radius:10px; color:#991b1b; font-size:0.9rem; text-align:left; line-height:1.5;';
-      errBanner.innerHTML = `⚠️ <strong>Submission Error:</strong> ${err.message || 'Unable to submit enquiry.'}<br><span style="font-size:0.85rem; color:#7f1d1d;">Your details have been preserved. You can try again or connect directly: <a href="https://web.whatsapp.com/send?phone=918072841079" target="_blank" rel="noopener" style="color:#0284c7; font-weight:700; text-decoration:underline;">Chat on WhatsApp →</a></span>`;
+      errBanner.innerHTML = `⚠️ <strong>Submission Error:</strong> ${err.message || 'We could not save your enquiry. Please try again.'}<br><span style="font-size:0.85rem; color:#7f1d1d;">Your entered details have been preserved. You can try submitting again or chat directly: <a href="https://web.whatsapp.com/send?phone=918072841079" target="_blank" rel="noopener" style="color:#0284c7; font-weight:700; text-decoration:underline;">Connect on WhatsApp →</a></span>`;
       
       form.appendChild(errBanner);
       errBanner.scrollIntoView({ behavior: 'smooth', block: 'center' });
@@ -270,7 +270,7 @@ function initContactEnquiryForm(form, successPanelId) {
 
       const resData = await response.json();
 
-      if (response.ok && resData.success) {
+      if (response.ok && resData.success === true) {
         form.reset();
         form.style.display = 'none';
         if (successPanel) {
@@ -278,7 +278,7 @@ function initContactEnquiryForm(form, successPanelId) {
           successPanel.scrollIntoView({ behavior: 'smooth', block: 'center' });
         }
       } else {
-        throw new Error(resData.error || 'Failed to submit contact enquiry.');
+        throw new Error(resData.error || 'We could not save your enquiry. Please try again.');
       }
     } catch (err) {
       if (submitBtn) {
@@ -289,7 +289,7 @@ function initContactEnquiryForm(form, successPanelId) {
       const errBanner = document.createElement('div');
       errBanner.className = 'form-error-banner';
       errBanner.style.cssText = 'margin-top:16px; padding:14px 16px; background:#fef2f2; border:1px solid #fca5a5; border-radius:10px; color:#991b1b; font-size:0.9rem; text-align:left; line-height:1.5;';
-      errBanner.innerHTML = `⚠️ <strong>Submission Error:</strong> ${err.message || 'Unable to submit enquiry.'}<br><span style="font-size:0.85rem; color:#7f1d1d;">Your details have been preserved. You can try again or connect directly: <a href="https://web.whatsapp.com/send?phone=918072841079" target="_blank" rel="noopener" style="color:#0284c7; font-weight:700; text-decoration:underline;">Chat on WhatsApp →</a></span>`;
+      errBanner.innerHTML = `⚠️ <strong>Submission Error:</strong> ${err.message || 'We could not save your enquiry. Please try again.'}<br><span style="font-size:0.85rem; color:#7f1d1d;">Your entered details have been preserved. You can try submitting again or chat directly: <a href="https://web.whatsapp.com/send?phone=918072841079" target="_blank" rel="noopener" style="color:#0284c7; font-weight:700; text-decoration:underline;">Connect on WhatsApp →</a></span>`;
 
       form.appendChild(errBanner);
       errBanner.scrollIntoView({ behavior: 'smooth', block: 'center' });

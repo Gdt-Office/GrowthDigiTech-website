@@ -4,7 +4,7 @@ module.exports = async function handler(req, res) {
   // CORS Headers
   res.setHeader('Access-Control-Allow-Credentials', true);
   res.setHeader('Access-Control-Allow-Origin', '*');
-  res.setHeader('Access-Control-Allow-Methods', 'GET,OPTIONS,PATCH,DELETE,POST,PUT');
+  res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
   res.setHeader(
     'Access-Control-Allow-Headers',
     'X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version'
@@ -22,11 +22,20 @@ module.exports = async function handler(req, res) {
   }
 
   try {
-    const body = typeof req.body === 'string' ? JSON.parse(req.body) : req.body || {};
+    let body = req.body;
+    if (typeof body === 'string') {
+      try {
+        body = JSON.parse(body);
+      } catch (e) {
+        body = {};
+      }
+    }
+    if (!body || typeof body !== 'object') {
+      body = {};
+    }
 
     // 1. Honeypot Spam Check
     if (body.website || body.b_address || body.fax_number) {
-      // Silent rejection for bot submissions
       return res.status(200).json({
         success: true,
         message: 'Your enquiry was submitted successfully.'
@@ -55,7 +64,7 @@ module.exports = async function handler(req, res) {
     const message = sanitizeInput(body.message || body.comments);
     const pageUrl = sanitizeInput(body.page_url);
 
-    // 4. Server-Side Validations
+    // 4. Required Field Validations
     if (!fullName) {
       return res.status(400).json({ success: false, error: 'Full name is required.' });
     }
@@ -107,21 +116,21 @@ module.exports = async function handler(req, res) {
       return res.status(400).json({ success: false, error: 'Message content exceeds 3000 characters limit.' });
     }
 
-    // 5. Initialize Supabase Client via Environment Variables
+    // 5. Read Environment Variables (Strictly SUPABASE_URL and SUPABASE_SECRET_KEY)
     const supabaseUrl = process.env.SUPABASE_URL;
     const supabaseSecretKey = process.env.SUPABASE_SECRET_KEY;
 
     if (!supabaseUrl || !supabaseSecretKey) {
-      console.error('[Enquiry API Error]: Supabase environment variables missing in server environment.');
+      console.error('[Enquiry API Error]: SUPABASE_URL or SUPABASE_SECRET_KEY environment variable is missing.');
       return res.status(500).json({
         success: false,
-        error: 'Database connection parameters missing. Please notify system administrator.'
+        error: 'We could not save your enquiry. Please try again.'
       });
     }
 
     const supabase = createClient(supabaseUrl, supabaseSecretKey);
 
-    // 6. Insert Enquiry Row into Supabase Table 'enquiries'
+    // 6. Insert Payload into Supabase Table 'enquiries'
     const payload = {
       form_type: formType,
       full_name: fullName,
@@ -140,20 +149,19 @@ module.exports = async function handler(req, res) {
       notification_sent: false
     };
 
-    const { data, error } = await supabase
+    const { error } = await supabase
       .from('enquiries')
-      .insert([payload])
-      .select();
+      .insert([payload]);
 
     if (error) {
-      console.error('[Enquiry API Error]: Supabase Insert Error:', error.message || error);
+      console.error('[Enquiry API Error]: Supabase database insert failed:', error.message || error);
       return res.status(500).json({
         success: false,
-        error: 'Unable to save enquiry at this moment. Please reach us directly via WhatsApp.'
+        error: 'We could not save your enquiry. Please try again.'
       });
     }
 
-    // 7. Success Response
+    // 7. Confirmed Success Response
     return res.status(200).json({
       success: true,
       message: 'Your enquiry was submitted successfully.'
@@ -163,7 +171,7 @@ module.exports = async function handler(req, res) {
     console.error('[Enquiry API Exception]:', err.message || err);
     return res.status(500).json({
       success: false,
-      error: 'An unexpected error occurred. Please try again or chat with us on WhatsApp.'
+      error: 'We could not save your enquiry. Please try again.'
     });
   }
 };
@@ -179,7 +187,6 @@ function validateEmail(email) {
 }
 
 function validateIndianPhone(phone) {
-  // Allows +91 / 91 prefix or 10-digit Indian numbers starting with 6-9
   const re = /^(?:\+91|91)?[6-9]\d{9}$/;
   return re.test(phone);
 }
