@@ -1,5 +1,9 @@
 const { createClient } = require('@supabase/supabase-js');
 
+// Simple In-Memory Cache for Rate Limiting & Duplicate Prevention
+const rateLimitMap = new Map();
+const duplicateMap = new Map();
+
 module.exports = async function handler(req, res) {
   // CORS Headers
   res.setHeader('Access-Control-Allow-Credentials', true);
@@ -43,20 +47,53 @@ module.exports = async function handler(req, res) {
       });
     }
 
-    // 2. Extract & Sanitize Input Fields
+    // 2. Extract & Sanitize All Input Fields
     const formType = sanitizeInput(body.form_type);
     const fullName = sanitizeInput(body.full_name || body.name);
     const email = sanitizeInput(body.email);
     const rawPhone = sanitizeInput(body.phone);
     const location = sanitizeInput(body.location);
     const companyName = sanitizeInput(body.company_name || body.business);
+    const subject = sanitizeInput(body.subject);
     const service = sanitizeInput(body.service);
     const budget = sanitizeInput(body.budget);
     const timeline = sanitizeInput(body.timeline || body.estimated_days);
     const message = sanitizeInput(body.message || body.comments);
     const pageUrl = sanitizeInput(body.page_url);
 
-    // 3. Common Server-Side Validations
+    // 3. Rate Limiting Protection (Max 5 submissions per 10 minutes per IP/Email)
+    const clientIp = req.headers['x-forwarded-for'] || req.socket.remoteAddress || 'unknown';
+    const rateKey = `${clientIp}:${email}`;
+    const now = Date.now();
+    const rateWindow = 10 * 60 * 1000; // 10 minutes
+
+    const userRate = rateLimitMap.get(rateKey) || { count: 0, resetTime: now + rateWindow };
+    if (now > userRate.resetTime) {
+      userRate.count = 0;
+      userRate.resetTime = now + rateWindow;
+    }
+    userRate.count += 1;
+    rateLimitMap.set(rateKey, userRate);
+
+    if (userRate.count > 5) {
+      return res.status(429).json({
+        success: false,
+        error: 'Too many enquiry requests. Please try again after 10 minutes.'
+      });
+    }
+
+    // 4. Duplicate Submission Prevention (Block exact identical submissions within 60 seconds)
+    const dupKey = `${email}:${formType}:${message.substring(0, 50)}`;
+    const lastSub = duplicateMap.get(dupKey);
+    if (lastSub && (now - lastSub < 60000)) {
+      return res.status(429).json({
+        success: false,
+        error: 'Duplicate enquiry detected. Your submission has already been received.'
+      });
+    }
+    duplicateMap.set(dupKey, now);
+
+    // 5. Server-Side Common Field Validations
     if (!fullName) {
       return res.status(400).json({ success: false, error: 'Full name is required.' });
     }
@@ -85,12 +122,16 @@ module.exports = async function handler(req, res) {
       return res.status(400).json({ success: false, error: 'Phone number exceeds 30 characters limit.' });
     }
 
-    // 4. Initialize Supabase Client via Strict Environment Variables
+    if (location && location.length > 150) {
+      return res.status(400).json({ success: false, error: 'Location exceeds 150 characters limit.' });
+    }
+
+    // 6. Strict Environment Variables Check (Strictly SUPABASE_URL and SUPABASE_SECRET_KEY)
     const supabaseUrl = process.env.SUPABASE_URL;
     const supabaseSecretKey = process.env.SUPABASE_SECRET_KEY;
 
     if (!supabaseUrl || !supabaseSecretKey) {
-      console.error('[Enquiry API Error]: SUPABASE_URL or SUPABASE_SECRET_KEY environment variable is not configured.');
+      console.error('[Enquiry API Error]: Production environment variables SUPABASE_URL or SUPABASE_SECRET_KEY missing.');
       return res.status(500).json({
         success: false,
         error: 'We could not save your enquiry. Please try again.'
@@ -99,7 +140,7 @@ module.exports = async function handler(req, res) {
 
     const supabase = createClient(supabaseUrl, supabaseSecretKey);
 
-    // 5. Secure Table Selection & Payload Construction
+    // 7. Secure Table Mapping & Strict Payload Construction
     let tableName;
     let payload;
 
@@ -109,16 +150,28 @@ module.exports = async function handler(req, res) {
       if (!message) {
         return res.status(400).json({ success: false, error: 'Please describe your project requirements.' });
       }
+      if (message.length > 3000) {
+        return res.status(400).json({ success: false, error: 'Message content exceeds 3000 characters limit.' });
+      }
+      if (companyName && companyName.length > 150) {
+        return res.status(400).json({ success: false, error: 'Company name exceeds 150 characters limit.' });
+      }
+      if (subject && subject.length > 200) {
+        return res.status(400).json({ success: false, error: 'Subject line exceeds 200 characters limit.' });
+      }
 
       payload = {
         full_name: fullName,
-        company_name: companyName || null,
         email: email,
         phone: cleanedPhone,
+        company_name: companyName || null,
         location: location || null,
-        message: message || null,
+        subject: subject || null,
+        message: message,
+        preferred_contact: 'whatsapp',
         page_url: pageUrl || null,
-        status: 'new'
+        status: 'new',
+        notification_sent: false
       };
 
     } else if (formType === 'quote') {
@@ -127,25 +180,41 @@ module.exports = async function handler(req, res) {
       if (!service) {
         return res.status(400).json({ success: false, error: 'Please select at least one expected service.' });
       }
+      if (service.length > 1000) {
+        return res.status(400).json({ success: false, error: 'Service selection text exceeds length limit.' });
+      }
+
       if (!budget) {
         return res.status(400).json({ success: false, error: 'Please enter your estimated budget.' });
       }
+      if (budget.length > 100) {
+        return res.status(400).json({ success: false, error: 'Budget field exceeds length limit.' });
+      }
+
       if (!timeline) {
         return res.status(400).json({ success: false, error: 'Please select estimated timeframe / days.' });
+      }
+      if (timeline.length > 100) {
+        return res.status(400).json({ success: false, error: 'Timeline field exceeds length limit.' });
+      }
+
+      if (message && message.length > 3000) {
+        return res.status(400).json({ success: false, error: 'Message content exceeds 3000 characters limit.' });
       }
 
       payload = {
         full_name: fullName,
-        company_name: companyName || null,
         email: email,
         phone: cleanedPhone,
         location: location || null,
-        service: service || null,
-        budget: budget || null,
-        timeline: timeline || null,
+        service: service,
+        budget: budget,
+        timeline: timeline,
         message: message || null,
+        preferred_contact: 'whatsapp',
         page_url: pageUrl || null,
-        status: 'new'
+        status: 'new',
+        notification_sent: false
       };
 
     } else {
@@ -155,7 +224,7 @@ module.exports = async function handler(req, res) {
       });
     }
 
-    // 6. Execute Supabase Insert
+    // 8. Execute Supabase Insert
     const { data, error } = await supabase
       .from(tableName)
       .insert([payload])
@@ -163,7 +232,7 @@ module.exports = async function handler(req, res) {
       .single();
 
     if (error) {
-      console.error('Supabase insert failed:', {
+      console.error('[Supabase Insert Error]:', {
         table: tableName,
         code: error.code,
         message: error.message,
@@ -176,10 +245,10 @@ module.exports = async function handler(req, res) {
       });
     }
 
-    // 7. Confirmed Success Response
+    // 9. Confirmed Success Response
     return res.status(201).json({
       success: true,
-      enquiryId: data.id,
+      enquiryId: data ? data.id : null,
       message: 'Your enquiry was submitted successfully.'
     });
 
