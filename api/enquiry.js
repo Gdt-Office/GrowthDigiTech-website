@@ -95,14 +95,14 @@ module.exports = async function handler(req, res) {
     }
 
     // 5. Initialize Supabase Client via Environment Variables
-    const supabaseUrl = process.env.SUPABASE_URL;
-    const supabaseSecretKey = process.env.SUPABASE_SECRET_KEY;
+    const supabaseUrl = process.env.SUPABASE_URL || process.env.NEXT_PUBLIC_SUPABASE_URL;
+    const supabaseSecretKey = process.env.SUPABASE_SECRET_KEY || process.env.SUPABASE_SERVICE_ROLE_KEY || process.env.SUPABASE_ANON_KEY || process.env.SUPABASE_KEY || process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
 
     if (!supabaseUrl || !supabaseSecretKey) {
-      console.error('[Enquiry API Error]: SUPABASE_URL or SUPABASE_SECRET_KEY environment variable is missing.');
+      console.error('[Enquiry API Error]: Supabase environment variables missing (SUPABASE_URL / SUPABASE_SECRET_KEY).');
       return res.status(500).json({
         success: false,
-        error: 'We could not save your enquiry. Please try again.'
+        error: 'We could not save your enquiry. Database connection environment variables missing.'
       });
     }
 
