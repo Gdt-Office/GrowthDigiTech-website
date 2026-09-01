@@ -52,7 +52,7 @@ module.exports = async function handler(req, res) {
       });
     }
 
-    // 3. Extract & Sanitize Input Fields
+    // 3. Extract & Sanitize Common Input Fields
     const fullName = sanitizeInput(body.full_name || body.name);
     const email = sanitizeInput(body.email);
     const rawPhone = sanitizeInput(body.phone);
@@ -65,7 +65,7 @@ module.exports = async function handler(req, res) {
     const message = sanitizeInput(body.message || body.comments);
     const pageUrl = sanitizeInput(body.page_url);
 
-    // 4. Required Field Validations
+    // 4. Validate Common Required Fields (Full Name, Email, Phone)
     if (!fullName) {
       return res.status(400).json({ success: false, error: 'Full name is required.' });
     }
@@ -94,30 +94,7 @@ module.exports = async function handler(req, res) {
       return res.status(400).json({ success: false, error: 'Phone number exceeds 30 characters limit.' });
     }
 
-    // Optional Field Length Restrictions
-    if (location && location.length > 150) {
-      return res.status(400).json({ success: false, error: 'Location exceeds 150 characters limit.' });
-    }
-    if (companyName && companyName.length > 150) {
-      return res.status(400).json({ success: false, error: 'Company name exceeds 150 characters limit.' });
-    }
-    if (service && service.length > 1000) {
-      return res.status(400).json({ success: false, error: 'Service selection text exceeds length limit.' });
-    }
-    if (budget && budget.length > 100) {
-      return res.status(400).json({ success: false, error: 'Budget field exceeds length limit.' });
-    }
-    if (timeline && timeline.length > 100) {
-      return res.status(400).json({ success: false, error: 'Timeline field exceeds length limit.' });
-    }
-    if (subject && subject.length > 200) {
-      return res.status(400).json({ success: false, error: 'Subject line exceeds length limit.' });
-    }
-    if (message && message.length > 3000) {
-      return res.status(400).json({ success: false, error: 'Message content exceeds 3000 characters limit.' });
-    }
-
-    // 5. Read Environment Variables (Strictly SUPABASE_URL and SUPABASE_SECRET_KEY)
+    // 5. Initialize Supabase Client via Environment Variables
     const supabaseUrl = process.env.SUPABASE_URL;
     const supabaseSecretKey = process.env.SUPABASE_SECRET_KEY;
 
@@ -131,35 +108,76 @@ module.exports = async function handler(req, res) {
 
     const supabase = createClient(supabaseUrl, supabaseSecretKey);
 
-    // 6. Insert Payload into Supabase Table 'enquiries'
-    const payload = {
-      form_type: formType,
-      full_name: fullName,
-      email: email,
-      phone: cleanedPhone,
-      location: location || null,
-      company_name: companyName || null,
-      service: service || null,
-      budget: budget || null,
-      timeline: timeline || null,
-      subject: subject || null,
-      message: message || null,
-      preferred_contact: 'whatsapp',
-      page_url: pageUrl || null,
-      status: 'new',
-      notification_sent: false
-    };
+    // 6. Branch Logic & Table Selection Based on Form Type
+    if (formType === 'contact') {
+      // Contact Form Specific Validations
+      if (!message) {
+        return res.status(400).json({ success: false, error: 'Please describe your project requirements.' });
+      }
 
-    const { error } = await supabase
-      .from('enquiries')
-      .insert([payload]);
+      const contactPayload = {
+        full_name: fullName,
+        email: email,
+        phone: cleanedPhone,
+        company_name: companyName || null,
+        location: location || null,
+        subject: subject || null,
+        message: message,
+        preferred_contact: 'whatsapp',
+        page_url: pageUrl || null,
+        status: 'new',
+        notification_sent: false
+      };
 
-    if (error) {
-      console.error('[Enquiry API Error]: Supabase database insert failed:', error.message || error);
-      return res.status(500).json({
-        success: false,
-        error: 'We could not save your enquiry. Please try again.'
-      });
+      const { error } = await supabase
+        .from('contact_enquiries')
+        .insert([contactPayload]);
+
+      if (error) {
+        console.error('[Contact API Error]: Supabase insert to contact_enquiries failed:', error.message || error);
+        return res.status(500).json({
+          success: false,
+          error: 'We could not save your enquiry. Please try again.'
+        });
+      }
+    } else if (formType === 'quote') {
+      // Quote Form Specific Validations
+      if (!service) {
+        return res.status(400).json({ success: false, error: 'Please select at least one expected service.' });
+      }
+      if (!budget) {
+        return res.status(400).json({ success: false, error: 'Please enter your estimated budget.' });
+      }
+      if (!timeline) {
+        return res.status(400).json({ success: false, error: 'Please select estimated timeframe / days.' });
+      }
+
+      const quotePayload = {
+        full_name: fullName,
+        email: email,
+        phone: cleanedPhone,
+        location: location || null,
+        service: service,
+        budget: budget,
+        timeline: timeline,
+        message: message || null,
+        preferred_contact: 'whatsapp',
+        page_url: pageUrl || null,
+        status: 'new',
+        notification_sent: false
+      };
+
+      const { error } = await supabase
+        .from('quote_enquiries')
+        .insert([quotePayload]);
+
+      if (error) {
+        console.error('[Quote API Error]: Supabase insert to quote_enquiries failed:', error.message || error);
+        return res.status(500).json({
+          success: false,
+          error: 'We could not save your enquiry. Please try again.'
+        });
+      }
     }
 
     // 7. Confirmed Success Response
