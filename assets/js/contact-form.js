@@ -144,7 +144,7 @@ function saveEnquiryToLocalStorage(tableKey, data) {
 }
 
 // Global Confirmation Modal Renderer
-window.showConfirmationModal = function({ refId, name, email, phone, formType, services }) {
+window.showConfirmationModal = function({ refId, name }) {
   let modalBackdrop = document.getElementById('gdt-confirmation-modal');
   if (!modalBackdrop) {
     modalBackdrop = document.createElement('div');
@@ -156,8 +156,8 @@ window.showConfirmationModal = function({ refId, name, email, phone, formType, s
   modalBackdrop.innerHTML = `
     <div class="gdt-modal-card">
       <button class="gdt-modal-close-btn" onclick="closeConfirmationModal()">&times;</button>
-      <div class="gdt-modal-icon-wrap">
-        <i class="fa-solid fa-circle-check"></i>
+      <div class="gdt-modal-logo-wrap" style="margin-bottom: 20px; text-align: center;">
+        <img src="assets/logo/logo.png" alt="GrowthDigiTech" style="max-height: 52px; width: auto; max-width: 100%; display: inline-block;">
       </div>
       <h2 class="gdt-modal-title">Enquiry Submitted Successfully!</h2>
       <div class="gdt-ref-badge">
@@ -165,32 +165,9 @@ window.showConfirmationModal = function({ refId, name, email, phone, formType, s
       </div>
 
       <div class="gdt-commitment-box">
-        <p>
-          <i class="fa-solid fa-clock" style="color: #2563eb; margin-right: 6px;"></i>
-          <strong>4-Hour Response Commitment:</strong><br>
-          Thank you, <strong>${escapeHtml(name)}</strong>! Your submission has been saved to our engineering database. Our technical team will review your specifications and contact you within <strong>4 business hours</strong> (09:30 AM - 07:00 PM IST).
+        <p style="margin: 0; font-size: 1.02rem; line-height: 1.65; color: #1e293b;">
+          Thanks, <strong>${escapeHtml(name)}</strong> 🎉 We've got your submission and it's looking good. Our team will review everything and get back to you soon—usually within 4 business hours. Keep an eye on your inbox between 9:30 AM and 7:00 PM IST!
         </p>
-      </div>
-
-      <div class="gdt-modal-summary">
-        <div class="gdt-modal-summary-item">
-          <span>Submission Type:</span>
-          <span>${escapeHtml(formType || 'Enquiry')}</span>
-        </div>
-        <div class="gdt-modal-summary-item">
-          <span>Email Address:</span>
-          <span>${escapeHtml(email)}</span>
-        </div>
-        ${phone ? `
-        <div class="gdt-modal-summary-item">
-          <span>Phone / WhatsApp:</span>
-          <span>${escapeHtml(phone)}</span>
-        </div>` : ''}
-        ${services ? `
-        <div class="gdt-modal-summary-item">
-          <span>Selected Services:</span>
-          <span>${escapeHtml(services)}</span>
-        </div>` : ''}
       </div>
 
       <div class="gdt-modal-actions">

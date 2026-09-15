@@ -1125,3 +1125,54 @@ function initCustomDropdowns(container = document) {
   }
 }
 
+// Global Confirmation Modal Renderer
+window.showConfirmationModal = window.showConfirmationModal || function({ refId, name }) {
+  let modalBackdrop = document.getElementById('gdt-confirmation-modal');
+  if (!modalBackdrop) {
+    modalBackdrop = document.createElement('div');
+    modalBackdrop.id = 'gdt-confirmation-modal';
+    modalBackdrop.className = 'gdt-modal-backdrop';
+    document.body.appendChild(modalBackdrop);
+  }
+
+  const escapeHtml = (str) => String(str || '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+
+  modalBackdrop.innerHTML = `
+    <div class="gdt-modal-card">
+      <button class="gdt-modal-close-btn" onclick="closeConfirmationModal()">&times;</button>
+      <div class="gdt-modal-logo-wrap" style="margin-bottom: 20px; text-align: center;">
+        <img src="assets/logo/logo.png" alt="GrowthDigiTech" style="max-height: 52px; width: auto; max-width: 100%; display: inline-block;">
+      </div>
+      <h2 class="gdt-modal-title">Enquiry Submitted Successfully!</h2>
+      <div class="gdt-ref-badge">
+        <i class="fa-solid fa-ticket"></i> Reference Code: ${refId}
+      </div>
+
+      <div class="gdt-commitment-box">
+        <p style="margin: 0; font-size: 1.02rem; line-height: 1.65; color: #1e293b;">
+          Thanks, <strong>${escapeHtml(name)}</strong> 🎉 We've got your submission and it's looking good. Our team will review everything and get back to you soon—usually within 4 business hours. Keep an eye on your inbox between 9:30 AM and 7:00 PM IST!
+        </p>
+      </div>
+
+      <div class="gdt-modal-actions">
+        <a href="https://web.whatsapp.com/send?phone=918072841079&text=Hi%20GrowthDigiTech,%20I%20just%20submitted%20an%20enquiry%20(Ref:%20${refId})." target="_blank" rel="noopener" class="btn-whatsapp">
+          <i class="fab fa-whatsapp" style="font-size: 1.2rem;"></i> Connect on WhatsApp Now →
+        </a>
+        <button class="btn-close-modal" onclick="closeConfirmationModal()">Close Window</button>
+      </div>
+    </div>
+  `;
+
+  setTimeout(() => {
+    modalBackdrop.classList.add('active');
+  }, 10);
+};
+
+window.closeConfirmationModal = window.closeConfirmationModal || function() {
+  const modal = document.getElementById('gdt-confirmation-modal');
+  if (modal) {
+    modal.classList.remove('active');
+    setTimeout(() => { modal.style.display = 'none'; }, 300);
+  }
+};
+
