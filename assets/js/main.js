@@ -13,6 +13,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initScrollAnimations();
   initReviewsSlider();
   initInteractiveServicesSection();
+  initCustomDropdowns();
 });
 
 /**
@@ -999,3 +1000,128 @@ function initInteractiveServicesSection() {
     if (progressBar) progressBar.style.display = 'none';
   }
 }
+
+/**
+ * Custom Advanced Dropdown Component Handler
+ * Transforms native <select> elements inside .custom-select-wrapper into
+ * futuristic UI dropdown cards matching user design specification.
+ */
+function initCustomDropdowns(container = document) {
+  const selectWrappers = container.querySelectorAll('.custom-select-wrapper');
+
+  selectWrappers.forEach(wrapper => {
+    const select = wrapper.querySelector('select');
+    if (!select || wrapper.querySelector('.custom-dropdown-container')) return;
+
+    // Hide native select element
+    select.style.display = 'none';
+
+    // Create wrapper container
+    const dropdownContainer = document.createElement('div');
+    dropdownContainer.className = 'custom-dropdown-container';
+
+    // Trigger element
+    const trigger = document.createElement('div');
+    trigger.className = 'custom-dropdown-trigger';
+    trigger.setAttribute('tabindex', '0');
+    trigger.setAttribute('role', 'combobox');
+    trigger.setAttribute('aria-expanded', 'false');
+
+    const triggerText = document.createElement('span');
+    triggerText.className = 'trigger-text';
+    
+    // Set initial text
+    const selectedOption = select.options[select.selectedIndex] || select.options[0];
+    const initialIcon = selectedOption ? (selectedOption.dataset.icon || '') : '';
+    const initialText = selectedOption ? selectedOption.text : select.placeholder || 'Select option';
+    triggerText.innerHTML = initialIcon ? `<span style="font-size:1.1rem; line-height:1;">${initialIcon}</span> <span>${initialText}</span>` : initialText;
+
+    const arrow = document.createElement('span');
+    arrow.className = 'trigger-arrow';
+    arrow.innerHTML = `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>`;
+
+    trigger.appendChild(triggerText);
+    trigger.appendChild(arrow);
+    dropdownContainer.appendChild(trigger);
+
+    // Dropdown popup menu
+    const menu = document.createElement('div');
+    menu.className = 'custom-dropdown-menu';
+
+    Array.from(select.options).forEach((opt, idx) => {
+      const optionEl = document.createElement('div');
+      optionEl.className = `custom-dropdown-option ${idx === select.selectedIndex ? 'selected' : ''}`;
+      optionEl.dataset.value = opt.value;
+
+      const icon = opt.dataset.icon || '';
+      const sub = opt.dataset.sub || '';
+
+      let optionHtml = '';
+      if (icon) {
+        optionHtml += `<div class="option-icon">${icon}</div>`;
+      }
+      optionHtml += `
+        <div class="option-body">
+          <span class="option-title">${opt.text}</span>
+          ${sub ? `<span class="option-sub">${sub}</span>` : ''}
+        </div>
+      `;
+
+      optionEl.innerHTML = optionHtml;
+
+      optionEl.addEventListener('click', (e) => {
+        e.stopPropagation();
+        select.value = opt.value;
+        select.dispatchEvent(new Event('change', { bubbles: true }));
+
+        // Update selected class
+        menu.querySelectorAll('.custom-dropdown-option').forEach(o => o.classList.remove('selected'));
+        optionEl.classList.add('selected');
+
+        // Update trigger text
+        triggerText.innerHTML = icon ? `<span style="font-size:1.1rem; line-height:1;">${icon}</span> <span>${opt.text}</span>` : opt.text;
+
+        dropdownContainer.classList.remove('open');
+        trigger.setAttribute('aria-expanded', 'false');
+        
+        // Clear field validation errors if any
+        const err = wrapper.querySelector('.field-error-msg') || (wrapper.parentNode && wrapper.parentNode.querySelector('.field-error-msg'));
+        if (err) err.remove();
+        select.classList.remove('invalid');
+      });
+
+      menu.appendChild(optionEl);
+    });
+
+    dropdownContainer.appendChild(menu);
+    wrapper.appendChild(dropdownContainer);
+
+    const toggleMenu = (e) => {
+      e.stopPropagation();
+      document.querySelectorAll('.custom-dropdown-container.open').forEach(d => {
+        if (d !== dropdownContainer) d.classList.remove('open');
+      });
+      const isOpen = dropdownContainer.classList.toggle('open');
+      trigger.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+    };
+
+    trigger.addEventListener('click', toggleMenu);
+    trigger.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        toggleMenu(e);
+      }
+    });
+  });
+
+  // Global click listener to close dropdowns when clicking outside
+  if (!window._customDropdownGlobalListenerAdded) {
+    document.addEventListener('click', () => {
+      document.querySelectorAll('.custom-dropdown-container.open').forEach(d => {
+        d.classList.remove('open');
+      });
+    });
+    window._customDropdownGlobalListenerAdded = true;
+  }
+}
+
