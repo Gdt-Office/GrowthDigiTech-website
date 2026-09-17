@@ -243,16 +243,90 @@ function initActiveNavLink() {
  * Manages floating action buttons (Call, WhatsApp, Back to Top)
  */
 function initFloatingActions() {
+  // Ensure floating stack elements exist in DOM (auto-inject if missing on any page)
+  let stack = document.querySelector('.floating-actions-stack');
+  let waChatBox = document.getElementById('whatsapp-chat-widget');
+
+  if (!stack) {
+    stack = document.createElement('div');
+    stack.className = 'floating-actions-stack';
+    stack.innerHTML = `
+      <button type="button" class="float-btn float-btn-top" id="back-to-top-btn" aria-label="Back to Top" title="Back to top">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="12" y1="19" x2="12" y2="5" />
+          <polyline points="5 12 12 5 19 12" />
+        </svg>
+      </button>
+      <button type="button" class="float-btn float-btn-wa" id="whatsapp-toggle-btn" aria-label="WhatsApp Support" title="Chat on WhatsApp">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z" />
+        </svg>
+      </button>
+      <a href="tel:+918072841079" class="float-btn float-btn-call" aria-label="Call +91 80728 41079" title="Call Us">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
+        </svg>
+      </a>
+    `;
+    document.body.appendChild(stack);
+  }
+
+  if (!waChatBox) {
+    waChatBox = document.createElement('div');
+    waChatBox.className = 'whatsapp-chat-box';
+    waChatBox.id = 'whatsapp-chat-widget';
+    waChatBox.setAttribute('role', 'dialog');
+    waChatBox.setAttribute('aria-label', 'WhatsApp Live Chat');
+    waChatBox.innerHTML = `
+      <div class="wa-chat-header">
+        <div class="wa-chat-brand">
+          <img src="assets/logo/logo.png" alt="GrowthDigiTech Logo" class="wa-chat-logo">
+          <div>
+            <div class="wa-chat-title">GrowthDigiTech</div>
+            <div class="wa-chat-status">
+              <span class="wa-online-dot"></span> Online | Typically replies in minutes
+            </div>
+          </div>
+        </div>
+        <button type="button" class="wa-chat-close" id="wa-chat-close" aria-label="Close Chat">&times;</button>
+      </div>
+      <div class="wa-chat-body">
+        <div class="wa-msg-bubble">
+          Hi there! 👋 Welcome to GrowthDigiTech. How can we help your business grow today?
+          <span class="wa-msg-time">Just now</span>
+        </div>
+        <div class="wa-quick-options">
+          <button type="button" class="wa-quick-btn" data-msg="Hi GrowthDigiTech, I want to discuss Website Development.">🌐 Web Dev</button>
+          <button type="button" class="wa-quick-btn" data-msg="Hi GrowthDigiTech, I am interested in Digital Marketing & Ads.">📈 Marketing</button>
+          <button type="button" class="wa-quick-btn" data-msg="Hi GrowthDigiTech, I need a Custom Software / ERP system.">💻 Custom Software</button>
+          <button type="button" class="wa-quick-btn" data-msg="Hi GrowthDigiTech, I would like to request a free project quote.">📋 Free Quote</button>
+        </div>
+      </div>
+      <div class="wa-chat-footer">
+        <input type="text" class="wa-chat-input" id="wa-chat-input" placeholder="Type your message here..." aria-label="Type WhatsApp Message">
+        <button type="button" class="wa-chat-send" id="wa-chat-send" aria-label="Send WhatsApp Message">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="22" y1="2" x2="11" y2="13" />
+            <polygon points="22 2 15 22 11 13 2 9 22 2" />
+          </svg>
+        </button>
+      </div>
+    `;
+    document.body.appendChild(waChatBox);
+  }
+
   // 1. Back to Top Button
   const topBtn = document.getElementById('back-to-top-btn');
   if (topBtn) {
-    window.addEventListener('scroll', () => {
+    const handleScroll = () => {
       if (window.scrollY > 300) {
         topBtn.classList.add('visible');
       } else {
         topBtn.classList.remove('visible');
       }
-    }, { passive: true });
+    };
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    handleScroll();
 
     topBtn.addEventListener('click', () => {
       window.scrollTo({
@@ -262,9 +336,8 @@ function initFloatingActions() {
     });
   }
 
-  // 2. WhatsApp Floating Chat Widget
+  // 2. WhatsApp Floating Chat Widget Setup
   const waToggleBtn = document.getElementById('whatsapp-toggle-btn');
-  const waChatBox = document.getElementById('whatsapp-chat-widget');
   const waChatClose = document.getElementById('wa-chat-close');
   const waChatSend = document.getElementById('wa-chat-send');
   const waChatInput = document.getElementById('wa-chat-input');
@@ -295,8 +368,11 @@ function initFloatingActions() {
       });
     }
 
-    const sendWaMsg = () => {
-      const msg = waChatInput ? waChatInput.value.trim() : '';
+    const sendWaMsg = (customMsg) => {
+      const msg = (typeof customMsg === 'string' && customMsg.trim())
+        ? customMsg.trim()
+        : (waChatInput ? waChatInput.value.trim() : '');
+
       const defaultText = "Hi GrowthDigiTech! I would like to inquire about your digital growth and software services.";
       const text = msg ? encodeURIComponent(msg) : encodeURIComponent(defaultText);
       const phone = "918072841079";
@@ -327,7 +403,7 @@ function initFloatingActions() {
     };
 
     if (waChatSend) {
-      waChatSend.addEventListener('click', sendWaMsg);
+      waChatSend.addEventListener('click', () => sendWaMsg());
     }
 
     if (waChatInput) {
@@ -338,6 +414,15 @@ function initFloatingActions() {
         }
       });
     }
+
+    // Quick Chip buttons
+    waChatBox.querySelectorAll('.wa-quick-btn').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const msg = btn.getAttribute('data-msg');
+        sendWaMsg(msg);
+      });
+    });
 
     document.addEventListener('click', (e) => {
       if (waChatBox.classList.contains('open') && !waChatBox.contains(e.target) && !waToggleBtn.contains(e.target)) {

@@ -3363,6 +3363,33 @@ h3 {
   margin-top: 4px;
 }
 
+.wa-quick-options {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 4px;
+}
+
+.wa-quick-btn {
+  background: #ffffff;
+  border: 1px solid #128c7e;
+  color: #075e54;
+  border-radius: 16px;
+  padding: 6px 12px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-family: inherit;
+}
+
+.wa-quick-btn:hover {
+  background: #128c7e;
+  color: #ffffff;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(18, 140, 126, 0.25);
+}
+
 .wa-chat-footer {
   padding: 12px;
   background: #ffffff;
